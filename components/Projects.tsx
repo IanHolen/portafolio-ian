@@ -41,6 +41,11 @@ export default function Projects() {
                   <ArrowUpRight className="h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
                 </div>
 
+                {p.metric && (
+                  <div className="mb-4 inline-block rounded-full border border-accent-violet/30 bg-accent-violet/10 px-4 py-1.5 font-mono text-sm font-medium text-accent-violet">
+                    {p.metric}
+                  </div>
+                )}
                 <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-white md:text-4xl">
                   {p.title}
                 </h3>

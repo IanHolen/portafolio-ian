@@ -12,7 +12,7 @@ export const profile = {
   phone: "+52 (55) 4790 3290",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ian-holender/" },
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "GitHub", href: "https://github.com/IanHolen" },
     { label: "Email", href: "mailto:holenderian@gmail.com" },
   ],
 };

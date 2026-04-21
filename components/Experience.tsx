@@ -34,6 +34,19 @@ export default function Experience() {
                 </h3>
                 <p className="mt-1 text-sm text-white/50">{exp.company}</p>
                 <p className="mt-4 max-w-xl text-white/60">{exp.description}</p>
+                {exp.highlights && exp.highlights.length > 0 && (
+                  <ul className="mt-4 space-y-2">
+                    {exp.highlights.map((h, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-3 text-sm text-white/60"
+                      >
+                        <span className="mt-2 h-px w-6 shrink-0 bg-gradient-to-r from-accent-violet to-transparent" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className="col-span-12 flex flex-wrap items-start gap-2 md:col-span-3 md:justify-end">
