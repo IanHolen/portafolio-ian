@@ -21,10 +21,41 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = "https://portafolio-ian.vercel.app";
+const SITE_TITLE = "Ian Holender — Data Engineer";
+const SITE_DESCRIPTION =
+  "Portafolio personal de Ian Holender. Data Engineer especializado en arquitecturas event-driven sobre Microsoft Fabric y Azure.";
+
 export const metadata: Metadata = {
-  title: "Ian Holender — Data Engineer",
-  description:
-    "Portafolio personal de Ian Holender. Data Engineer especializado en arquitecturas event-driven sobre Microsoft Fabric y Azure.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "Data Engineer",
+    "Microsoft Fabric",
+    "Azure",
+    "Ian Holender",
+    "Portafolio",
+  ],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: "Ian Holender",
+    locale: "es_MX",
+    type: "website",
+    images: [
+      { url: "/opengraph-image", width: 1200, height: 630, alt: SITE_TITLE },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
