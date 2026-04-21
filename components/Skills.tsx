@@ -35,7 +35,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: gi * 0.08 }}
-              className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+              className="border-glow rounded-2xl border border-white/10 bg-white/[0.02] p-5"
             >
               <h3 className="mb-3 text-sm font-semibold tracking-wide text-accent-violet">
                 {group.label}

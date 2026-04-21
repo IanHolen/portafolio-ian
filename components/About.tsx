@@ -7,6 +7,7 @@ import SectionHeader from "./SectionHeader";
 export default function About() {
   return (
     <section id="about" className="relative px-6 py-32">
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-accent-blue/15 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="01" kicker="Sobre mí" title="Una intro corta." />
 

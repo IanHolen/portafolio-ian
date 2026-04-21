@@ -1,12 +1,38 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
 import { profile } from "@/lib/data";
 
 const ParticleCanvas = dynamic(() => import("./ParticleCanvas"), { ssr: false });
+
+function MagneticWrap({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const onMove = useCallback((e: MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 80) {
+      const f = (1 - dist / 80) * 6;
+      setOffset({ x: (dx / dist) * f, y: (dy / dist) * f });
+    }
+  }, []);
+  const onLeave = useCallback(() => setOffset({ x: 0, y: 0 }), []);
+  return (
+    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className="inline-block">
+      <div style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, transition: "transform 0.2s ease-out" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -127,21 +153,25 @@ export default function Hero() {
           custom={3}
           className="mt-12 flex flex-wrap items-center gap-4"
         >
-          <a
-            href="#work"
-            className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-          >
-            <span className="relative z-10 inline-flex items-center gap-2">
-              Ver mi trabajo
-              <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
-            </span>
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-          >
-            Contáctame
-          </a>
+          <MagneticWrap>
+            <a
+              href="#work"
+              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              <span className="relative z-10 inline-flex items-center gap-2">
+                Ver mi trabajo
+                <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
+              </span>
+            </a>
+          </MagneticWrap>
+          <MagneticWrap>
+            <a
+              href="#contact"
+              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              Contáctame
+            </a>
+          </MagneticWrap>
         </motion.div>
 
         {/* Animated Stats */}

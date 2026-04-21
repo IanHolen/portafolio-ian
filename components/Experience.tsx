@@ -7,6 +7,7 @@ import SectionHeader from "./SectionHeader";
 export default function Experience() {
   return (
     <section id="experience" className="relative px-6 py-32">
+      <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           index="02"
@@ -22,7 +23,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.08 }}
-              className="group grid grid-cols-12 gap-6 border-t border-white/10 py-8 transition-colors hover:bg-white/[0.015] md:py-10"
+              className="border-glow group grid grid-cols-12 gap-6 rounded-2xl border border-white/10 px-4 py-8 transition-colors hover:bg-white/[0.015] md:px-6 md:py-10"
             >
               <div className="col-span-12 font-mono text-xs uppercase tracking-[0.25em] text-white/40 md:col-span-3">
                 {exp.period}
