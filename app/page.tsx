@@ -3,6 +3,7 @@ import Contact from "@/components/Contact";
 import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
+import GitHub from "@/components/GitHub";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
@@ -17,6 +18,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Skills />
+      <GitHub />
       <Education />
       <Contact />
       <Footer />
