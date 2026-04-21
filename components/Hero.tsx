@@ -46,10 +46,8 @@ export default function Hero() {
           custom={1}
           className="font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.95] tracking-tight"
         >
-          <span className="block text-white/90">{profile.name.split(" ")[0]}</span>
-          <span className="block italic text-gradient">
-            {profile.name.split(" ").slice(1).join(" ") || "Apellido"}
-          </span>
+          <span className="block text-white/90">{profile.firstName}</span>
+          <span className="block italic text-gradient">{profile.lastName}</span>
         </motion.h1>
 
         <motion.p

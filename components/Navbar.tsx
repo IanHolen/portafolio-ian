@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { profile } from "@/lib/data";
 
 const links = [
   { href: "#about", label: "Sobre mí" },
@@ -38,7 +39,7 @@ export default function Navbar() {
           href="#top"
           className="font-display text-lg italic tracking-tight text-white"
         >
-          tu<span className="text-accent-violet">.</span>nombre
+          {profile.firstName.toLowerCase()}<span className="text-accent-violet">.</span>{profile.lastName.toLowerCase()}
         </a>
         <nav className="hidden items-center gap-8 text-sm text-white/60 md:flex">
           {links.map((link) => (
