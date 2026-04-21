@@ -142,6 +142,10 @@ body::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .animate-marquee {
+    animation: none !important;
+  }
 }
 
 /* hide native cursor on devices where custom cursor is active */

@@ -7,7 +7,7 @@ export default function Skills() {
   const row = [...skills.core, ...skills.core]; // duplicate for seamless marquee
 
   return (
-    <section className="relative overflow-hidden border-y border-white/10 py-20">
+    <section id="skills" className="relative overflow-hidden border-y border-white/10 py-20">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

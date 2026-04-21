@@ -98,7 +98,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 + i * 0.06 }}
-                className="font-display text-3xl font-light text-white/80 transition hover:text-white"
+                className="font-display text-3xl font-light text-white/80 transition hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet"
               >
                 {link.label}
               </motion.a>
@@ -109,7 +109,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 + links.length * 0.06 }}
-              className="mt-4 rounded-full border border-accent-violet/50 bg-accent-violet/10 px-8 py-3 text-lg font-medium text-accent-violet transition hover:bg-accent-violet/20"
+              className="mt-4 rounded-full border border-accent-violet/50 bg-accent-violet/10 px-8 py-3 text-lg font-medium text-accent-violet transition hover:bg-accent-violet/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet"
             >
               Trabajemos juntos
             </motion.a>

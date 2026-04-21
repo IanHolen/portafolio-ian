@@ -24,7 +24,7 @@ export default function ParticleCanvas() {
     if (!ctx) return;
 
     let animId: number;
-    const COUNT = 70;
+    const COUNT = window.innerWidth < 768 ? 35 : 70;
     const CONNECT_DIST = 120;
     const particles: Particle[] = [];
 

@@ -9,7 +9,6 @@ export default function CustomCursor() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // disable on touch / coarse pointers
     const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     if (!isFinePointer) {
       document.documentElement.classList.remove("has-custom-cursor");
@@ -21,16 +20,27 @@ export default function CustomCursor() {
     let ringX = 0;
     let ringY = 0;
     let raf = 0;
+    let lastMoveTime = performance.now();
+    let idle = false;
 
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      lastMoveTime = performance.now();
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
+      }
+      if (idle) {
+        idle = false;
+        raf = requestAnimationFrame(tick);
       }
     };
 
     const tick = () => {
+      if (performance.now() - lastMoveTime > 2000) {
+        idle = true;
+        return;
+      }
       ringX += (mouseX - ringX) * 0.18;
       ringY += (mouseY - ringY) * 0.18;
       if (ringRef.current) {
@@ -39,31 +49,26 @@ export default function CustomCursor() {
       raf = requestAnimationFrame(tick);
     };
 
-    const onEnter = () => {
-      ringRef.current?.classList.add("scale-[2.4]", "bg-white/10");
+    // Event delegation for hover effect on interactive elements
+    const onOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("a, button, [data-cursor='hover']");
+      if (target) ringRef.current?.classList.add("scale-[2.4]", "bg-white/10");
     };
-    const onLeave = () => {
-      ringRef.current?.classList.remove("scale-[2.4]", "bg-white/10");
+    const onOut = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("a, button, [data-cursor='hover']");
+      if (target) ringRef.current?.classList.remove("scale-[2.4]", "bg-white/10");
     };
 
     window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
     raf = requestAnimationFrame(tick);
-
-    const interactive = document.querySelectorAll<HTMLElement>(
-      "a, button, [data-cursor='hover']"
-    );
-    interactive.forEach((el) => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
       cancelAnimationFrame(raf);
-      interactive.forEach((el) => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-      });
     };
   }, []);
 

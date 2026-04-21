@@ -143,6 +143,7 @@ export default function Contact() {
                   <input
                     type="text"
                     placeholder="Tu nombre"
+                    aria-label="Tu nombre"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-violet/50 focus:outline-none focus:ring-2 focus:ring-accent-violet/20"
@@ -154,6 +155,7 @@ export default function Contact() {
                   <input
                     type="email"
                     placeholder="Tu email"
+                    aria-label="Tu email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-violet/50 focus:outline-none focus:ring-2 focus:ring-accent-violet/20"
@@ -164,6 +166,7 @@ export default function Contact() {
                 <div>
                   <textarea
                     placeholder="Tu mensaje"
+                    aria-label="Tu mensaje"
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -187,24 +190,27 @@ export default function Contact() {
           {[
             { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
             { icon: Phone, label: "Teléfono", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
-            { icon: MapPin, label: "Ubicación", value: profile.location },
-          ].map((item, i) => (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            >
-              <item.icon className="h-5 w-5 text-accent-violet" />
-              <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-                {item.label}
-              </p>
-              <p className="mt-2 text-white/90">{item.value}</p>
-            </motion.a>
-          ))}
+            { icon: MapPin, label: "Ubicación", value: profile.location, href: undefined },
+          ].map((item, i) => {
+            const Tag = item.href ? motion.a : motion.div;
+            return (
+              <Tag
+                key={item.label}
+                {...(item.href ? { href: item.href } : {})}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              >
+                <item.icon className="h-5 w-5 text-accent-violet" />
+                <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-white/60">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-white/90">{item.value}</p>
+              </Tag>
+            );
+          })}
         </div>
 
         <div className="mt-16 flex flex-wrap justify-center gap-4">

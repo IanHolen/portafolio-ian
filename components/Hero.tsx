@@ -189,7 +189,7 @@ export default function Hero() {
                 <p className="font-mono text-3xl font-light text-white md:text-4xl">
                   <AnimatedCounter value={s.value} suffix={s.suffix} />
                 </p>
-                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-white/40">
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-white/60">
                   {s.label}
                 </p>
               </div>

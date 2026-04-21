@@ -21,7 +21,7 @@ export default function Education() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="border-l border-white/10 pl-6"
               >
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/60">
                   {ed.period}
                 </p>
                 <h3 className="mt-2 font-display text-2xl font-light text-white">

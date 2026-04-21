@@ -25,7 +25,7 @@ export default function Experience() {
               transition={{ duration: 0.7, delay: i * 0.08 }}
               className="border-glow group grid grid-cols-12 gap-6 rounded-2xl border border-white/10 px-4 py-8 transition-colors hover:bg-white/[0.015] md:px-6 md:py-10"
             >
-              <div className="col-span-12 font-mono text-xs uppercase tracking-[0.25em] text-white/40 md:col-span-3">
+              <div className="col-span-12 font-mono text-xs uppercase tracking-[0.25em] text-white/60 md:col-span-3">
                 {exp.period}
               </div>
 
