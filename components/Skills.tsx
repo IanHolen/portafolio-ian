@@ -21,7 +21,7 @@ export default function Skills() {
             className="font-display text-4xl font-light italic text-white/30 md:text-6xl"
           >
             {skill}
-            <span className="ml-12 inline-block h-1.5 w-1.5 -translate-y-[0.15em] rounded-full bg-accent-violet/60 align-middle" />
+            <span className="ml-12 inline-block h-2.5 w-2.5 -translate-y-[0.15em] rounded-full bg-accent-violet/60 align-middle" />
           </span>
         ))}
       </motion.div>
