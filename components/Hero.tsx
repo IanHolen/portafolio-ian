@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
-import { profile } from "@/lib/data";
+import { profile, heroStats } from "@/lib/data";
 
 const ParticleCanvas = dynamic(() => import("./ParticleCanvas"), { ssr: false });
 
@@ -76,12 +76,7 @@ function SplitText({ text, className }: { text: string; className?: string }) {
   );
 }
 
-const stats = [
-  { value: 3400, suffix: "+", label: "tiendas" },
-  { value: 35, suffix: "%", label: "más rápido" },
-  { value: 21, suffix: "", label: "regiones" },
-  { value: 570, suffix: "+", label: "stakeholders" },
-];
+const stats = heroStats;
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);

@@ -206,3 +206,10 @@ export const languages = [
   { name: "Español", level: "Nativo" },
   { name: "Inglés", level: "B2" },
 ];
+
+export const heroStats = [
+  { value: 3400, suffix: "+", label: "tiendas" },
+  { value: 35, suffix: "%", label: "más rápido" },
+  { value: 21, suffix: "", label: "regiones" },
+  { value: 570, suffix: "+", label: "stakeholders" },
+];
