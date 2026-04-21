@@ -27,7 +27,34 @@ export default function Skills() {
       </motion.div>
 
       <div className="mx-auto mt-20 max-w-6xl px-6">
-        <div className="flex flex-wrap gap-3">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {skills.groups.map((group, gi) => (
+            <motion.div
+              key={group.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: gi * 0.08 }}
+              className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+            >
+              <h3 className="mb-3 text-sm font-semibold tracking-wide text-accent-violet">
+                {group.label}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/70"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-wrap gap-3">
           {skills.interests.map((tag, i) => (
             <motion.span
               key={tag}
