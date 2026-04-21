@@ -11,6 +11,8 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
   function validate() {
@@ -22,18 +24,39 @@ export default function Contact() {
     return e;
   }
 
-  function handleSubmit(ev: FormEvent) {
+  async function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
-    if (form._hp) return; // honeypot
+    if (form._hp) return;
     const e = validate();
     setErrors(e);
     if (Object.keys(e).length > 0) return;
 
-    // TODO: replace with Formspree endpoint (e.g. https://formspree.io/f/YOUR_ID)
-    const subject = encodeURIComponent(`Contacto de ${form.name}`);
-    const body = encodeURIComponent(`Nombre: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setLoading(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(data.message || "Error al enviar el mensaje.");
+      } else {
+        setSubmitted(true);
+      }
+    } catch {
+      setSubmitError("Error de conexión. Intenta de nuevo.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function resetForm() {
+    setSubmitted(false);
+    setSubmitError("");
+    setForm({ name: "", email: "", message: "", _hp: "" });
+    setErrors({});
   }
 
   function copyEmail() {
@@ -118,8 +141,14 @@ export default function Contact() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-10 text-center"
               >
-                <p className="font-display text-2xl font-light text-white">Gracias por tu mensaje</p>
-                <p className="mt-3 text-white/60">Tu cliente de correo debería haberse abierto. Si no, escríbeme directamente a {profile.email}.</p>
+                <p className="font-display text-2xl font-light text-white">Mensaje enviado</p>
+                <p className="mt-3 text-white/60">Gracias por escribirme. Te responderé lo antes posible.</p>
+                <button
+                  onClick={resetForm}
+                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10"
+                >
+                  Enviar otro mensaje
+                </button>
               </motion.div>
             ) : (
               <motion.form
@@ -175,11 +204,25 @@ export default function Contact() {
                   {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
                 </div>
 
+                {submitError && (
+                  <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-4 text-center">
+                    <p className="text-sm text-red-400">{submitError}</p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitError("")}
+                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70"
+                    >
+                      Intentar de nuevo
+                    </button>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  disabled={loading}
+                  className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
-                  Enviar mensaje
+                  {loading ? "Enviando..." : "Enviar mensaje"}
                 </button>
               </motion.form>
             )}
