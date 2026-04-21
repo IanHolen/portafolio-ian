@@ -71,7 +71,7 @@ export default function Hero() {
         >
           <a
             href="#work"
-            className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition"
+            className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             <span className="relative z-10 inline-flex items-center gap-2">
               Ver mi trabajo
@@ -80,7 +80,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white"
+            className="rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             Contáctame
           </a>

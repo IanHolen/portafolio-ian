@@ -49,16 +49,16 @@ export default function Navbar() {
         >
           <a
             href="#top"
-            className="font-display text-lg italic tracking-tight text-white"
+            className="font-display text-lg italic tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 rounded-full"
           >
             {profile.firstName.toLowerCase()}<span className="text-accent-violet">.</span>{profile.lastName.toLowerCase()}
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-white/60 md:flex">
+          <nav role="navigation" aria-label="Navegación principal" className="hidden items-center gap-8 text-sm text-white/60 md:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="relative transition hover:text-white"
+                className="relative transition hover:text-white rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 {link.label}
               </a>
@@ -66,14 +66,14 @@ export default function Navbar() {
           </nav>
           <a
             href="#contact"
-            className="hidden group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 md:inline-flex"
+            className="hidden group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             <span className="relative z-10">Trabajemos juntos</span>
             <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-violet to-accent-blue transition-transform duration-500 group-hover:translate-y-0" />
           </a>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex items-center justify-center text-white md:hidden"
+            className="inline-flex items-center justify-center rounded-full text-white md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

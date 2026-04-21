@@ -69,6 +69,12 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable} has-custom-cursor`}
     >
       <body className="font-sans selection:bg-accent-violet/40">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent-violet focus:px-6 focus:py-3 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
+        >
+          Ir al contenido principal
+        </a>
         <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
         <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <CustomCursor />
