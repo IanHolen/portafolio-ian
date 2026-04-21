@@ -1,8 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
+import dynamic from "next/dynamic";
 import { profile } from "@/lib/data";
+
+const ParticleCanvas = dynamic(() => import("./ParticleCanvas"), { ssr: false });
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,15 +21,75 @@ const fadeUp = {
   }),
 };
 
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.4 + i * 0.03, ease: [0.2, 0.8, 0.2, 1] },
+  }),
+};
+
+function SplitText({ text, className }: { text: string; className?: string }) {
+  return (
+    <span className={className}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          custom={i}
+          initial="hidden"
+          animate="visible"
+          variants={letterVariants}
+          className="inline-block"
+          style={{ whiteSpace: char === " " ? "pre" : undefined }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
+const stats = [
+  { value: 3400, suffix: "+", label: "tiendas" },
+  { value: 35, suffix: "%", label: "más rápido" },
+  { value: 21, suffix: "", label: "regiones" },
+  { value: 570, suffix: "+", label: "stakeholders" },
+];
+
+function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 1500;
+    const start = performance.now();
+    function step(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(eased * value));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }, [isInView, value]);
+
+  return (
+    <span ref={ref}>
+      {display.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
 export default function Hero() {
   return (
     <section
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
     >
-      {/* glowing orbs */}
-      <div className="pointer-events-none absolute -left-20 top-1/3 h-[420px] w-[420px] rounded-full bg-accent-violet/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-20 top-1/4 h-[360px] w-[360px] rounded-full bg-accent-blue/20 blur-[120px]" />
+      <ParticleCanvas />
 
       <div className="mx-auto w-full max-w-6xl">
         <motion.div
@@ -39,16 +103,10 @@ export default function Hero() {
           Disponible para nuevos proyectos
         </motion.div>
 
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={1}
-          className="font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.95] tracking-tight"
-        >
-          <span className="block text-white/90">{profile.firstName}</span>
-          <span className="block italic text-gradient">{profile.lastName}</span>
-        </motion.h1>
+        <h1 className="font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.95] tracking-tight">
+          <SplitText text={profile.firstName} className="block text-white/90" />
+          <SplitText text={profile.lastName} className="block italic text-gradient" />
+        </h1>
 
         <motion.p
           initial="hidden"
@@ -86,18 +144,44 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Animated Stats */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={4}
+          className="mt-16 flex flex-wrap items-center gap-8 md:gap-12"
+        >
+          {stats.map((s, i) => (
+            <div key={s.label} className="flex items-center gap-8 md:gap-12">
+              {i > 0 && <div className="hidden h-10 w-px bg-white/10 md:block" />}
+              <div>
+                <p className="font-mono text-3xl font-light text-white md:text-4xl">
+                  <AnimatedCounter value={s.value} suffix={s.suffix} />
+                </p>
+                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-white/40">
+                  {s.label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Scroll indicator — mouse icon */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 1 }}
-          className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/40 md:flex"
+          className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40 md:flex"
         >
+          <div className="relative h-9 w-5 rounded-full border border-white/30">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-violet"
+            />
+          </div>
           <span>scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent"
-          />
         </motion.div>
       </div>
     </section>
