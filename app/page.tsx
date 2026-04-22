@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import BackToTop from "@/components/BackToTop";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Education from "@/components/Education";
@@ -26,6 +27,7 @@ export default function Home() {
       <Education />
       <Contact />
       <Footer />
+      <BackToTop />
     </main>
   );
 }

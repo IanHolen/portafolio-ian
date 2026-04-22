@@ -6,21 +6,41 @@ import { Menu, X } from "lucide-react";
 import { profile } from "@/lib/data";
 
 const links = [
-  { href: "#about", label: "Sobre mí" },
-  { href: "#experience", label: "Experiencia" },
-  { href: "#work", label: "Trabajo" },
-  { href: "#contact", label: "Contacto" },
+  { href: "#about", label: "Sobre mí", id: "about" },
+  { href: "#experience", label: "Experiencia", id: "experience" },
+  { href: "#work", label: "Trabajo", id: "work" },
+  { href: "#contact", label: "Contacto", id: "contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = ["about", "experience", "work", "skills", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -53,14 +73,23 @@ export default function Navbar() {
           >
             {profile.firstName.toLowerCase()}<span className="text-accent-violet">.</span>{profile.lastName.toLowerCase()}
           </a>
-          <nav role="navigation" aria-label="Navegación principal" className="hidden items-center gap-8 text-sm text-white/60 md:flex">
+          <nav role="navigation" aria-label="Navegación principal" className="hidden items-center gap-8 text-sm md:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="relative transition hover:text-white rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className={`relative transition rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
+                  activeId === link.id ? "text-white" : "text-white/60 hover:text-white"
+                }`}
               >
                 {link.label}
+                {activeId === link.id && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent-violet"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </a>
             ))}
           </nav>
