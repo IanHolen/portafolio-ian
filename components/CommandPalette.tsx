@@ -25,8 +25,8 @@ export default function CommandPalette() {
     { id: "experience", label: "Experiencia", icon: <Briefcase className="h-4 w-4" />, action: () => navigate("#experience") },
     { id: "projects", label: "Proyectos", icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
     { id: "skills", label: "Skills", icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
-    { id: "github", label: "GitHub", icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#skills") },
-    { id: "education", label: "Educación", icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#skills") },
+    { id: "github", label: "GitHub", icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#github") },
+    { id: "education", label: "Educación", icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#education") },
     { id: "contact", label: "Contacto", icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
     ...projects.map((p) => ({
       id: `project-${p.title}`,
@@ -113,6 +113,9 @@ export default function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Paleta de comandos"
             className="fixed left-1/2 top-[20vh] z-[81] w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-ink-950/95 shadow-2xl backdrop-blur-xl"
           >
             <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
@@ -120,6 +123,7 @@ export default function CommandPalette() {
               <input
                 ref={inputRef}
                 type="text"
+                aria-label="Buscar"
                 placeholder="Buscar secciones, proyectos, acciones..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

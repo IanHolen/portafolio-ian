@@ -126,7 +126,7 @@ export default function GitHub() {
 
   if (error) {
     return (
-      <section className="relative px-6 py-32">
+      <section id="github" className="relative px-6 py-32">
         <div className="mx-auto max-w-6xl">
           <SectionHeader index="07" kicker="Open Source" title="Mi actividad en GitHub." />
           <p className="mt-8 text-center text-white/40">GitHub data no disponible en este momento.</p>
@@ -136,7 +136,7 @@ export default function GitHub() {
   }
 
   return (
-    <section className="relative px-6 py-32">
+    <section id="github" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-violet/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="07" kicker="Open Source" title="Mi actividad en GitHub." />

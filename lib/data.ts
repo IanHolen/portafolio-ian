@@ -223,6 +223,6 @@ export const testimonials = [
 
 // TODO: Replace with Ian's real certifications and credential URLs
 export const certifications = [
-  { title: "Microsoft Certified: Azure Data Engineer Associate", issuer: "Microsoft", date: "2025", icon: "azure", credentialUrl: "#" },
-  { title: "Microsoft Certified: Fabric Analytics Engineer Associate", issuer: "Microsoft", date: "2025", icon: "fabric", credentialUrl: "#" },
+  { title: "Microsoft Certified: Azure Data Engineer Associate", issuer: "Microsoft", date: "2025", icon: "azure", credentialUrl: "" },
+  { title: "Microsoft Certified: Fabric Analytics Engineer Associate", issuer: "Microsoft", date: "2025", icon: "fabric", credentialUrl: "" },
 ];
