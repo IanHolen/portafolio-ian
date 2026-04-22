@@ -3,6 +3,35 @@
 import { motion } from "framer-motion";
 import { about } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import HighlightText from "./HighlightText";
+
+const HIGHLIGHT_TERMS = ["Microsoft Fabric", "Azure", "pipelines", "CI/CD", "data quality"];
+
+function highlightIntro(text: string) {
+  const parts: (string | JSX.Element)[] = [];
+  let remaining = text;
+  let key = 0;
+
+  while (remaining.length > 0) {
+    let earliest = -1;
+    let matchedTerm = "";
+    for (const term of HIGHLIGHT_TERMS) {
+      const idx = remaining.indexOf(term);
+      if (idx !== -1 && (earliest === -1 || idx < earliest)) {
+        earliest = idx;
+        matchedTerm = term;
+      }
+    }
+    if (earliest === -1) {
+      parts.push(remaining);
+      break;
+    }
+    if (earliest > 0) parts.push(remaining.slice(0, earliest));
+    parts.push(<HighlightText key={key++}>{matchedTerm}</HighlightText>);
+    remaining = remaining.slice(earliest + matchedTerm.length);
+  }
+  return parts;
+}
 
 export default function About() {
   return (
@@ -19,7 +48,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="md:col-span-7 font-display text-2xl font-light leading-snug text-white/80 md:text-3xl"
           >
-            {about.intro}
+            {highlightIntro(about.intro)}
           </motion.p>
 
           <ul className="md:col-span-5 space-y-5">

@@ -9,6 +9,7 @@ import GitHub from "@/components/GitHub";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
+import SectionDivider from "@/components/SectionDivider";
 import Skills from "@/components/Skills";
 import Testimonials from "@/components/Testimonials";
 
@@ -17,14 +18,19 @@ export default function Home() {
     <main id="main-content" className="relative">
       <Navbar />
       <Hero />
+      <SectionDivider color="rgba(59,130,246,0.05)" />
       <About />
+      <SectionDivider color="rgba(6,182,212,0.05)" />
       <Experience />
+      <SectionDivider color="rgba(244,63,94,0.05)" />
       <Projects />
       <Testimonials />
       <Skills />
       <Certifications />
+      <SectionDivider color="rgba(139,92,246,0.05)" />
       <GitHub />
       <Education />
+      <SectionDivider color="rgba(59,130,246,0.05)" />
       <Contact />
       <Footer />
       <BackToTop />
