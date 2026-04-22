@@ -11,7 +11,6 @@ import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import SectionDivider from "@/components/SectionDivider";
 import Skills from "@/components/Skills";
-import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
       <Experience />
       <SectionDivider color="rgba(244,63,94,0.05)" />
       <Projects />
-      <Testimonials />
       <Skills />
       <Certifications />
       <SectionDivider color="rgba(139,92,246,0.05)" />

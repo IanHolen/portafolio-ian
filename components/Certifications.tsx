@@ -14,7 +14,7 @@ export default function Certifications() {
   return (
     <section className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="06" kicker="Certificaciones" title="Credenciales." />
+        <SectionHeader index="05" kicker="Certificaciones" title="Credenciales." />
 
         <div className="grid gap-4 md:grid-cols-2">
           {certifications.map((cert, i) => {

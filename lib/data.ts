@@ -11,7 +11,7 @@ export const profile = {
   email: "holenderian@gmail.com",
   phone: "+52 (55) 4790 3290",
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ian-holender/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender/" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
     { label: "Email", href: "mailto:holenderian@gmail.com" },
   ],
@@ -212,13 +212,6 @@ export const heroStats = [
   { value: 35, suffix: "%", label: "más rápido" },
   { value: 21, suffix: "", label: "regiones" },
   { value: 570, suffix: "+", label: "stakeholders" },
-];
-
-// TODO: Replace with real testimonials from Ian
-export const testimonials = [
-  { name: "Nombre del colega", role: "Cargo", company: "Empresa", quote: "Placeholder — Ian trabajó conmigo en proyectos de datos a gran escala. Su capacidad técnica y atención al detalle son excepcionales." },
-  { name: "Nombre del manager", role: "Cargo", company: "Empresa", quote: "Placeholder — Su capacidad de traducir requerimientos de negocio en arquitecturas de datos robustas lo hace un asset invaluable." },
-  { name: "Nombre del cliente", role: "Cargo", company: "Empresa", quote: "Placeholder — Siempre entrega a tiempo, con calidad superior y documentación impecable. Un profesional de primer nivel." },
 ];
 
 // TODO: Replace with Ian's real certifications and credential URLs

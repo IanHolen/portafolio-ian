@@ -9,7 +9,7 @@ export default function Education() {
       <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
         <div>
           <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
-            08 — Educación
+            07 — Educación
           </div>
           <div className="space-y-6">
             {education.map((ed, i) => (
@@ -35,7 +35,7 @@ export default function Education() {
 
         <div>
           <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
-            09 — Idiomas
+            08 — Idiomas
           </div>
           <div className="space-y-4">
             {languages.map((lang, i) => (

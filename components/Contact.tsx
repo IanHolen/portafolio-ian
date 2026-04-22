@@ -11,6 +11,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [usedMailto, setUsedMailto] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -33,6 +34,7 @@ export default function Contact() {
 
     setLoading(true);
     setSubmitError("");
+    setUsedMailto(false);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -41,19 +43,31 @@ export default function Contact() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setSubmitError(data.message || "Error al enviar el mensaje.");
-      } else {
-        setSubmitted(true);
+        // Fallback to mailto
+        openMailto();
+        return;
       }
+      setSubmitted(true);
     } catch {
-      setSubmitError("Error de conexión. Intenta de nuevo.");
+      // Fallback to mailto
+      openMailto();
     } finally {
       setLoading(false);
     }
   }
 
+  function openMailto() {
+    const subject = encodeURIComponent(`Contacto de ${form.name}`);
+    const body = encodeURIComponent(`Nombre: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.open(`mailto:${profile.email}?subject=${subject}&body=${body}`, "_blank");
+    setUsedMailto(true);
+    setSubmitted(true);
+    setLoading(false);
+  }
+
   function resetForm() {
     setSubmitted(false);
+    setUsedMailto(false);
     setSubmitError("");
     setForm({ name: "", email: "", message: "", _hp: "" });
     setErrors({});
@@ -84,7 +98,7 @@ export default function Contact() {
           className="text-center"
         >
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
-            10 — Contacto
+            09 — Contacto
           </p>
           <h2 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl">
             Hagamos algo
@@ -141,8 +155,14 @@ export default function Contact() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-10 text-center"
               >
-                <p className="font-display text-2xl font-light text-white">Mensaje enviado</p>
-                <p className="mt-3 text-white/60">Gracias por escribirme. Te responderé lo antes posible.</p>
+                <p className="font-display text-2xl font-light text-white">
+                  {usedMailto ? "Se abrió tu cliente de correo" : "Mensaje enviado"}
+                </p>
+                <p className="mt-3 text-white/60">
+                  {usedMailto
+                    ? "Envía el email desde tu cliente de correo. Si no se abrió, escríbeme directamente a " + profile.email
+                    : "Gracias por escribirme. Te responderé lo antes posible."}
+                </p>
                 <button
                   onClick={resetForm}
                   className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10"
