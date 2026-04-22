@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Download, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
 import { profile, heroStats } from "@/lib/data";
 
@@ -165,6 +165,17 @@ export default function Hero() {
               className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               Contáctame
+            </a>
+          </MagneticWrap>
+          {/* TODO: Replace with Ian's real CV PDF */}
+          <MagneticWrap>
+            <a
+              href="/cv-ian-holender.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              <Download className="h-4 w-4" />
+              Descargar CV
             </a>
           </MagneticWrap>
         </motion.div>

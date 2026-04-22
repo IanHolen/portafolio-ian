@@ -38,7 +38,7 @@ export default function CommandPalette() {
     { id: "copy-email", label: "Copiar email", icon: <Copy className="h-4 w-4" />, action: () => { navigator.clipboard.writeText(profile.email); close(); }, hint: "Acción" },
     { id: "github-link", label: "Ver GitHub", icon: <ExternalLink className="h-4 w-4" />, action: () => { window.open("https://github.com/IanHolen", "_blank"); close(); }, hint: "Acción" },
     // TODO: Replace with real CV download
-    { id: "download-cv", label: "Descargar CV", icon: <Download className="h-4 w-4" />, action: () => { close(); }, hint: "Acción" },
+    { id: "download-cv", label: "Descargar CV", icon: <Download className="h-4 w-4" />, action: () => { const a = document.createElement("a"); a.href = "/cv-ian-holender.pdf"; a.download = ""; a.click(); close(); }, hint: "Acción" },
   ];
 
   function navigate(hash: string) {
