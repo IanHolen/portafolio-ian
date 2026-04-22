@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import CommandPalette from "@/components/CommandPalette";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -78,6 +79,7 @@ export default function RootLayout({
         <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
         <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <CustomCursor />
+        <CommandPalette />
         {children}
       </body>
     </html>
