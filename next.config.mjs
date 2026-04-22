@@ -6,6 +6,9 @@ const nextConfig = {
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
     ],
   },
+  experimental: {
+    serverComponentsExternalPackages: ["resend"],
+  },
 };
 
 export default nextConfig;
