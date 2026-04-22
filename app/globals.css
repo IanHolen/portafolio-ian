@@ -155,3 +155,11 @@ body::before {
     cursor: none !important;
   }
 }
+
+@media print {
+  body::before, .pointer-events-none, canvas, .animate-marquee { display: none !important; }
+  * { color: black !important; background: white !important; border-color: #ddd !important; }
+  section { break-inside: avoid; padding: 1rem 0 !important; }
+  .font-display { font-style: normal !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666 !important; }
+}

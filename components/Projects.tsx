@@ -6,8 +6,9 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 
-function TiltCard({ children, className, href }: { children: React.ReactNode; className?: string; href: string }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+function TiltCard({ children, className, href }: { children: React.ReactNode; className?: string; href?: string }) {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  const ref = useRef<any>(null);
   const [transform, setTransform] = useState("perspective(800px) rotateX(0deg) rotateY(0deg)");
   const [transition, setTransition] = useState("transform 0.4s ease-out");
   const [shine, setShine] = useState({ x: 50, y: 50 });
@@ -27,15 +28,8 @@ function TiltCard({ children, className, href }: { children: React.ReactNode; cl
     setTransition("transform 0.4s ease-out");
   }, []);
 
-  return (
-    <a
-      ref={ref}
-      href={href}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className={className}
-      style={{ transform, transition }}
-    >
+  const inner = (
+    <>
       <div
         className="pointer-events-none absolute inset-0 z-20 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
@@ -43,8 +37,21 @@ function TiltCard({ children, className, href }: { children: React.ReactNode; cl
         }}
       />
       {children}
-    </a>
+    </>
   );
+
+  const props = {
+    ref,
+    onMouseMove: onMove,
+    onMouseLeave: onLeave,
+    className,
+    style: { transform, transition },
+  };
+
+  if (href) {
+    return <a {...props} href={href}>{inner}</a>;
+  }
+  return <div {...props} className={`${className} cursor-default`}>{inner}</div>;
 }
 
 export default function Projects() {
@@ -159,7 +166,7 @@ export default function Projects() {
 function ProjectCard({ p }: { p: (typeof projects)[number] }) {
   return (
     <TiltCard
-      href={p.href ?? "#"}
+      href={p.href}
       className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 transition-all duration-500 hover:border-white/20 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
     >
       <div
@@ -172,7 +179,9 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
             {p.year}
           </span>
-          <ArrowUpRight className="h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+          {p.href && (
+            <ArrowUpRight className="h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+          )}
         </div>
 
         {p.metric && (

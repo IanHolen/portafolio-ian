@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
+import SectionHeader from "./SectionHeader";
 
 export default function Skills() {
   const row = [...skills.core, ...skills.core]; // duplicate for seamless marquee
@@ -27,6 +28,7 @@ export default function Skills() {
       </motion.div>
 
       <div className="mx-auto mt-20 max-w-6xl px-6">
+        <SectionHeader index="05" kicker="Habilidades" title="Mi stack técnico." />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {skills.groups.map((group, gi) => (
             <motion.div

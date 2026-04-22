@@ -84,7 +84,7 @@ export default function Contact() {
           className="text-center"
         >
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
-            09 — Contacto
+            10 — Contacto
           </p>
           <h2 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl">
             Hagamos algo
