@@ -35,24 +35,24 @@ export default function Contact() {
     setLoading(true);
     setSubmitError("");
     setUsedMailto(false);
+
+    let apiOk = false;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
-      if (!res.ok) {
-        // Fallback to mailto
-        openMailto();
-        return;
-      }
-      setSubmitted(true);
+      if (res.ok) apiOk = true;
     } catch {
-      // Fallback to mailto
-      openMailto();
-    } finally {
+      // API unreachable — will fall back to mailto
+    }
+
+    if (apiOk) {
+      setSubmitted(true);
       setLoading(false);
+    } else {
+      openMailto();
     }
   }
 

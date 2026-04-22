@@ -11,7 +11,7 @@ export const profile = {
   email: "holenderian@gmail.com",
   phone: "+52 (55) 4790 3290",
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
     { label: "Email", href: "mailto:holenderian@gmail.com" },
   ],
