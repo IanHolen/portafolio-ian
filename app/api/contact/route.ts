@@ -66,6 +66,13 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { error: true, message: "Email service not configured. Use mailto fallback." },
+      { status: 503 }
+    );
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
