@@ -13,16 +13,21 @@ const I18nContext = createContext<I18nContextValue>({
   setLocale: () => {},
 });
 
+function getInitialLocale(): Locale {
+  if (typeof window === "undefined") return "es";
+  try {
+    const saved = localStorage.getItem("locale");
+    if (saved === "en" || saved === "es") return saved;
+  } catch {}
+  return "es";
+}
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("es");
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
 
   useEffect(() => {
-    const saved = localStorage.getItem("locale") as Locale | null;
-    if (saved === "en" || saved === "es") {
-      setLocaleState(saved);
-      document.documentElement.lang = saved;
-    }
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);

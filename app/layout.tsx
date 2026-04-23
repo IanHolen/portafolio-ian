@@ -5,6 +5,7 @@ import CustomCursor from "@/components/CustomCursor";
 import CommandPalette from "@/components/CommandPalette";
 import ReadingProgress from "@/components/ReadingProgress";
 import Providers from "@/components/Providers";
+import SkipLink from "@/components/SkipLink";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ const jetbrains = JetBrains_Mono({
 const SITE_URL = "https://ianholender.com";
 const SITE_TITLE = "Ian Holender — Data Engineer";
 const SITE_DESCRIPTION =
-  "Portafolio personal de Ian Holender. Data Engineer especializado en arquitecturas event-driven sobre Microsoft Fabric y Azure.";
+  "Ian Holender — Data Engineer. Scalable pipelines on Microsoft Fabric & Azure. Portafolio personal / Personal portfolio.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
     "Microsoft Fabric",
     "Azure",
     "Ian Holender",
+    "Portfolio",
     "Portafolio",
   ],
   alternates: { canonical: "/" },
@@ -48,6 +50,7 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Ian Holender",
     locale: "es_MX",
+    alternateLocale: ["en_US"],
     type: "website",
     images: [
       { url: "/opengraph-image", width: 1200, height: 630, alt: SITE_TITLE },
@@ -61,6 +64,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Inline script to set locale from localStorage before first paint (prevents flash)
+const localeScript = `(function(){try{var l=localStorage.getItem('locale');if(l==='en')document.documentElement.lang='en';}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: {
@@ -72,16 +78,14 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable} has-custom-cursor`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
+      </head>
       <body className="font-sans selection:bg-accent-violet/40">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent-violet focus:px-6 focus:py-3 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
-        >
-          Ir al contenido principal
-        </a>
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
         <Providers>
+          <SkipLink />
+          <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
+          <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
           <ReadingProgress />
           <CustomCursor />
           <CommandPalette />
