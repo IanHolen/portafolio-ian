@@ -69,6 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      suppressHydrationWarning
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable} has-custom-cursor`}
     >
       <body className="font-sans selection:bg-accent-violet/40">

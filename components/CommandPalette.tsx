@@ -4,6 +4,8 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Home, User, Briefcase, Code, FolderGit2, GraduationCap, Mail, Copy, ExternalLink } from "lucide-react";
 import { profile, projects } from "@/lib/data";
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
 
 interface Item {
   id: string;
@@ -14,29 +16,30 @@ interface Item {
 }
 
 export default function CommandPalette() {
+  const { locale } = useLocale();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const items: Item[] = [
-    { id: "home", label: "Inicio", icon: <Home className="h-4 w-4" />, action: () => navigate("#top") },
-    { id: "about", label: "Sobre mí", icon: <User className="h-4 w-4" />, action: () => navigate("#about") },
-    { id: "experience", label: "Experiencia", icon: <Briefcase className="h-4 w-4" />, action: () => navigate("#experience") },
-    { id: "projects", label: "Proyectos", icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
-    { id: "skills", label: "Skills", icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
-    { id: "github", label: "GitHub", icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#github") },
-    { id: "education", label: "Educación", icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#education") },
-    { id: "contact", label: "Contacto", icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
+    { id: "home", label: t("cmd.home", locale), icon: <Home className="h-4 w-4" />, action: () => navigate("#top") },
+    { id: "about", label: t("cmd.about", locale), icon: <User className="h-4 w-4" />, action: () => navigate("#about") },
+    { id: "experience", label: t("cmd.experience", locale), icon: <Briefcase className="h-4 w-4" />, action: () => navigate("#experience") },
+    { id: "projects", label: t("cmd.projects", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
+    { id: "skills", label: t("cmd.skills", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
+    { id: "github", label: t("cmd.github", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#github") },
+    { id: "education", label: t("cmd.education", locale), icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#education") },
+    { id: "contact", label: t("cmd.contact", locale), icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
     ...projects.map((p) => ({
       id: `project-${p.title}`,
       label: p.title,
       icon: <Code className="h-4 w-4" />,
       action: () => navigate("#work"),
-      hint: "Proyecto",
+      hint: t("cmd.hintProject", locale),
     })),
-    { id: "copy-email", label: "Copiar email", icon: <Copy className="h-4 w-4" />, action: () => { navigator.clipboard.writeText(profile.email); close(); }, hint: "Acción" },
-    { id: "github-link", label: "Ver GitHub", icon: <ExternalLink className="h-4 w-4" />, action: () => { window.open("https://github.com/IanHolen", "_blank"); close(); }, hint: "Acción" },
+    { id: "copy-email", label: t("cmd.copyEmail", locale), icon: <Copy className="h-4 w-4" />, action: () => { navigator.clipboard.writeText(profile.email); close(); }, hint: t("cmd.hintAction", locale) },
+    { id: "github-link", label: t("cmd.viewGithub", locale), icon: <ExternalLink className="h-4 w-4" />, action: () => { window.open("https://github.com/IanHolen", "_blank"); close(); }, hint: t("cmd.hintAction", locale) },
     // CV download — hidden until Ian uploads his real PDF to /public
   ];
 
@@ -114,7 +117,7 @@ export default function CommandPalette() {
             transition={{ duration: 0.15 }}
             role="dialog"
             aria-modal="true"
-            aria-label="Paleta de comandos"
+            aria-label={t("cmd.label", locale)}
             className="fixed left-1/2 top-[20vh] z-[81] w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-ink-950/95 shadow-2xl backdrop-blur-xl"
           >
             <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
@@ -122,8 +125,8 @@ export default function CommandPalette() {
               <input
                 ref={inputRef}
                 type="text"
-                aria-label="Buscar"
-                placeholder="Buscar secciones, proyectos, acciones..."
+                aria-label={t("cmd.search", locale)}
+                placeholder={t("cmd.placeholder", locale)}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 focus:outline-none"
@@ -132,7 +135,7 @@ export default function CommandPalette() {
             </div>
             <div className="max-h-[50vh] overflow-y-auto p-2">
               {filtered.length === 0 && (
-                <p className="px-3 py-6 text-center text-sm text-white/40">Sin resultados</p>
+                <p className="px-3 py-6 text-center text-sm text-white/40">{t("cmd.noResults", locale)}</p>
               )}
               {filtered.map((item, i) => (
                 <button

@@ -4,7 +4,9 @@ import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
-import { profile, heroStats } from "@/lib/data";
+import { profile } from "@/lib/data";
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
 
 const ParticleCanvas = dynamic(() => import("./ParticleCanvas"), { ssr: false });
 
@@ -76,8 +78,6 @@ function SplitText({ text, className }: { text: string; className?: string }) {
   );
 }
 
-const stats = heroStats;
-
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -104,7 +104,23 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
+const statLabelKeys = [
+  "hero.stat.stores",
+  "hero.stat.faster",
+  "hero.stat.regions",
+  "hero.stat.stakeholders",
+] as const;
+
 export default function Hero() {
+  const { locale } = useLocale();
+
+  const stats = [
+    { value: 3400, suffix: "+", label: t(statLabelKeys[0], locale) },
+    { value: 35, suffix: "%", label: t(statLabelKeys[1], locale) },
+    { value: 21, suffix: "", label: t(statLabelKeys[2], locale) },
+    { value: 570, suffix: "+", label: t(statLabelKeys[3], locale) },
+  ];
+
   return (
     <section
       id="top"
@@ -121,7 +137,7 @@ export default function Hero() {
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/60"
         >
           <Sparkles className="h-3 w-3 text-accent-violet" />
-          Disponible para nuevos proyectos
+          {t("hero.available", locale)}
         </motion.div>
 
         <h1 className="font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.95] tracking-tight">
@@ -136,8 +152,8 @@ export default function Hero() {
           custom={2}
           className="mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl"
         >
-          {profile.tagline}{" "}
-          <span className="text-white/90">{profile.title}</span> basado en{" "}
+          {t("hero.tagline", locale)}{" "}
+          <span className="text-white/90">{profile.title}</span> {t("hero.basedIn", locale)}{" "}
           {profile.location}.
         </motion.p>
 
@@ -154,7 +170,7 @@ export default function Hero() {
               className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               <span className="relative z-10 inline-flex items-center gap-2">
-                Ver mi trabajo
+                {t("hero.cta", locale)}
                 <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
               </span>
             </a>
@@ -164,7 +180,7 @@ export default function Hero() {
               href="#contact"
               className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
-              Contáctame
+              {t("hero.contact", locale)}
             </a>
           </MagneticWrap>
           {/* CV download — hidden until Ian uploads his real PDF to /public */}
@@ -207,7 +223,7 @@ export default function Hero() {
               className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-violet"
             />
           </div>
-          <span>scroll</span>
+          <span>{t("hero.scroll", locale)}</span>
         </motion.div>
       </div>
     </section>

@@ -5,6 +5,8 @@ import { motion, useInView } from "framer-motion";
 import { Star, GitFork, ExternalLink, GitCommit, GitPullRequest, Eye } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import Image from "next/image";
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
 
 interface Profile {
   name: string;
@@ -44,15 +46,23 @@ const LANG_COLORS: Record<string, string> = {
   Go: "#00ADD8",
 };
 
-function relativeTime(iso: string) {
+function relativeTime(iso: string, locale: string) {
   const diff = Date.now() - new Date(iso).getTime();
   const mins = Math.floor(diff / 60000);
-  if (mins < 60) return `hace ${mins}m`;
+  if (locale === "es") {
+    if (mins < 60) return `hace ${mins}m`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `hace ${hrs}h`;
+    const days = Math.floor(hrs / 24);
+    if (days < 30) return `hace ${days}d`;
+    return `hace ${Math.floor(days / 30)}mo`;
+  }
+  if (mins < 60) return `${mins}m ago`;
   const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `hace ${hrs}h`;
+  if (hrs < 24) return `${hrs}h ago`;
   const days = Math.floor(hrs / 24);
-  if (days < 30) return `hace ${days}d`;
-  return `hace ${Math.floor(days / 30)}mo`;
+  if (days < 30) return `${days}d ago`;
+  return `${Math.floor(days / 30)}mo ago`;
 }
 
 function eventLabel(type: string, action: string | null) {
@@ -105,6 +115,7 @@ function Skeleton({ className }: { className?: string }) {
 }
 
 export default function GitHub() {
+  const { locale } = useLocale();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [repos, setRepos] = useState<Repo[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
@@ -128,8 +139,8 @@ export default function GitHub() {
     return (
       <section id="github" className="relative px-6 py-32">
         <div className="mx-auto max-w-6xl">
-          <SectionHeader index="06" kicker="Open Source" title="Mi actividad en GitHub." />
-          <p className="mt-8 text-center text-white/40">GitHub data no disponible en este momento.</p>
+          <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
+          <p className="mt-8 text-center text-white/40">{t("github.unavailable", locale)}</p>
         </div>
       </section>
     );
@@ -139,7 +150,7 @@ export default function GitHub() {
     <section id="github" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-violet/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="06" kicker="Open Source" title="Mi actividad en GitHub." />
+        <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
 
         {/* Stats bar */}
         <motion.div
@@ -230,7 +241,7 @@ export default function GitHub() {
                           <GitFork className="h-3 w-3" /> {repo.forks_count}
                         </span>
                       )}
-                      <span className="ml-auto">{relativeTime(repo.updated_at)}</span>
+                      <span className="ml-auto">{relativeTime(repo.updated_at, locale)}</span>
                     </div>
                   </motion.a>
                 ))}
@@ -247,7 +258,7 @@ export default function GitHub() {
           {/* Activity feed — 1/3 width */}
           <div>
             <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-              Actividad reciente
+              {t("github.recentActivity", locale)}
             </h3>
             {activity ? (
               <div className="relative space-y-0">
@@ -272,7 +283,7 @@ export default function GitHub() {
                         {" "}
                         <span className="text-white/50">{ev.repo_name.split("/")[1]}</span>
                       </p>
-                      <p className="text-[10px] text-white/30">{relativeTime(ev.created_at)}</p>
+                      <p className="text-[10px] text-white/30">{relativeTime(ev.created_at, locale)}</p>
                     </div>
                   </motion.div>
                 ))}

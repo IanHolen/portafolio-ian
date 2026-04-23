@@ -5,6 +5,14 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import { useLocale } from "./I18nProvider";
+import { t, tArray } from "@/lib/translations";
+
+interface ProjectTranslation {
+  title: string;
+  blurb: string;
+  metric: string;
+}
 
 function TiltCard({ children, className, href }: { children: React.ReactNode; className?: string; href?: string }) {
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -55,10 +63,12 @@ function TiltCard({ children, className, href }: { children: React.ReactNode; cl
 }
 
 export default function Projects() {
+  const { locale } = useLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const projectTexts = tArray<ProjectTranslation>("projects.items", locale);
 
   const updateScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -91,8 +101,8 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           index="03"
-          kicker="Trabajo seleccionado"
-          title="Proyectos recientes."
+          kicker={t("projects.kicker", locale)}
+          title={t("projects.title", locale)}
         />
 
         {/* Desktop scroll arrows */}
@@ -101,7 +111,7 @@ export default function Projects() {
             onClick={() => scroll(-1)}
             disabled={!canScrollLeft}
             className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            aria-label="Scroll left"
+            aria-label={t("projects.scrollLeft", locale)}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -109,7 +119,7 @@ export default function Projects() {
             onClick={() => scroll(1)}
             disabled={!canScrollRight}
             className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            aria-label="Scroll right"
+            aria-label={t("projects.scrollRight", locale)}
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -127,7 +137,7 @@ export default function Projects() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: i * 0.08 }}
             >
-              <ProjectCard p={p} />
+              <ProjectCard p={p} pt={projectTexts[i]} />
             </motion.div>
           ))}
         </div>
@@ -146,7 +156,7 @@ export default function Projects() {
               className="shrink-0 snap-center"
               style={{ minWidth: "500px" }}
             >
-              <ProjectCard p={p} />
+              <ProjectCard p={p} pt={projectTexts[i]} />
             </motion.div>
           ))}
         </div>
@@ -163,7 +173,7 @@ export default function Projects() {
   );
 }
 
-function ProjectCard({ p }: { p: (typeof projects)[number] }) {
+function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTranslation }) {
   return (
     <TiltCard
       href={p.href}
@@ -184,15 +194,15 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
           )}
         </div>
 
-        {p.metric && (
+        {pt.metric && (
           <div className="mb-4 inline-block rounded-full border border-accent-violet/30 bg-accent-violet/10 px-4 py-1.5 font-mono text-sm font-medium text-accent-violet">
-            {p.metric}
+            {pt.metric}
           </div>
         )}
         <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-white md:text-4xl">
-          {p.title}
+          {pt.title}
         </h3>
-        <p className="mt-4 max-w-md text-white/60">{p.blurb}</p>
+        <p className="mt-4 max-w-md text-white/60">{pt.blurb}</p>
 
         <div className="mt-10 flex flex-wrap gap-2">
           {p.tags.map((tag) => (

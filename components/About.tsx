@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { about } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 import HighlightText from "./HighlightText";
+import { useLocale } from "./I18nProvider";
+import { t, tArray } from "@/lib/translations";
 
 const HIGHLIGHT_TERMS = ["Microsoft Fabric", "Azure", "pipelines", "CI/CD", "data quality"];
 
@@ -34,11 +35,14 @@ function highlightIntro(text: string) {
 }
 
 export default function About() {
+  const { locale } = useLocale();
+  const bullets = tArray<string>("about.bullets", locale);
+
   return (
     <section id="about" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-accent-blue/15 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="01" kicker="Sobre mí" title="Una intro corta." />
+        <SectionHeader index="01" kicker={t("about.kicker", locale)} title={t("about.title", locale)} />
 
         <div className="grid gap-16 md:grid-cols-12">
           <motion.p
@@ -48,11 +52,11 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="md:col-span-7 font-display text-2xl font-light leading-snug text-white/80 md:text-3xl"
           >
-            {highlightIntro(about.intro)}
+            {highlightIntro(t("about.intro", locale))}
           </motion.p>
 
           <ul className="md:col-span-5 space-y-5">
-            {about.bullets.map((b, i) => (
+            {bullets.map((b, i) => (
               <motion.li
                 key={b}
                 initial={{ opacity: 0, x: 20 }}

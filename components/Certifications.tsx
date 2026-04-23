@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { certifications } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
 
 const ICON_COLORS: Record<string, string> = {
   azure: "#0078d4",
@@ -11,10 +13,12 @@ const ICON_COLORS: Record<string, string> = {
 };
 
 export default function Certifications() {
+  const { locale } = useLocale();
+
   return (
     <section className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="05" kicker="Certificaciones" title="Credenciales." />
+        <SectionHeader index="05" kicker={t("certs.kicker", locale)} title={t("certs.title", locale)} />
 
         <div className="grid gap-4 md:grid-cols-2">
           {certifications.map((cert, i) => {
@@ -44,7 +48,7 @@ export default function Certifications() {
                   </p>
                   {cert.credentialUrl && (
                     <span className="mt-3 inline-flex items-center gap-1 text-xs text-accent-violet/70 group-hover:text-accent-violet transition">
-                      Ver credencial <ExternalLink className="h-3 w-3" />
+                      {t("certs.viewCredential", locale)} <ExternalLink className="h-3 w-3" />
                     </span>
                   )}
                 </div>

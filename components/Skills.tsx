@@ -3,9 +3,14 @@
 import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import { useLocale } from "./I18nProvider";
+import { t, tArray } from "@/lib/translations";
 
 export default function Skills() {
-  const row = [...skills.core, ...skills.core]; // duplicate for seamless marquee
+  const { locale } = useLocale();
+  const row = [...skills.core, ...skills.core];
+  const groupLabels = tArray<string>("skills.groups", locale);
+  const interests = tArray<string>("skills.interests", locale);
 
   return (
     <section id="skills" className="relative overflow-hidden border-y border-white/10 py-20">
@@ -28,7 +33,7 @@ export default function Skills() {
       </motion.div>
 
       <div className="mx-auto mt-20 max-w-6xl px-6">
-        <SectionHeader index="04" kicker="Habilidades" title="Mi stack técnico." />
+        <SectionHeader index="04" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {skills.groups.map((group, gi) => (
             <motion.div
@@ -40,7 +45,7 @@ export default function Skills() {
               className="border-glow rounded-2xl border border-white/10 bg-white/[0.02] p-5"
             >
               <h3 className="mb-3 text-sm font-semibold tracking-wide text-accent-violet">
-                {group.label}
+                {groupLabels[gi] ?? group.label}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
@@ -57,7 +62,7 @@ export default function Skills() {
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3">
-          {skills.interests.map((tag, i) => (
+          {interests.map((tag, i) => (
             <motion.span
               key={tag}
               initial={{ opacity: 0, y: 10 }}

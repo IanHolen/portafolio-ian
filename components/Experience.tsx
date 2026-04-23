@@ -3,20 +3,33 @@
 import { motion } from "framer-motion";
 import { experience } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import { useLocale } from "./I18nProvider";
+import { t, tArray } from "@/lib/translations";
+
+interface ExpItem {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  highlights: string[];
+}
 
 export default function Experience() {
+  const { locale } = useLocale();
+  const items = tArray<ExpItem>("experience.items", locale);
+
   return (
     <section id="experience" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           index="02"
-          kicker="Experiencia"
-          title="Dónde he construido."
+          kicker={t("experience.kicker", locale)}
+          title={t("experience.title", locale)}
         />
 
         <div className="space-y-2">
-          {experience.map((exp, i) => (
+          {items.map((exp, i) => (
             <motion.div
               key={exp.role + exp.company}
               initial={{ opacity: 0, y: 24 }}
@@ -51,7 +64,7 @@ export default function Experience() {
               </div>
 
               <div className="col-span-12 flex flex-wrap items-start gap-2 md:col-span-3 md:justify-end">
-                {exp.stack.map((tech) => (
+                {experience[i]?.stack.map((tech) => (
                   <span
                     key={tech}
                     className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"

@@ -4,10 +4,13 @@ import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Mail, Phone, MapPin, Copy, Check } from "lucide-react";
 import { profile } from "@/lib/data";
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
+  const { locale } = useLocale();
   const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -17,10 +20,10 @@ export default function Contact() {
 
   function validate() {
     const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = "El nombre es requerido";
-    if (!form.email.trim()) e.email = "El email es requerido";
-    else if (!emailRegex.test(form.email)) e.email = "Email no válido";
-    if (!form.message.trim()) e.message = "El mensaje es requerido";
+    if (!form.name.trim()) e.name = t("contact.errName", locale);
+    if (!form.email.trim()) e.email = t("contact.errEmail", locale);
+    else if (!emailRegex.test(form.email)) e.email = t("contact.errEmailInvalid", locale);
+    if (!form.message.trim()) e.message = t("contact.errMessage", locale);
     return e;
   }
 
@@ -48,12 +51,12 @@ export default function Contact() {
         return;
       }
       if (!res.ok) {
-        setSubmitError(data.message || "Error al enviar el mensaje.");
+        setSubmitError(data.message || t("contact.errConnection", locale));
       } else {
         setSubmitted(true);
       }
     } catch {
-      setSubmitError("Error de conexión. Intenta de nuevo.");
+      setSubmitError(t("contact.errConnection", locale));
     } finally {
       setLoading(false);
     }
@@ -71,6 +74,12 @@ export default function Contact() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
+
+  const contactInfo = [
+    { icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
+    { icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
+    { icon: MapPin, label: t("contact.infoLocation", locale), value: profile.location, href: undefined },
+  ];
 
   return (
     <section
@@ -91,15 +100,15 @@ export default function Contact() {
           className="text-center"
         >
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
-            09 — Contacto
+            {t("contact.kicker", locale)}
           </p>
           <h2 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl">
-            Hagamos algo
+            {t("contact.title1", locale)}
             <br />
-            <span className="italic text-gradient">extraordinario.</span>
+            <span className="italic text-gradient">{t("contact.title2", locale)}</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-lg text-white/60">
-            Si estás construyendo algo en datos, cloud o necesitas un partner técnico, escríbeme.
+            {t("contact.subtitle", locale)}
           </p>
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
@@ -113,7 +122,7 @@ export default function Contact() {
             <button
               onClick={copyEmail}
               className="relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-5 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-              aria-label="Copiar email"
+              aria-label={t("contact.copyEmail", locale)}
             >
               {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
               <AnimatePresence>
@@ -124,7 +133,7 @@ export default function Contact() {
                     exit={{ opacity: 0 }}
                     className="text-xs text-green-400"
                   >
-                    Copiado
+                    {t("contact.copied", locale)}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -148,13 +157,13 @@ export default function Contact() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="rounded-2xl border border-white/10 bg-white/[0.02] p-10 text-center"
               >
-                <p className="font-display text-2xl font-light text-white">Mensaje enviado</p>
-                <p className="mt-3 text-white/60">Gracias por escribirme. Te responderé lo antes posible.</p>
+                <p className="font-display text-2xl font-light text-white">{t("contact.formSent", locale)}</p>
+                <p className="mt-3 text-white/60">{t("contact.formThanks", locale)}</p>
                 <button
                   onClick={resetForm}
                   className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
-                  Enviar otro mensaje
+                  {t("contact.formAnother", locale)}
                 </button>
               </motion.div>
             ) : (
@@ -178,8 +187,8 @@ export default function Contact() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Tu nombre"
-                    aria-label="Tu nombre"
+                    placeholder={t("contact.formName", locale)}
+                    aria-label={t("contact.formName", locale)}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-violet/50 focus:outline-none focus:ring-2 focus:ring-accent-violet/20"
@@ -190,8 +199,8 @@ export default function Contact() {
                 <div>
                   <input
                     type="email"
-                    placeholder="Tu email"
-                    aria-label="Tu email"
+                    placeholder={t("contact.formEmail", locale)}
+                    aria-label={t("contact.formEmail", locale)}
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-violet/50 focus:outline-none focus:ring-2 focus:ring-accent-violet/20"
@@ -201,8 +210,8 @@ export default function Contact() {
 
                 <div>
                   <textarea
-                    placeholder="Tu mensaje"
-                    aria-label="Tu mensaje"
+                    placeholder={t("contact.formMessage", locale)}
+                    aria-label={t("contact.formMessage", locale)}
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -219,7 +228,7 @@ export default function Contact() {
                       onClick={() => setSubmitError("")}
                       className="mt-2 text-xs text-white/50 underline transition hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet rounded"
                     >
-                      Intentar de nuevo
+                      {t("contact.formRetry", locale)}
                     </button>
                   </div>
                 )}
@@ -229,7 +238,7 @@ export default function Contact() {
                   disabled={loading}
                   className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
-                  {loading ? "Enviando..." : "Enviar mensaje"}
+                  {loading ? t("contact.formSending", locale) : t("contact.formSubmit", locale)}
                 </button>
               </motion.form>
             )}
@@ -237,11 +246,7 @@ export default function Contact() {
         </motion.div>
 
         <div className="mt-24 grid gap-6 md:grid-cols-3">
-          {[
-            { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-            { icon: Phone, label: "Teléfono", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
-            { icon: MapPin, label: "Ubicación", value: profile.location, href: undefined },
-          ].map((item, i) => {
+          {contactInfo.map((item, i) => {
             const Tag = item.href ? motion.a : motion.div;
             return (
               <Tag
@@ -270,7 +275,7 @@ export default function Contact() {
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${s.label} (abre en nueva pestaña)`}
+              aria-label={`${s.label} ${t("contact.socialSuffix", locale)}`}
               className="group inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-white/70 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               {s.label}

@@ -4,18 +4,22 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/lib/data";
-
-const links = [
-  { href: "#about", label: "Sobre mí", id: "about" },
-  { href: "#experience", label: "Experiencia", id: "experience" },
-  { href: "#work", label: "Trabajo", id: "work" },
-  { href: "#contact", label: "Contacto", id: "contact" },
-];
+import { useLocale } from "./I18nProvider";
+import { t } from "@/lib/translations";
+import LangToggle from "./LangToggle";
 
 export default function Navbar() {
+  const { locale } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
+
+  const links = [
+    { href: "#about", label: t("nav.about", locale), id: "about" },
+    { href: "#experience", label: t("nav.experience", locale), id: "experience" },
+    { href: "#work", label: t("nav.work", locale), id: "work" },
+    { href: "#contact", label: t("nav.contact", locale), id: "contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -73,7 +77,7 @@ export default function Navbar() {
           >
             {profile.firstName.toLowerCase()}<span className="text-accent-violet">.</span>{profile.lastName.toLowerCase()}
           </a>
-          <nav role="navigation" aria-label="Navegación principal" className="hidden items-center gap-8 text-sm md:flex">
+          <nav role="navigation" aria-label={locale === "es" ? "Navegación principal" : "Main navigation"} className="hidden items-center gap-8 text-sm md:flex">
             {links.map((link) => (
               <a
                 key={link.href}
@@ -93,20 +97,26 @@ export default function Navbar() {
               </a>
             ))}
           </nav>
-          <a
-            href="#contact"
-            className="hidden group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-          >
-            <span className="relative z-10">Trabajemos juntos</span>
-            <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-violet to-accent-blue transition-transform duration-500 group-hover:translate-y-0" />
-          </a>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex items-center justify-center rounded-full text-white md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="hidden items-center gap-3 md:flex">
+            <LangToggle />
+            <a
+              href="#contact"
+              className="group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              <span className="relative z-10">{t("nav.cta", locale)}</span>
+              <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-violet to-accent-blue transition-transform duration-500 group-hover:translate-y-0" />
+            </a>
+          </div>
+          <div className="flex items-center gap-3 md:hidden">
+            <LangToggle />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="inline-flex items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              aria-label={menuOpen ? t("nav.menuClose", locale) : t("nav.menuOpen", locale)}
+            >
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </motion.header>
 
@@ -140,7 +150,7 @@ export default function Navbar() {
               transition={{ duration: 0.3, delay: 0.1 + links.length * 0.06 }}
               className="mt-4 rounded-full border border-accent-violet/50 bg-accent-violet/10 px-8 py-3 text-lg font-medium text-accent-violet transition hover:bg-accent-violet/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet"
             >
-              Trabajemos juntos
+              {t("nav.cta", locale)}
             </motion.a>
           </motion.div>
         )}
