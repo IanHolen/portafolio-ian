@@ -81,10 +81,16 @@ function SplitText({ text, className }: { text: string; className?: string }) {
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value); // SSR shows real value
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!isInView) return;
+    setMounted(true);
+    setDisplay(0);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !isInView) return;
     const duration = 1500;
     const start = performance.now();
     function step(now: number) {
@@ -95,7 +101,7 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
-  }, [isInView, value]);
+  }, [mounted, isInView, value]);
 
   return (
     <span ref={ref}>

@@ -9,7 +9,7 @@ export const profile = {
     "Diseño pipelines escalables, resilientes y auditables — con CI/CD sólido y data quality en mente — para llevar analítica de grado producción a escala.",
   location: "Ciudad de México",
   email: "holenderian@gmail.com",
-  phone: "+52 (55) 4790 3290",
+  phone: "+52 55 4790 3290",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
