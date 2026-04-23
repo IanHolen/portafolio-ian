@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Briefcase, Code, FolderGit2, GraduationCap, Mail, Copy, ExternalLink, Download } from "lucide-react";
+import { Search, Home, User, Briefcase, Code, FolderGit2, GraduationCap, Mail, Copy, ExternalLink } from "lucide-react";
 import { profile, projects } from "@/lib/data";
 
 interface Item {
@@ -37,8 +37,7 @@ export default function CommandPalette() {
     })),
     { id: "copy-email", label: "Copiar email", icon: <Copy className="h-4 w-4" />, action: () => { navigator.clipboard.writeText(profile.email); close(); }, hint: "Acción" },
     { id: "github-link", label: "Ver GitHub", icon: <ExternalLink className="h-4 w-4" />, action: () => { window.open("https://github.com/IanHolen", "_blank"); close(); }, hint: "Acción" },
-    // TODO: Replace with real CV download
-    { id: "download-cv", label: "Descargar CV", icon: <Download className="h-4 w-4" />, action: () => { const a = document.createElement("a"); a.href = "/cv-ian-holender.pdf"; a.download = ""; a.click(); close(); }, hint: "Acción" },
+    // CV download — hidden until Ian uploads his real PDF to /public
   ];
 
   function navigate(hash: string) {

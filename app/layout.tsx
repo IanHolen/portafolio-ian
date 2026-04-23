@@ -24,7 +24,7 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://portafolio-ian.vercel.app";
+const SITE_URL = "https://ianholender.com";
 const SITE_TITLE = "Ian Holender — Data Engineer";
 const SITE_DESCRIPTION =
   "Portafolio personal de Ian Holender. Data Engineer especializado en arquitecturas event-driven sobre Microsoft Fabric y Azure.";
