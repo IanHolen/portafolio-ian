@@ -80,7 +80,7 @@ function SplitText({ text, className }: { text: string; className?: string }) {
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [display, setDisplay] = useState(value); // SSR shows real value
   const [mounted, setMounted] = useState(false);
 
