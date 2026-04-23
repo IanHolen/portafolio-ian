@@ -4,6 +4,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import CommandPalette from "@/components/CommandPalette";
 import ReadingProgress from "@/components/ReadingProgress";
+import Providers from "@/components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,10 +80,12 @@ export default function RootLayout({
         </a>
         <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
         <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
-        <ReadingProgress />
-        <CustomCursor />
-        <CommandPalette />
-        {children}
+        <Providers>
+          <ReadingProgress />
+          <CustomCursor />
+          <CommandPalette />
+          {children}
+        </Providers>
       </body>
     </html>
   );

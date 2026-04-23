@@ -100,7 +100,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(-1)}
             disabled={!canScrollLeft}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40"
+            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             aria-label="Scroll left"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -108,7 +108,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(1)}
             disabled={!canScrollRight}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40"
+            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             aria-label="Scroll right"
           >
             <ChevronRight className="h-5 w-5" />

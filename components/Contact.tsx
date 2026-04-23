@@ -152,7 +152,7 @@ export default function Contact() {
                 <p className="mt-3 text-white/60">Gracias por escribirme. Te responderé lo antes posible.</p>
                 <button
                   onClick={resetForm}
-                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10"
+                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
                   Enviar otro mensaje
                 </button>
@@ -217,7 +217,7 @@ export default function Contact() {
                     <button
                       type="button"
                       onClick={() => setSubmitError("")}
-                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70"
+                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet rounded"
                     >
                       Intentar de nuevo
                     </button>
