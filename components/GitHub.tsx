@@ -53,7 +53,7 @@ const LANG_COLORS: Record<string, string> = {
 };
 
 // GitHub-style green scale
-const LEVEL_COLORS = ["rgba(255,255,255,0.05)", "#0e4429", "#006d32", "#26a641", "#39d353"];
+const LEVEL_COLORS = ["rgba(24,24,15,0.06)", "#0e4429", "#006d32", "#26a641", "#39d353"];
 const MONTHS_ES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -76,7 +76,7 @@ function AnimatedCounter({ value }: { value: number }) {
 }
 
 function Skeleton({ className }: { className?: string }) {
-  return <div className={`animate-pulse rounded bg-white/10 ${className ?? ""}`} />;
+  return <div className={`animate-pulse rounded bg-black/[0.06] ${className ?? ""}`} />;
 }
 
 function buildWeeks(days: Day[]) {
@@ -114,7 +114,7 @@ function Heatmap({ days, locale }: { days: Day[]; locale: string }) {
         {/* month row */}
         <div className="flex gap-[3px] pl-0">
           {monthLabels.map((lbl, i) => (
-            <div key={i} className="w-[13px] text-[9px] text-white/35" style={{ minWidth: 13 }}>
+            <div key={i} className="w-[13px] text-[9px] text-ink-400" style={{ minWidth: 13 }}>
               {lbl}
             </div>
           ))}
@@ -169,7 +169,7 @@ export default function GitHub() {
       <section id="github" className="relative px-6 py-32">
         <div className="mx-auto max-w-6xl">
           <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
-          <p className="mt-8 text-center text-white/40">{t("github.unavailable", locale)}</p>
+          <p className="mt-8 text-center text-ink-400">{t("github.unavailable", locale)}</p>
         </div>
       </section>
     );
@@ -205,17 +205,17 @@ export default function GitHub() {
                 alt={profile.name}
                 width={56}
                 height={56}
-                className="rounded-full border border-white/10"
+                className="rounded-full border border-ink-900/10"
               />
               <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
                 {stats.map((s, i) => (
                   <div key={s.label} className="flex items-center gap-8">
-                    {i > 0 && <div className="hidden h-8 w-px bg-white/10 md:block" />}
+                    {i > 0 && <div className="hidden h-8 w-px bg-black/[0.06] md:block" />}
                     <div>
-                      <p className="font-mono text-2xl font-light text-white">
+                      <p className="font-mono text-2xl font-light text-ink-900">
                         <AnimatedCounter value={s.value} />
                       </p>
-                      <p className="text-xs uppercase tracking-[0.2em] text-white/40">{s.label}</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-ink-400">{s.label}</p>
                     </div>
                   </div>
                 ))}
@@ -235,18 +235,18 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7 }}
-          className="mt-14 rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8"
+          className="mt-14 rounded-2xl border border-ink-900/10 bg-card p-6 md:p-8"
         >
           {contrib ? (
             <>
               <div className="mb-6 flex items-baseline gap-3">
-                <span className="font-mono text-2xl font-light text-white">
+                <span className="font-mono text-2xl font-light text-ink-900">
                   <AnimatedCounter value={contrib.total} />
                 </span>
-                <span className="text-sm text-white/50">{t("github.contributions", locale)}</span>
+                <span className="text-sm text-ink-500">{t("github.contributions", locale)}</span>
               </div>
               <Heatmap days={contrib.days} locale={locale} />
-              <div className="mt-4 flex items-center justify-end gap-2 text-[10px] text-white/40">
+              <div className="mt-4 flex items-center justify-end gap-2 text-[10px] text-ink-400">
                 <span>{t("github.less", locale)}</span>
                 {LEVEL_COLORS.map((c, i) => (
                   <span key={i} className="h-[11px] w-[11px] rounded-[3px]" style={{ backgroundColor: c }} />
@@ -261,12 +261,12 @@ export default function GitHub() {
 
         {/* Top languages */}
         <div className="mt-14">
-          <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+          <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-ink-400">
             {t("github.topLanguages", locale)}
           </h3>
           {repos ? (
             <div className="space-y-4">
-              <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-white/5">
+              <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-black/[0.04]">
                 {repos.languages.map((l) => (
                   <div
                     key={l.name}
@@ -277,10 +277,10 @@ export default function GitHub() {
               </div>
               <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {repos.languages.map((l) => (
-                  <span key={l.name} className="flex items-center gap-2 text-sm text-white/60">
+                  <span key={l.name} className="flex items-center gap-2 text-sm text-ink-600">
                     <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LANG_COLORS[l.name] ?? "#8b98a5" }} />
                     {l.name}
-                    <span className="text-white/30">{l.pct}%</span>
+                    <span className="text-ink-400">{l.pct}%</span>
                   </span>
                 ))}
               </div>
@@ -288,7 +288,7 @@ export default function GitHub() {
           ) : (
             <Skeleton className="h-14 w-full rounded-xl" />
           )}
-          <p className="mt-6 max-w-xl text-xs leading-relaxed text-white/35">
+          <p className="mt-6 max-w-xl text-xs leading-relaxed text-ink-400">
             {t("github.privateNote", locale)}
           </p>
         </div>

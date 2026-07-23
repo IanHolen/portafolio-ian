@@ -110,7 +110,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(-1)}
             disabled={!canScrollLeft}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="rounded-full border border-ink-900/10 p-2 text-ink-400 transition hover:border-ink-900/15 hover:text-ink-900 disabled:opacity-30 disabled:hover:border-ink-900/10 disabled:hover:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             aria-label={t("projects.scrollLeft", locale)}
           >
             <ChevronLeft className="h-5 w-5" />
@@ -118,7 +118,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(1)}
             disabled={!canScrollRight}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="rounded-full border border-ink-900/10 p-2 text-ink-400 transition hover:border-ink-900/15 hover:text-ink-900 disabled:opacity-30 disabled:hover:border-ink-900/10 disabled:hover:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             aria-label={t("projects.scrollRight", locale)}
           >
             <ChevronRight className="h-5 w-5" />
@@ -162,7 +162,7 @@ export default function Projects() {
         </div>
 
         {/* Progress bar */}
-        <div className="mx-auto mt-6 hidden h-1 max-w-xs overflow-hidden rounded-full bg-white/10 md:block">
+        <div className="mx-auto mt-6 hidden h-1 max-w-xs overflow-hidden rounded-full bg-black/[0.06] md:block">
           <div
             className="h-full rounded-full bg-gradient-to-r from-accent-green to-accent-emerald transition-all duration-150"
             style={{ width: `${Math.max(20, progress * 100)}%`, marginLeft: `${progress * (100 - Math.max(20, progress * 100))}%` }}
@@ -177,20 +177,20 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
   return (
     <TiltCard
       href={p.href}
-      className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 transition-all duration-500 hover:border-white/20 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+      className="group relative block h-full overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 transition-all duration-500 hover:border-ink-900/15 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
       <div
         className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
       />
-      <div className="pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full bg-white/5 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full bg-black/[0.04] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="mb-10 flex items-start justify-between">
-          <span className="font-mono text-xs uppercase tracking-[0.22em] text-white/40">
+          <span className="font-mono text-xs uppercase tracking-[0.22em] text-ink-400">
             {p.company} · {p.year}
           </span>
           {p.href && (
-            <ArrowUpRight className="h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+            <ArrowUpRight className="h-5 w-5 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink-900" />
           )}
         </div>
 
@@ -199,16 +199,16 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
             {pt.metric}
           </div>
         )}
-        <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-white md:text-4xl">
+        <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-ink-900 md:text-4xl">
           {pt.title}
         </h3>
-        <p className="mt-4 max-w-md text-white/60">{pt.blurb}</p>
+        <p className="mt-4 max-w-md text-ink-600">{pt.blurb}</p>
 
         <div className="mt-10 flex flex-wrap gap-2">
           {p.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"
+              className="rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs text-ink-600"
             >
               {tag}
             </span>

@@ -27,15 +27,15 @@ export default function Education() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="border-l border-white/10 pl-6"
+                className="border-l border-ink-900/10 pl-6"
               >
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/60">
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink-600">
                   {ed.period}
                 </p>
-                <h3 className="mt-2 font-display text-2xl font-light text-white">
+                <h3 className="mt-2 font-display text-2xl font-light text-ink-900">
                   {ed.title}
                 </h3>
-                <p className="mt-1 text-white/60">{ed.institution}</p>
+                <p className="mt-1 text-ink-600">{ed.institution}</p>
               </motion.div>
             ))}
           </div>
@@ -53,12 +53,12 @@ export default function Education() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex items-baseline justify-between border-b border-white/10 pb-4"
+                className="flex items-baseline justify-between border-b border-ink-900/10 pb-4"
               >
-                <span className="font-display text-2xl text-white">
+                <span className="font-display text-2xl text-ink-900">
                   {lang.name}
                 </span>
-                <span className="text-sm text-white/50">{lang.level}</span>
+                <span className="text-sm text-ink-500">{lang.level}</span>
               </motion.div>
             ))}
           </div>

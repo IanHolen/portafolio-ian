@@ -9,22 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Warm graphite base — neutral near-black, no blue cast
+        // Light editorial base — warm paper + ink text scale
+        paper: "#f3f1ea",
+        card: "#fffdf8",
         ink: {
-          950: "#08080a",
-          900: "#0c0d10",
-          800: "#131419",
-          700: "#1c1e25",
-          600: "#2b2e37",
+          950: "#0e0e08",
+          900: "#18180f",
+          800: "#26261a",
+          700: "#45453a",
+          600: "#5a5a4d",
+          500: "#7a7a6c",
+          400: "#9a9a8b",
+          300: "#c2bfb2",
         },
-        // GitHub-green primary + lime; orange reserved for WIP/"en desarrollo".
+        // Restrained forest-green accent; warm ember for WIP/"en desarrollo".
         accent: {
-          green: "#22c55e",
-          emerald: "#10b981",
-          lime: "#a3e635",
-          mint: "#4ade80",
-          orange: "#fb923c",
-          amber: "#fbbf24",
+          green: "#1c5b3a",
+          emerald: "#1c5b3a",
+          lime: "#3f7a4a",
+          mint: "#2e6b45",
+          orange: "#b4531b",
+          amber: "#b4531b",
         },
       },
       fontFamily: {
@@ -64,9 +69,9 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-pattern":
-          "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(24,24,15,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(24,24,15,0.035) 1px, transparent 1px)",
         "radial-fade":
-          "radial-gradient(ellipse at top, rgba(34,197,94,0.12), transparent 62%)",
+          "radial-gradient(ellipse at top, rgba(28,91,58,0.06), transparent 62%)",
       },
     },
   },

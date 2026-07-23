@@ -126,10 +126,10 @@ export default function CommandPalette() {
             role="dialog"
             aria-modal="true"
             aria-label={t("cmd.label", locale)}
-            className="fixed left-1/2 top-[20vh] z-[81] w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-ink-950/95 shadow-2xl backdrop-blur-xl"
+            className="fixed left-1/2 top-[20vh] z-[81] w-full max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border border-ink-900/10 bg-paper/95 shadow-2xl backdrop-blur-xl"
           >
-            <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-              <Search className="h-4 w-4 text-white/40" />
+            <div className="flex items-center gap-3 border-b border-ink-900/10 px-4 py-3">
+              <Search className="h-4 w-4 text-ink-400" />
               <input
                 ref={inputRef}
                 type="text"
@@ -137,13 +137,13 @@ export default function CommandPalette() {
                 placeholder={t("cmd.placeholder", locale)}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 focus:outline-none"
+                className="flex-1 bg-transparent text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
               />
-              <kbd className="rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-white/30">ESC</kbd>
+              <kbd className="rounded border border-ink-900/10 bg-black/[0.04] px-1.5 py-0.5 text-[10px] text-ink-400">ESC</kbd>
             </div>
             <div className="max-h-[50vh] overflow-y-auto p-2">
               {filtered.length === 0 && (
-                <p className="px-3 py-6 text-center text-sm text-white/40">{t("cmd.noResults", locale)}</p>
+                <p className="px-3 py-6 text-center text-sm text-ink-400">{t("cmd.noResults", locale)}</p>
               )}
               {filtered.map((item, i) => (
                 <button
@@ -151,12 +151,12 @@ export default function CommandPalette() {
                   onClick={item.action}
                   onMouseEnter={() => setActive(i)}
                   className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green ${
-                    i === active ? "bg-accent-green/10 text-white" : "text-white/60 hover:text-white"
+                    i === active ? "bg-accent-green/10 text-ink-900" : "text-ink-600 hover:text-ink-900"
                   }`}
                 >
-                  <span className={i === active ? "text-accent-green" : "text-white/40"}>{item.icon}</span>
+                  <span className={i === active ? "text-accent-green" : "text-ink-400"}>{item.icon}</span>
                   <span className="flex-1">{item.label}</span>
-                  {item.hint && <span className="text-[10px] text-white/30">{item.hint}</span>}
+                  {item.hint && <span className="text-[10px] text-ink-400">{item.hint}</span>}
                 </button>
               ))}
             </div>

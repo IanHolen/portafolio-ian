@@ -25,13 +25,13 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: gi * 0.07, ease: [0.2, 0.8, 0.2, 1] }}
-              className="border-glow group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.035]"
+              className="border-glow group relative overflow-hidden rounded-2xl border border-ink-900/10 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink-900/15 hover:bg-black/[0.03]"
             >
               <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-green/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-4 flex items-center gap-2">
                   <span className="font-mono text-xs text-accent-green/70">0{gi + 1}</span>
-                  <h3 className="text-sm font-semibold tracking-wide text-white">
+                  <h3 className="text-sm font-semibold tracking-wide text-ink-900">
                     {groupLabels[gi] ?? group.label}
                   </h3>
                 </div>
@@ -43,7 +43,7 @@ export default function Skills() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: gi * 0.07 + ii * 0.03 }}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/75 transition-colors duration-200 hover:border-accent-green/40 hover:bg-accent-green/10 hover:text-accent-green"
+                      className="rounded-full border border-ink-900/10 bg-black/[0.04] px-3 py-1.5 text-xs text-ink-700 transition-colors duration-200 hover:border-accent-green/40 hover:bg-accent-green/10 hover:text-accent-green"
                     >
                       {item}
                     </motion.span>
@@ -62,7 +62,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/60"
+              className="rounded-full border border-ink-900/10 bg-black/[0.03] px-4 py-2 text-sm text-ink-600"
             >
               {tag}
             </motion.span>

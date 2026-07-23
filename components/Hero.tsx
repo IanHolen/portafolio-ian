@@ -2,13 +2,10 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Sparkles, Download, MapPin } from "lucide-react";
-import dynamic from "next/dynamic";
+import { ArrowDown, Download } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
-
-const ParticleCanvas = dynamic(() => import("./ParticleCanvas"), { ssr: false });
 
 function MagneticWrap({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -41,11 +38,7 @@ const fadeUp = {
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.9,
-      delay: 0.1 + i * 0.1,
-      ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number],
-    },
+    transition: { duration: 0.9, delay: 0.1 + i * 0.1, ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number] },
   }),
 };
 
@@ -54,7 +47,7 @@ const letterVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: 0.4 + i * 0.03, ease: [0.2, 0.8, 0.2, 1] },
+    transition: { duration: 0.5, delay: 0.35 + i * 0.03, ease: [0.2, 0.8, 0.2, 1] },
   }),
 };
 
@@ -81,184 +74,126 @@ function SplitText({ text, className }: { text: string; className?: string }) {
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [display, setDisplay] = useState(value); // SSR shows real value
+  const [display, setDisplay] = useState(value);
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setDisplay(0);
-  }, []);
-
+  useEffect(() => { setMounted(true); setDisplay(0); }, []);
   useEffect(() => {
     if (!mounted || !isInView) return;
-    const duration = 1500;
+    const duration = 1400;
     const start = performance.now();
     function step(now: number) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(eased * value));
+      const progress = Math.min((now - start) / duration, 1);
+      setDisplay(Math.round((1 - Math.pow(1 - progress, 3)) * value));
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }, [mounted, isInView, value]);
-
-  return (
-    <span ref={ref}>
-      {display.toLocaleString()}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{display.toLocaleString()}{suffix}</span>;
 }
-
-const statLabelKeys = [
-  "hero.stat.platforms",
-  "hero.stat.stores",
-  "hero.stat.faster",
-  "hero.stat.stakeholders",
-] as const;
 
 export default function Hero() {
   const { locale } = useLocale();
 
   const stats = [
-    { value: 5, suffix: "", label: t(statLabelKeys[0], locale) },
-    { value: 3400, suffix: "+", label: t(statLabelKeys[1], locale) },
-    { value: 35, suffix: "%", label: t(statLabelKeys[2], locale) },
-    { value: 570, suffix: "+", label: t(statLabelKeys[3], locale) },
+    { value: 5, suffix: "", label: t("hero.stat.platforms", locale) },
+    { value: 3400, suffix: "+", label: t("hero.stat.stores", locale) },
+    { value: 35, suffix: "%", label: t("hero.stat.faster", locale) },
+    { value: 21, suffix: "", label: t("hero.stat.regions", locale) },
   ];
 
   return (
-    <section
-      id="top"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
-    >
-      <ParticleCanvas />
-
+    <section id="top" className="relative flex min-h-screen items-center px-6 pt-32">
       <div className="mx-auto w-full max-w-6xl">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={0}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/60"
-        >
-          <Sparkles className="h-3 w-3 text-accent-green" />
-          {t("hero.available", locale)}
-        </motion.div>
-
-        <h1 className="font-display text-[clamp(3rem,9vw,8rem)] font-semibold leading-[0.92] tracking-tight">
-          <SplitText text={profile.firstName} className="block text-white" />
-          <SplitText text={profile.lastName} className="block text-white/55" />
-        </h1>
-
-        <motion.p
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={1.5}
-          className="mt-6 font-mono text-sm uppercase tracking-[0.25em] text-accent-green md:text-base"
-        >
-          {t("hero.role", locale)}
-        </motion.p>
-
-        <motion.p
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={2}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-white/65 md:text-xl"
-        >
-          {t("hero.tagline", locale)}
-        </motion.p>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={2.4}
-          className="mt-5 flex items-center gap-2 text-sm text-white/45"
-        >
-          <MapPin className="h-4 w-4 text-accent-green" />
-          {t("hero.locationLine", locale)}
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={3}
-          className="mt-12 flex flex-wrap items-center gap-4"
-        >
-          <MagneticWrap>
-            <a
-              href="#work"
-              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            >
-              <span className="relative z-10 inline-flex items-center gap-2">
-                {t("hero.cta", locale)}
-                <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
-              </span>
-            </a>
-          </MagneticWrap>
-          <MagneticWrap>
-            <a
-              href="#contact"
-              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            >
-              {t("hero.contact", locale)}
-            </a>
-          </MagneticWrap>
-          <MagneticWrap>
-            <a
-              href={profile.cvUrl}
-              download
-              className="group inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-7 py-4 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-            >
-              <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
-              {t("hero.downloadCv", locale)}
-            </a>
-          </MagneticWrap>
-        </motion.div>
-
-        {/* Animated Stats */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          custom={4}
-          className="mt-16 flex flex-wrap items-center gap-8 md:gap-12"
-        >
-          {stats.map((s, i) => (
-            <div key={s.label} className="flex items-center gap-8 md:gap-12">
-              {i > 0 && <div className="hidden h-10 w-px bg-white/10 md:block" />}
-              <div>
-                <p className="font-mono text-3xl font-light text-white md:text-4xl">
-                  <AnimatedCounter value={s.value} suffix={s.suffix} />
-                </p>
-                <p className="mt-1 text-xs uppercase tracking-[0.2em] text-white/60">
-                  {s.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Scroll indicator — mouse icon */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 1 }}
-          className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40 md:flex"
-        >
-          <div className="relative h-9 w-5 rounded-full border border-white/30">
+        <div className="grid gap-14 md:grid-cols-[1.35fr_1fr] md:items-end">
+          {/* Left: identity */}
+          <div>
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-green"
-            />
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={0}
+              className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-green"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
+              {t("hero.available", locale)}
+            </motion.div>
+
+            <h1 className="font-display text-[clamp(3.2rem,8.5vw,7.5rem)] font-medium leading-[0.92] tracking-tight">
+              <SplitText text={profile.firstName} className="block text-ink-900" />
+              <SplitText text={profile.lastName} className="block text-ink-400" />
+            </h1>
+
+            <motion.p
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={2}
+              className="mt-7 font-mono text-sm uppercase tracking-[0.18em] text-ink-600"
+            >
+              {t("hero.role", locale)}
+            </motion.p>
           </div>
-          <span>{t("hero.scroll", locale)}</span>
-        </motion.div>
+
+          {/* Right: pitch + CTA + stats */}
+          <div className="md:pb-3">
+            <motion.p
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={2.6}
+              className="text-lg leading-relaxed text-ink-700"
+            >
+              {t("hero.tagline", locale)}
+            </motion.p>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={3.1}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <MagneticWrap>
+                <a
+                  href="#products"
+                  className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  {t("hero.cta", locale)}
+                  <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
+                </a>
+              </MagneticWrap>
+              <MagneticWrap>
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
+                  {t("hero.downloadCv", locale)}
+                </a>
+              </MagneticWrap>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={3.5}
+              className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-900/10 pt-7 sm:grid-cols-4"
+            >
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-3xl font-medium text-ink-900">
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

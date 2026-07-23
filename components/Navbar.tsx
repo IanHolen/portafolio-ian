@@ -68,13 +68,13 @@ export default function Navbar() {
         <div
           className={`mx-auto flex max-w-6xl items-center justify-between rounded-full border px-5 py-3 transition-all duration-500 ${
             scrolled
-              ? "border-white/10 bg-black/50 backdrop-blur-md"
+              ? "border-ink-900/10 bg-paper/75 shadow-[0_1px_20px_rgba(24,24,15,0.05)] backdrop-blur-md"
               : "border-transparent bg-transparent"
           }`}
         >
           <a
             href="#top"
-            className="font-display text-lg italic tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 rounded-full"
+            className="font-display text-lg italic tracking-tight text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper rounded-full"
           >
             {profile.firstName.toLowerCase()}<span className="text-accent-green">.</span>{profile.lastName.toLowerCase()}
           </a>
@@ -83,8 +83,8 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative transition rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
-                  activeId === link.id ? "text-white" : "text-white/60 hover:text-white"
+                className={`relative transition rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+                  activeId === link.id ? "text-ink-900" : "text-ink-600 hover:text-ink-900"
                 }`}
               >
                 {link.label}
@@ -102,17 +102,16 @@ export default function Navbar() {
             <LangToggle />
             <a
               href="#contact"
-              className="group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-flex rounded-full bg-ink-900 px-4 py-2 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
-              <span className="relative z-10">{t("nav.cta", locale)}</span>
-              <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-green to-accent-emerald transition-transform duration-500 group-hover:translate-y-0" />
+              {t("nav.cta", locale)}
             </a>
           </div>
           <div className="flex items-center gap-3 md:hidden">
             <LangToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="inline-flex items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-flex items-center justify-center rounded-full text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
               aria-label={menuOpen ? t("nav.menuClose", locale) : t("nav.menuOpen", locale)}
             >
               {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -128,7 +127,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-ink-950/95 backdrop-blur-lg"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-paper/95 backdrop-blur-lg"
           >
             {links.map((link, i) => (
               <motion.a
@@ -138,7 +137,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 + i * 0.06 }}
-                className="font-display text-3xl font-light text-white/80 transition hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green"
+                className="font-display text-3xl font-light text-ink-700 transition hover:text-ink-900 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green"
               >
                 {link.label}
               </motion.a>

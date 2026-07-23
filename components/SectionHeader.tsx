@@ -10,7 +10,7 @@ type Props = {
 
 export default function SectionHeader({ index, title, kicker }: Props) {
   return (
-    <div className="mb-16 flex items-end justify-between border-b border-white/10 pb-6">
+    <div className="mb-16 flex items-end justify-between border-b border-ink-900/10 pb-6">
       <div>
         <motion.div
           initial={{ opacity: 0, y: 12 }}

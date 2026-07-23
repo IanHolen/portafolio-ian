@@ -18,20 +18,20 @@ export default function Home() {
     <main id="main-content" className="relative">
       <Navbar />
       <Hero />
-      <SectionDivider color="rgba(34,197,94,0.05)" />
+      <SectionDivider color="rgba(24,24,15,0.06)" />
       <About />
-      <SectionDivider color="rgba(16,185,129,0.05)" />
+      <SectionDivider color="rgba(24,24,15,0.05)" />
       <Experience />
-      <SectionDivider color="rgba(34,197,94,0.05)" />
+      <SectionDivider color="rgba(24,24,15,0.06)" />
       <Products />
-      <SectionDivider color="rgba(251,191,36,0.05)" />
+      <SectionDivider color="rgba(28,91,58,0.06)" />
       <Projects />
       <Skills />
       <Certifications />
-      <SectionDivider color="rgba(16,185,129,0.05)" />
+      <SectionDivider color="rgba(24,24,15,0.05)" />
       <GitHub />
       <Education />
-      <SectionDivider color="rgba(34,197,94,0.05)" />
+      <SectionDivider color="rgba(24,24,15,0.06)" />
       <Contact />
       <Footer />
       <BackToTop />

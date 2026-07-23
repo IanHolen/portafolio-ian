@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --bg: #070b09;
-  --fg: #f4f4f6;
+  --bg: #f3f1ea;
+  --fg: #18180f;
   --font-inter: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-fraunces: "Fraunces Variable", ui-serif, Georgia, serif;
   --font-jetbrains: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
@@ -19,59 +19,41 @@ html {
   background: var(--bg);
   color: var(--fg);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-/* Forest-green tinted base — subtle green lift at the top, deep green-black below */
+/* Warm paper base with a whisper of warmth at the top */
 body {
-  background: radial-gradient(ellipse 130% 90% at 50% -10%, #0f1d16 0%, #070b09 58%) no-repeat;
-  background-color: #070b09;
+  background: radial-gradient(ellipse 120% 80% at 50% -10%, #f7f5ee 0%, #f3f1ea 55%) no-repeat;
+  background-color: #f3f1ea;
   color: var(--fg);
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 ::selection {
-  background: rgba(34, 197, 94, 0.32);
-  color: #fff;
-}
-
-/* subtle noise layered over everything for depth */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+  background: rgba(28, 91, 58, 0.16);
+  color: #18180f;
 }
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(90deg, #f4f4f6 0%, #4ade80 42%, #10b981 100%);
-    background-size: 200% auto;
+    background: linear-gradient(100deg, #18180f 0%, #6a6a5c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradient-x 6s ease infinite;
   }
 
   .text-gradient-warm {
-    background: linear-gradient(90deg, #4ade80 0%, #10b981 48%, #fbbf24 100%);
-    background-size: 200% auto;
+    background: linear-gradient(100deg, #18180f 0%, #1c5b3a 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(24, 24, 15, 0.08);
   }
 
   .border-gradient {
@@ -84,7 +66,7 @@ body::before {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(16, 185, 129, 0.2) 50%, rgba(34, 197, 94, 0) 100%);
+    background: linear-gradient(135deg, rgba(28, 91, 58, 0.4), rgba(28, 91, 58, 0.12) 50%, rgba(28, 91, 58, 0) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -116,11 +98,11 @@ body::before {
     padding: 1px;
     background: conic-gradient(
       from var(--glow-angle, 0deg),
-      rgba(34, 197, 94, 0.65),
-      rgba(16, 185, 129, 0.4),
-      rgba(34, 197, 94, 0) 50%,
-      rgba(16, 185, 129, 0.4),
-      rgba(34, 197, 94, 0.65)
+      rgba(28, 91, 58, 0.5),
+      rgba(28, 91, 58, 0.25),
+      rgba(28, 91, 58, 0) 50%,
+      rgba(28, 91, 58, 0.25),
+      rgba(28, 91, 58, 0.5)
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);

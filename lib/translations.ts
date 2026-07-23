@@ -30,10 +30,10 @@ const translations = {
   "hero.contact": { es: "Contáctame", en: "Contact me" },
   "hero.downloadCv": { es: "Descargar CV", en: "Download CV" },
   "hero.scroll": { es: "scroll", en: "scroll" },
-  "hero.stat.platforms": { es: "plataformas", en: "platforms" },
-  "hero.stat.stores": { es: "tiendas", en: "stores" },
-  "hero.stat.faster": { es: "más rápido", en: "faster" },
-  "hero.stat.regions": { es: "regiones", en: "regions" },
+  "hero.stat.platforms": { es: "Plataformas propias", en: "Own platforms" },
+  "hero.stat.stores": { es: "Tiendas impactadas", en: "Stores impacted" },
+  "hero.stat.faster": { es: "Más rápido", en: "Faster" },
+  "hero.stat.regions": { es: "Regiones", en: "Regions" },
   "hero.stat.stakeholders": { es: "stakeholders", en: "stakeholders" },
 
   // ─── About ───

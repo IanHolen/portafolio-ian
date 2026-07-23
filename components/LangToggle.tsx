@@ -8,7 +8,7 @@ export default function LangToggle() {
   return (
     <button
       onClick={() => setLocale(locale === "es" ? "en" : "es")}
-      className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-white/60 transition hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+      className="rounded-full border border-ink-900/10 bg-black/[0.04] px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-ink-600 transition hover:border-ink-900/15 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
       aria-label={locale === "es" ? "Switch to English" : "Cambiar a Español"}
     >
       {locale === "es" ? "EN" : "ES"}

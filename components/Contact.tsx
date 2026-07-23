@@ -107,21 +107,21 @@ export default function Contact() {
             <br />
             <span className="italic text-gradient">{t("contact.title2", locale)}</span>
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-lg text-white/60">
+          <p className="mx-auto mt-8 max-w-xl text-lg text-ink-600">
             {t("contact.subtitle", locale)}
           </p>
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <a
               href={`mailto:${profile.email}`}
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-base font-medium text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group inline-flex items-center gap-3 rounded-full bg-ink-900 px-8 py-5 text-base font-medium text-paper transition hover:bg-ink-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               {profile.email}
               <ArrowUpRight className="h-5 w-5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <button
               onClick={copyEmail}
-              className="relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-5 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="relative inline-flex items-center gap-2 rounded-full border border-ink-900/10 bg-black/[0.04] px-5 py-5 text-sm text-ink-700 transition hover:bg-black/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
               aria-label={t("contact.copyEmail", locale)}
             >
               {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
@@ -155,13 +155,13 @@ export default function Contact() {
                 key="thanks"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-10 text-center"
+                className="rounded-2xl border border-ink-900/10 bg-card p-10 text-center"
               >
-                <p className="font-display text-2xl font-light text-white">{t("contact.formSent", locale)}</p>
-                <p className="mt-3 text-white/60">{t("contact.formThanks", locale)}</p>
+                <p className="font-display text-2xl font-light text-ink-900">{t("contact.formSent", locale)}</p>
+                <p className="mt-3 text-ink-600">{t("contact.formThanks", locale)}</p>
                 <button
                   onClick={resetForm}
-                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  className="mt-6 rounded-full border border-ink-900/10 bg-black/[0.04] px-6 py-2 text-sm text-ink-700 transition hover:bg-black/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                 >
                   {t("contact.formAnother", locale)}
                 </button>
@@ -191,7 +191,7 @@ export default function Contact() {
                     aria-label={t("contact.formName", locale)}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
+                    className="w-full rounded-xl border border-ink-900/10 bg-black/[0.03] px-5 py-4 text-ink-900 placeholder:text-ink-400 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
                 </div>
@@ -203,7 +203,7 @@ export default function Contact() {
                     aria-label={t("contact.formEmail", locale)}
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
+                    className="w-full rounded-xl border border-ink-900/10 bg-black/[0.03] px-5 py-4 text-ink-900 placeholder:text-ink-400 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
                 </div>
@@ -215,7 +215,7 @@ export default function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
+                    className="w-full resize-none rounded-xl border border-ink-900/10 bg-black/[0.03] px-5 py-4 text-ink-900 placeholder:text-ink-400 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
                 </div>
@@ -226,7 +226,7 @@ export default function Contact() {
                     <button
                       type="button"
                       onClick={() => setSubmitError("")}
-                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green rounded"
+                      className="mt-2 text-xs text-ink-500 underline transition hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green rounded"
                     >
                       {t("contact.formRetry", locale)}
                     </button>
@@ -236,7 +236,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  className="w-full rounded-xl bg-ink-900 px-6 py-4 text-sm font-medium text-paper transition hover:bg-ink-900/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                 >
                   {loading ? t("contact.formSending", locale) : t("contact.formSubmit", locale)}
                 </button>
@@ -256,13 +256,13 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="group rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-ink-900/15 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
               >
                 <item.icon className="h-5 w-5 text-accent-green" />
-                <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-white/60">
+                <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-ink-600">
                   {item.label}
                 </p>
-                <p className="mt-2 text-white/90">{item.value}</p>
+                <p className="mt-2 text-ink-900">{item.value}</p>
               </Tag>
             );
           })}
@@ -276,7 +276,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${s.label} ${t("contact.socialSuffix", locale)}`}
-              className="group inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-white/70 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-5 py-2 text-sm text-ink-700 transition hover:border-ink-900/20 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               {s.label}
               <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

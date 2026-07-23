@@ -52,11 +52,11 @@ export default function CustomCursor() {
     // Event delegation for hover effect on interactive elements
     const onOver = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a, button, [data-cursor='hover']");
-      if (target) ringRef.current?.classList.add("scale-[2.4]", "bg-white/10");
+      if (target) ringRef.current?.classList.add("scale-[2.4]", "bg-black/[0.06]");
     };
     const onOut = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a, button, [data-cursor='hover']");
-      if (target) ringRef.current?.classList.remove("scale-[2.4]", "bg-white/10");
+      if (target) ringRef.current?.classList.remove("scale-[2.4]", "bg-black/[0.06]");
     };
 
     window.addEventListener("mousemove", onMove);
@@ -81,7 +81,7 @@ export default function CustomCursor() {
       />
       <div
         ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-[101] h-2 w-2 rounded-full bg-white mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[101] h-2 w-2 rounded-full bg-ink-900 mix-blend-difference"
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       />
     </>

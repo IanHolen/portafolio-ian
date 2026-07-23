@@ -21,7 +21,7 @@ const PREVIEW = 2; // highlights shown while collapsed (medium)
 
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
-    <li className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
+    <li className="flex items-start gap-3 text-sm leading-relaxed text-ink-700">
       <span className="mt-2 h-px w-5 shrink-0 bg-gradient-to-r from-accent-green to-transparent" />
       <span>{children}</span>
     </li>
@@ -52,25 +52,25 @@ function ExperienceCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.06 }}
-      className={`border-glow group rounded-2xl border bg-white/[0.015] px-5 py-7 transition-colors md:px-8 md:py-9 ${
-        open ? "border-accent-green/25" : "border-white/10 hover:border-white/20"
+      className={`border-glow group rounded-2xl border bg-card px-5 py-7 transition-colors md:px-8 md:py-9 ${
+        open ? "border-accent-green/25" : "border-ink-900/10 hover:border-ink-900/15"
       }`}
     >
       <div className="flex items-start gap-6">
-        <div className="hidden w-40 shrink-0 pt-1 font-mono text-xs uppercase tracking-[0.2em] text-white/50 md:block">
+        <div className="hidden w-40 shrink-0 pt-1 font-mono text-xs uppercase tracking-[0.2em] text-ink-500 md:block">
           {exp.period}
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-2xl font-light leading-tight text-white md:text-3xl">
+          <h3 className="font-display text-2xl font-light leading-tight text-ink-900 md:text-3xl">
             {exp.role}
           </h3>
           <p className="mt-1 text-sm text-accent-green">{exp.company}</p>
-          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 md:hidden">
+          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400 md:hidden">
             {exp.period}
           </p>
 
-          <p className="mt-4 max-w-2xl text-white/70">{exp.description}</p>
+          <p className="mt-4 max-w-2xl text-ink-700">{exp.description}</p>
 
           {/* Impact metrics — always visible */}
           {exp.metrics?.length > 0 && (
@@ -114,14 +114,14 @@ function ExperienceCard({
                 )}
                 {stack.length > 0 && (
                   <div className="mt-8">
-                    <h4 className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
+                    <h4 className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-ink-400">
                       {t("experience.stackLabel", locale)}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {stack.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"
+                          className="rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs text-ink-600"
                         >
                           {tech}
                         </span>
@@ -138,7 +138,7 @@ function ExperienceCard({
             <button
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-4 py-2 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-4 py-2 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
               {open ? t("experience.collapse", locale) : t("experience.expand", locale)}
@@ -147,7 +147,7 @@ function ExperienceCard({
         </div>
 
         <ChevronDown
-          className={`mt-2 hidden h-5 w-5 shrink-0 text-white/20 transition-transform duration-300 md:block ${
+          className={`mt-2 hidden h-5 w-5 shrink-0 text-ink-300 transition-transform duration-300 md:block ${
             open ? "rotate-180 text-accent-green/60" : ""
           }`}
         />

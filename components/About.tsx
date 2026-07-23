@@ -50,7 +50,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8 }}
-            className="md:col-span-7 font-display text-2xl font-light leading-snug text-white/80 md:text-3xl"
+            className="md:col-span-7 font-display text-2xl font-light leading-snug text-ink-700 md:text-3xl"
           >
             {highlightIntro(t("about.intro", locale))}
           </motion.p>
@@ -63,7 +63,7 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
-                className="flex items-start gap-3 text-white/60"
+                className="flex items-start gap-3 text-ink-600"
               >
                 <span className="mt-2 h-px w-6 bg-gradient-to-r from-accent-green to-transparent" />
                 <span>{b}</span>

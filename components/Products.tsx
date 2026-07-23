@@ -17,7 +17,7 @@ const STATUS_STYLES: Record<
   { dot: string; text: string; ring: string; pulse: boolean }
 > = {
   live: { dot: "bg-accent-green", text: "text-accent-green", ring: "border-accent-green/30 bg-accent-green/10", pulse: false },
-  internal: { dot: "bg-white/50", text: "text-white/60", ring: "border-white/15 bg-white/[0.04]", pulse: false },
+  internal: { dot: "bg-black/[0.04]0", text: "text-ink-600", ring: "border-ink-900/15 bg-black/[0.04]", pulse: false },
   wip: { dot: "bg-accent-orange", text: "text-accent-orange", ring: "border-accent-orange/40 bg-accent-orange/10", pulse: true },
 };
 
@@ -51,7 +51,7 @@ export default function Products() {
             const featured = i === 0; // MeshCode spans full width on desktop
             const isWip = p.status === "wip";
 
-            const cardClass = `border-glow group relative flex w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 text-left transition-all duration-500 hover:border-white/20 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
+            const cardClass = `border-glow group relative flex w-full flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 text-left transition-all duration-500 hover:border-ink-900/15 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
               featured ? "md:col-span-2" : ""
             }`;
 
@@ -60,11 +60,11 @@ export default function Products() {
                 <div
                   className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
                 />
-                <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/5 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-black/[0.04] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative z-10 flex h-full flex-col">
                   <div className="mb-6 flex items-start justify-between gap-4">
-                    <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                    <span className="font-mono text-xs uppercase tracking-[0.25em] text-ink-400">
                       {String(i + 1).padStart(2, "0")} · {p.role}
                     </span>
                     <span
@@ -80,20 +80,20 @@ export default function Products() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-white md:text-4xl">
+                    <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-ink-900 md:text-4xl">
                       {p.name}
                     </h3>
                     {(p.href || isWip) && (
                       <ArrowUpRight
-                        className={`h-6 w-6 shrink-0 text-white/30 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
+                        className={`h-6 w-6 shrink-0 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
                           isWip ? "group-hover:text-accent-orange" : "group-hover:text-accent-green"
                         }`}
                       />
                     )}
                   </div>
-                  <p className="mt-1 font-mono text-xs text-white/40">{p.domain}</p>
+                  <p className="mt-1 font-mono text-xs text-ink-400">{p.domain}</p>
 
-                  <p className={`mt-5 text-white/60 ${featured ? "max-w-3xl" : "max-w-md"}`}>
+                  <p className={`mt-5 text-ink-600 ${featured ? "max-w-3xl" : "max-w-md"}`}>
                     {texts[i]?.blurb}
                   </p>
 
@@ -101,7 +101,7 @@ export default function Products() {
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"
+                        className="rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs text-ink-600"
                       >
                         {tag}
                       </span>
@@ -172,13 +172,13 @@ export default function Products() {
               transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
               role="dialog"
               aria-modal="true"
-              className="fixed left-1/2 top-1/2 z-[91] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-accent-orange/25 bg-ink-900 p-8 shadow-2xl"
+              className="fixed left-1/2 top-1/2 z-[91] w-[calc(100%-2.5rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-accent-orange/25 bg-card p-8 shadow-2xl"
             >
               <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-orange/15 blur-3xl" />
               <button
                 onClick={() => setWip(null)}
                 aria-label={t("products.wip.close", locale)}
-                className="absolute right-5 top-5 text-white/40 transition hover:text-white focus-visible:outline-none"
+                className="absolute right-5 top-5 text-ink-400 transition hover:text-ink-900 focus-visible:outline-none"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -188,10 +188,10 @@ export default function Products() {
                 {t("products.status.wip", locale)}
               </span>
 
-              <h3 className="mt-5 font-display text-2xl font-light text-white">
+              <h3 className="mt-5 font-display text-2xl font-light text-ink-900">
                 {wip.name} — {t("products.wip.title", locale)}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/60">
+              <p className="mt-3 text-sm leading-relaxed text-ink-600">
                 {t("products.wip.body", locale)}
               </p>
 
@@ -200,14 +200,14 @@ export default function Products() {
                   href={wip.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-accent-orange px-5 py-2.5 text-sm font-medium text-black transition hover:bg-accent-orange/90"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-accent-orange px-5 py-2.5 text-sm font-medium text-paper transition hover:bg-accent-orange/90"
                 >
                   {t("products.wip.visit", locale)}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <button
                   onClick={() => setWip(null)}
-                  className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-white/70 transition hover:border-white/30 hover:text-white"
+                  className="rounded-full border border-ink-900/15 px-5 py-2.5 text-sm text-ink-700 transition hover:border-ink-900/20 hover:text-ink-900"
                 >
                   {t("products.wip.close", locale)}
                 </button>

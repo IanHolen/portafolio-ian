@@ -11,7 +11,7 @@ export default function HighlightText({ children }: { children: React.ReactNode 
     <span
       ref={ref}
       className={`transition-all duration-700 ${
-        isInView ? "text-gradient" : "text-white/80"
+        isInView ? "text-gradient" : "text-ink-700"
       }`}
     >
       {children}

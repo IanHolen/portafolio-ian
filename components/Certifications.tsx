@@ -34,19 +34,19 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`group flex items-start gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${!cert.credentialUrl ? "cursor-default" : ""}`}
+                className={`group flex items-start gap-5 rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-ink-900/15 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${!cert.credentialUrl ? "cursor-default" : ""}`}
               >
                 <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-ink-900"
                   style={{ backgroundColor: ICON_COLORS[cert.icon] ?? "#666" }}
                 >
                   {cert.issuer[0]}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-white group-hover:text-accent-green transition">
+                  <h3 className="font-medium text-ink-900 group-hover:text-accent-green transition">
                     {cert.title}
                   </h3>
-                  <p className="mt-1 text-sm text-white/50">
+                  <p className="mt-1 text-sm text-ink-500">
                     {cert.issuer} · {cert.date}
                   </p>
                   {cert.credentialUrl && (
