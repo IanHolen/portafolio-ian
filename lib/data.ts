@@ -174,19 +174,73 @@ export type Project = {
   tags: string[];
   year: string;
   accent: string;
+  company: string;
   metric?: string;
   href?: string;
 };
 
 export const projects: Project[] = [
+  // ── eShip / Segmail (Fullstack) ──
+  {
+    title: "Customer Service + Chatter",
+    blurb:
+      "Módulo de Customer Service con gestión de incidencias integrado al core de la v2.0, más 'Chatter': mensajería cliente–agente en tiempo real para soporte fluido.",
+    tags: ["React", "Node.js", "MySQL", "Twilio", "Realtime"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "Soporte en tiempo real",
+    accent: "from-teal-500/30 to-cyan-500/10",
+  },
+  {
+    title: "AI Support Chatbot",
+    blurb:
+      "Chatbot inteligente de soporte con LLMs (OpenAI) embebido en la página de tracking de órdenes, automatizando la atención al cliente end-to-end.",
+    tags: ["LLMs", "OpenAI", "React", "Node.js"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "IA · OpenAI",
+    accent: "from-cyan-500/30 to-sky-500/10",
+  },
+  {
+    title: "Analytics & Automations",
+    blurb:
+      "Dashboards de analítica con insights detallados de envíos y órdenes, más un módulo de automatizaciones dentro de la plataforma v2.0.",
+    tags: ["Recharts", "ApexCharts", "React", "Node.js"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "v2.0",
+    accent: "from-emerald-500/30 to-teal-500/10",
+  },
+  {
+    title: "Inventory & E-commerce Hub",
+    blurb:
+      "Módulo de inventario e integraciones que conectan ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube y Wix para extraer órdenes e inventario en una vista unificada.",
+    tags: ["Node.js", "REST APIs", "Shopify", "Odoo", "Amazon"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "7+ integraciones",
+    accent: "from-amber-500/25 to-orange-500/10",
+  },
+  {
+    title: "MCP Server",
+    blurb:
+      "Servidor MCP (Model Context Protocol) que permite consultar y actuar sobre los datos de cuenta a través de modelos de lenguaje.",
+    tags: ["MCP", "Node.js", "LLMs"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "LLM-native",
+    accent: "from-teal-500/30 to-emerald-500/10",
+  },
+  // ── Corporativo Tiendas 3B (Data Engineering) ──
   {
     title: "Tiendas 2.0 — Event-Driven Architecture",
     blurb:
       "Arquitectura event-driven en tiempo real para ingesta y procesamiento de eventos, basada en KQL para analítica de alto desempeño y monitoreo operacional en escala enterprise.",
     tags: ["Event-Driven", "KQL", "Microsoft Fabric", "Realtime"],
     year: "2025",
-    metric: "3,400+ tiendas en 21 regiones",
-    accent: "from-teal-500/30 to-cyan-500/10",
+    company: "Corporativo Tiendas 3B",
+    metric: "3,400+ tiendas · 21 regiones",
+    accent: "from-cyan-500/30 to-sky-500/10",
   },
   {
     title: "Main Pipeline Optimization",
@@ -194,8 +248,9 @@ export const projects: Project[] = [
       "Refactor y optimización del pipeline principal que alimenta 10 modelos semánticos. Reducción significativa en tiempos de refresh y mejora de confiabilidad.",
     tags: ["Performance", "ADF", "PySpark", "Power BI"],
     year: "2025",
+    company: "Corporativo Tiendas 3B",
     metric: "−35% refresh time",
-    accent: "from-cyan-500/30 to-sky-500/10",
+    accent: "from-teal-500/30 to-cyan-500/10",
   },
   {
     title: "Ticket Data Extraction",
@@ -203,6 +258,7 @@ export const projects: Project[] = [
       "Rediseño del flujo de extracción de tickets sobre Azure Data Factory y Microsoft Fabric, con paralelización y particionado optimizado.",
     tags: ["ADF", "Microsoft Fabric", "ETL"],
     year: "2025",
+    company: "Corporativo Tiendas 3B",
     metric: "4h30 → 1h07",
     accent: "from-emerald-500/30 to-teal-500/10",
   },
@@ -212,6 +268,7 @@ export const projects: Project[] = [
       "Hub centralizado de dashboards y documentación que mejora la accesibilidad y descubrimiento de datos para directores y gerentes a nivel corporativo.",
     tags: ["Power BI", "UX", "Documentación"],
     year: "2025",
+    company: "Corporativo Tiendas 3B",
     metric: "+570 stakeholders",
     accent: "from-amber-500/25 to-orange-500/10",
   },

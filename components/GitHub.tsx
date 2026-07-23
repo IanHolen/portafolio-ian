@@ -27,6 +27,19 @@ interface Repo {
   updated_at: string;
 }
 
+interface Language {
+  name: string;
+  count: number;
+  pct: number;
+}
+
+interface ReposPayload {
+  featured: Repo[];
+  languages: Language[];
+  totalStars: number;
+  ownedRepos: number;
+}
+
 interface Activity {
   type: string;
   repo_name: string;
@@ -44,6 +57,8 @@ const LANG_COLORS: Record<string, string> = {
   CSS: "#563d7c",
   Java: "#b07219",
   Go: "#00ADD8",
+  Shell: "#89e051",
+  Vue: "#41b883",
 };
 
 function relativeTime(iso: string, locale: string) {
@@ -117,7 +132,7 @@ function Skeleton({ className }: { className?: string }) {
 export default function GitHub() {
   const { locale } = useLocale();
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [repos, setRepos] = useState<Repo[] | null>(null);
+  const [repos, setRepos] = useState<ReposPayload | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
   const [error, setError] = useState(false);
 
@@ -146,6 +161,15 @@ export default function GitHub() {
     );
   }
 
+  const stats = profile
+    ? [
+        { label: t("github.stat.repos", locale), value: profile.public_repos },
+        { label: t("github.stat.followers", locale), value: profile.followers },
+        { label: t("github.stat.following", locale), value: profile.following },
+        { label: t("github.stat.stars", locale), value: repos?.totalStars ?? 0 },
+      ]
+    : [];
+
   return (
     <section id="github" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-teal/10 blur-[140px]" />
@@ -158,7 +182,7 @@ export default function GitHub() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7 }}
-          className="mt-12 flex flex-wrap items-center gap-8"
+          className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-6"
         >
           {profile ? (
             <>
@@ -169,12 +193,8 @@ export default function GitHub() {
                 height={56}
                 className="rounded-full border border-white/10"
               />
-              <div className="flex flex-wrap items-center gap-8">
-                {[
-                  { label: "Repos", value: profile.public_repos },
-                  { label: "Followers", value: profile.followers },
-                  { label: "Following", value: profile.following },
-                ].map((s, i) => (
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                {stats.map((s, i) => (
                   <div key={s.label} className="flex items-center gap-8">
                     {i > 0 && <div className="hidden h-8 w-px bg-white/10 md:block" />}
                     <div>
@@ -190,79 +210,123 @@ export default function GitHub() {
           ) : (
             <div className="flex items-center gap-8">
               <Skeleton className="h-14 w-14 rounded-full" />
-              <Skeleton className="h-10 w-48" />
+              <Skeleton className="h-10 w-64" />
             </div>
           )}
         </motion.div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-3">
-          {/* Repos grid — 2/3 width */}
-          <div className="lg:col-span-2">
-            {repos ? (
-              <div className="grid gap-4 md:grid-cols-2">
-                {repos.map((repo, i) => (
-                  <motion.a
-                    key={repo.name}
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-                  >
-                    <div className="flex items-start justify-between">
-                      <h4 className="font-mono text-sm font-medium text-white group-hover:text-accent-teal transition">
-                        {repo.name}
-                      </h4>
-                      <ExternalLink className="h-3.5 w-3.5 text-white/30 transition group-hover:text-white/60" />
-                    </div>
-                    {repo.description && (
-                      <p className="mt-2 line-clamp-2 text-xs text-white/50">{repo.description}</p>
-                    )}
-                    <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-white/40">
-                      {repo.language && (
-                        <span className="flex items-center gap-1.5">
-                          <span
-                            className="h-2.5 w-2.5 rounded-full"
-                            style={{ backgroundColor: LANG_COLORS[repo.language] ?? "#666" }}
-                          />
-                          {repo.language}
-                        </span>
+          {/* Left column: top languages + featured repos */}
+          <div className="space-y-12 lg:col-span-2">
+            {/* Top languages */}
+            <div>
+              <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                {t("github.topLanguages", locale)}
+              </h3>
+              {repos ? (
+                <div className="space-y-4">
+                  {/* stacked bar */}
+                  <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-white/5">
+                    {repos.languages.map((l) => (
+                      <div
+                        key={l.name}
+                        style={{ width: `${l.pct}%`, backgroundColor: LANG_COLORS[l.name] ?? "#8b98a5" }}
+                        className="h-full"
+                      />
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    {repos.languages.map((l, i) => (
+                      <motion.span
+                        key={l.name}
+                        initial={{ opacity: 0, y: 6 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: i * 0.05 }}
+                        className="flex items-center gap-2 text-sm text-white/60"
+                      >
+                        <span
+                          className="h-2.5 w-2.5 rounded-full"
+                          style={{ backgroundColor: LANG_COLORS[l.name] ?? "#8b98a5" }}
+                        />
+                        {l.name}
+                        <span className="text-white/30">{l.pct}%</span>
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Skeleton className="h-14 w-full rounded-xl" />
+              )}
+            </div>
+
+            {/* Featured repos */}
+            <div>
+              <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
+                {t("github.featured", locale)}
+              </h3>
+              {repos ? (
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {repos.featured.map((repo, i) => (
+                    <motion.a
+                      key={repo.name}
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.5, delay: i * 0.08 }}
+                      className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                    >
+                      <div className="flex items-start justify-between">
+                        <h4 className="font-mono text-sm font-medium text-white group-hover:text-accent-teal transition">
+                          {repo.name}
+                        </h4>
+                        <ExternalLink className="h-3.5 w-3.5 text-white/30 transition group-hover:text-white/60" />
+                      </div>
+                      {repo.description && (
+                        <p className="mt-2 line-clamp-3 flex-1 text-xs text-white/50">{repo.description}</p>
                       )}
-                      {repo.stargazers_count > 0 && (
-                        <span className="flex items-center gap-1">
-                          <Star className="h-3 w-3" /> {repo.stargazers_count}
-                        </span>
-                      )}
-                      {repo.forks_count > 0 && (
-                        <span className="flex items-center gap-1">
-                          <GitFork className="h-3 w-3" /> {repo.forks_count}
-                        </span>
-                      )}
-                      <span className="ml-auto">{relativeTime(repo.updated_at, locale)}</span>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <Skeleton key={i} className="h-32 w-full rounded-2xl" />
-                ))}
-              </div>
-            )}
+                      <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-white/40">
+                        {repo.language && (
+                          <span className="flex items-center gap-1.5">
+                            <span
+                              className="h-2.5 w-2.5 rounded-full"
+                              style={{ backgroundColor: LANG_COLORS[repo.language] ?? "#8b98a5" }}
+                            />
+                            {repo.language}
+                          </span>
+                        )}
+                        {repo.stargazers_count > 0 && (
+                          <span className="flex items-center gap-1">
+                            <Star className="h-3 w-3" /> {repo.stargazers_count}
+                          </span>
+                        )}
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <Skeleton key={i} className="h-32 w-full rounded-2xl" />
+                  ))}
+                </div>
+              )}
+              <p className="mt-5 max-w-xl text-xs leading-relaxed text-white/35">
+                {t("github.privateNote", locale)}
+              </p>
+            </div>
           </div>
 
-          {/* Activity feed — 1/3 width */}
+          {/* Activity feed */}
           <div>
             <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/40">
               {t("github.recentActivity", locale)}
             </h3>
             {activity ? (
               <div className="relative space-y-0">
-                {/* vertical line */}
                 <div className="absolute left-[5px] top-2 bottom-2 w-px bg-white/10" />
                 {activity.slice(0, 8).map((ev, i) => (
                   <motion.div
@@ -272,7 +336,7 @@ export default function GitHub() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     className="relative flex items-start gap-4 py-2.5"
-                    style={{ opacity: 1 - i * 0.08 }}
+                    style={{ opacity: 1 - i * 0.07 }}
                   >
                     <div className="relative z-10 mt-0.5 flex h-[11px] w-[11px] items-center justify-center rounded-full border border-white/20 bg-ink-950 text-accent-teal">
                       {eventIcon(ev.type)}

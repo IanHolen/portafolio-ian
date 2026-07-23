@@ -186,8 +186,8 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="mb-10 flex items-start justify-between">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-            {p.year}
+          <span className="font-mono text-xs uppercase tracking-[0.22em] text-white/40">
+            {p.company} · {p.year}
           </span>
           {p.href && (
             <ArrowUpRight className="h-5 w-5 text-white/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />

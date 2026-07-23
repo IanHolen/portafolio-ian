@@ -10,6 +10,7 @@ interface GitHubRepo {
   forks_count: number;
   html_url: string;
   updated_at: string;
+  fork: boolean;
 }
 
 export async function GET() {
@@ -22,7 +23,7 @@ export async function GET() {
 
   try {
     const res = await fetch(
-      `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=6`,
+      `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`,
       {
         headers,
         next: { revalidate: 3600 },
@@ -37,9 +38,33 @@ export async function GET() {
     }
 
     const data: GitHubRepo[] = await res.json();
+    const owned = data.filter((r) => !r.fork);
 
-    const repos = data
-      .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    // Language distribution (by primary language across owned repos)
+    const langCount: Record<string, number> = {};
+    for (const repo of owned) {
+      if (repo.language) langCount[repo.language] = (langCount[repo.language] ?? 0) + 1;
+    }
+    const langTotal = Object.values(langCount).reduce((a, b) => a + b, 0) || 1;
+    const languages = Object.entries(langCount)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 6)
+      .map(([name, count]) => ({
+        name,
+        count,
+        pct: Math.round((count / langTotal) * 100),
+      }));
+
+    const totalStars = owned.reduce((sum, r) => sum + r.stargazers_count, 0);
+
+    // Featured: highest stars, then most recently updated
+    const featured = [...owned]
+      .sort(
+        (a, b) =>
+          b.stargazers_count - a.stargazers_count ||
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+      )
+      .slice(0, 3)
       .map((repo) => ({
         name: repo.name,
         description: repo.description,
@@ -50,7 +75,12 @@ export async function GET() {
         updated_at: repo.updated_at,
       }));
 
-    return NextResponse.json(repos);
+    return NextResponse.json({
+      featured,
+      languages,
+      totalStars,
+      ownedRepos: owned.length,
+    });
   } catch {
     return NextResponse.json(
       { error: true, message: "Failed to fetch GitHub repos" },
