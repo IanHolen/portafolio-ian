@@ -146,7 +146,7 @@ export default function Hero() {
           {t("hero.available", locale)}
         </motion.div>
 
-        <h1 className="font-grotesk text-[clamp(3rem,9vw,7.5rem)] font-bold leading-[0.9] tracking-tight">
+        <h1 className="font-display text-[clamp(3rem,9vw,8rem)] font-semibold leading-[0.92] tracking-tight">
           <SplitText text={profile.firstName} className="block text-white" />
           <SplitText text={profile.lastName} className="block text-white/55" />
         </h1>
