@@ -1,29 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+// Self-hosted variable fonts (no external fetch — works offline and on Vercel)
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import CommandPalette from "@/components/CommandPalette";
 import ReadingProgress from "@/components/ReadingProgress";
 import Providers from "@/components/Providers";
 import SkipLink from "@/components/SkipLink";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
 
 const SITE_URL = "https://ianholender.com";
 const SITE_TITLE = "Ian Holender — Fullstack Developer & Data Engineer";
@@ -80,12 +66,12 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable} has-custom-cursor`}
+      className="has-custom-cursor"
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: localeScript }} />
       </head>
-      <body className="font-sans selection:bg-accent-teal/30">
+      <body className="font-sans selection:bg-accent-green/30">
         <Providers>
           <SkipLink />
           <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />

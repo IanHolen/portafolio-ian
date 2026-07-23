@@ -17,17 +17,20 @@ const config: Config = {
           700: "#1c1e25",
           600: "#2b2e37",
         },
-        // Cool teal/cyan primary + warm amber signal. No violet/purple.
+        // GitHub-green primary + lime; orange reserved for WIP/"en desarrollo".
         accent: {
-          teal: "#2dd4bf",
-          cyan: "#22d3ee",
-          mint: "#5eead4",
+          green: "#22c55e",
+          emerald: "#10b981",
+          lime: "#a3e635",
+          mint: "#4ade80",
+          orange: "#fb923c",
           amber: "#fbbf24",
         },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
         display: ["var(--font-fraunces)", "ui-serif", "Georgia"],
+        grotesk: ["var(--font-grotesk)", "ui-sans-serif", "system-ui"],
         mono: ["var(--font-jetbrains)", "ui-monospace", "Menlo"],
       },
       animation: {
@@ -64,7 +67,7 @@ const config: Config = {
         "grid-pattern":
           "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
         "radial-fade":
-          "radial-gradient(ellipse at top, rgba(45,212,191,0.12), transparent 62%)",
+          "radial-gradient(ellipse at top, rgba(34,197,94,0.12), transparent 62%)",
       },
     },
   },

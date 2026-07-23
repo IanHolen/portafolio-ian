@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg: #08080a;
+  --bg: #070b09;
   --fg: #f4f4f6;
+  --font-inter: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-fraunces: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-jetbrains: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+  --font-grotesk: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -12,9 +16,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html,
-body {
+html {
   background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+}
+
+/* Forest-green tinted base — subtle green lift at the top, deep green-black below */
+body {
+  background: radial-gradient(ellipse 130% 90% at 50% -10%, #0f1d16 0%, #070b09 58%) no-repeat;
+  background-color: #070b09;
   color: var(--fg);
   overflow-x: hidden;
 }
@@ -24,7 +35,7 @@ html {
 }
 
 ::selection {
-  background: rgba(45, 212, 191, 0.32);
+  background: rgba(34, 197, 94, 0.32);
   color: #fff;
 }
 
@@ -42,7 +53,7 @@ body::before {
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(90deg, #f4f4f6 0%, #5eead4 42%, #22d3ee 100%);
+    background: linear-gradient(90deg, #f4f4f6 0%, #4ade80 42%, #10b981 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -51,7 +62,7 @@ body::before {
   }
 
   .text-gradient-warm {
-    background: linear-gradient(90deg, #5eead4 0%, #22d3ee 48%, #fbbf24 100%);
+    background: linear-gradient(90deg, #4ade80 0%, #10b981 48%, #fbbf24 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -74,7 +85,7 @@ body::before {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(45, 212, 191, 0.6), rgba(34, 211, 238, 0.2) 50%, rgba(45, 212, 191, 0) 100%);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(16, 185, 129, 0.2) 50%, rgba(34, 197, 94, 0) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -106,11 +117,11 @@ body::before {
     padding: 1px;
     background: conic-gradient(
       from var(--glow-angle, 0deg),
-      rgba(45, 212, 191, 0.65),
-      rgba(34, 211, 238, 0.4),
-      rgba(45, 212, 191, 0) 50%,
-      rgba(34, 211, 238, 0.4),
-      rgba(45, 212, 191, 0.65)
+      rgba(34, 197, 94, 0.65),
+      rgba(16, 185, 129, 0.4),
+      rgba(34, 197, 94, 0) 50%,
+      rgba(16, 185, 129, 0.4),
+      rgba(34, 197, 94, 0.65)
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Plus, Minus } from "lucide-react";
 import { experience } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 import { useLocale } from "./I18nProvider";
@@ -15,6 +15,17 @@ interface ExpItem {
   description: string;
   metrics: string[];
   highlights: string[];
+}
+
+const PREVIEW = 2; // highlights shown while collapsed (medium)
+
+function Bullet({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
+      <span className="mt-2 h-px w-5 shrink-0 bg-gradient-to-r from-accent-green to-transparent" />
+      <span>{children}</span>
+    </li>
+  );
 }
 
 function ExperienceCard({
@@ -31,46 +42,35 @@ function ExperienceCard({
   const { locale } = useLocale();
   const [open, setOpen] = useState(defaultOpen);
 
+  const preview = exp.highlights.slice(0, PREVIEW);
+  const rest = exp.highlights.slice(PREVIEW);
+  const hasMore = rest.length > 0 || stack.length > 0;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.06 }}
-      className={`border-glow group rounded-2xl border bg-white/[0.015] transition-colors ${
-        open ? "border-white/20" : "border-white/10 hover:border-white/15"
+      className={`border-glow group rounded-2xl border bg-white/[0.015] px-5 py-7 transition-colors md:px-8 md:py-9 ${
+        open ? "border-accent-green/25" : "border-white/10 hover:border-white/20"
       }`}
     >
-      <button
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        className="flex w-full items-start gap-6 rounded-2xl px-5 py-7 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 md:px-8 md:py-9"
-      >
+      <div className="flex items-start gap-6">
         <div className="hidden w-40 shrink-0 pt-1 font-mono text-xs uppercase tracking-[0.2em] text-white/50 md:block">
           {exp.period}
         </div>
 
         <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="font-display text-2xl font-light leading-tight text-white md:text-3xl">
-                {exp.role}
-              </h3>
-              <p className="mt-1 text-sm text-accent-teal/90">{exp.company}</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 md:hidden">
-                {exp.period}
-              </p>
-            </div>
-            <span
-              className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/50 transition-all duration-300 group-hover:border-accent-teal/40 group-hover:text-accent-teal ${
-                open ? "rotate-180 border-accent-teal/40 text-accent-teal" : ""
-              }`}
-            >
-              <ChevronDown className="h-4 w-4" />
-            </span>
-          </div>
+          <h3 className="font-display text-2xl font-light leading-tight text-white md:text-3xl">
+            {exp.role}
+          </h3>
+          <p className="mt-1 text-sm text-accent-green">{exp.company}</p>
+          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 md:hidden">
+            {exp.period}
+          </p>
 
-          <p className="mt-4 max-w-2xl text-white/60">{exp.description}</p>
+          <p className="mt-4 max-w-2xl text-white/70">{exp.description}</p>
 
           {/* Impact metrics — always visible */}
           {exp.metrics?.length > 0 && (
@@ -78,7 +78,7 @@ function ExperienceCard({
               {exp.metrics.map((m) => (
                 <span
                   key={m}
-                  className="rounded-full border border-accent-teal/25 bg-accent-teal/10 px-3 py-1 font-mono text-xs font-medium text-accent-teal"
+                  className="rounded-full border border-accent-green/25 bg-accent-green/10 px-3 py-1 font-mono text-xs font-medium text-accent-green"
                 >
                   {m}
                 </span>
@@ -86,61 +86,72 @@ function ExperienceCard({
             </div>
           )}
 
-          {!open && (
-            <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.15em] text-white/45 transition group-hover:text-accent-teal">
-              {t("experience.expand", locale)}
-              <ChevronDown className="h-3.5 w-3.5" />
-            </span>
+          {/* Medium: preview highlights always visible */}
+          {preview.length > 0 && (
+            <ul className="mt-6 space-y-3">
+              {preview.map((h, j) => (
+                <Bullet key={j}>{h}</Bullet>
+              ))}
+            </ul>
           )}
-        </div>
-      </button>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="grid gap-8 px-5 pb-8 md:grid-cols-[10rem_1fr] md:gap-6 md:px-8 md:pb-10">
-              <div className="hidden md:block" />
-              <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
-                <div>
-                  <h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-                    {t("experience.achievements", locale)}
-                  </h4>
-                  <ul className="space-y-3">
-                    {exp.highlights.map((h, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
-                        <span className="mt-2 h-px w-5 shrink-0 bg-gradient-to-r from-accent-teal to-transparent" />
-                        <span>{h}</span>
-                      </li>
+          {/* Large: rest of highlights + stack on expand */}
+          <AnimatePresence initial={false}>
+            {open && hasMore && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
+                className="overflow-hidden"
+              >
+                {rest.length > 0 && (
+                  <ul className="mt-3 space-y-3">
+                    {rest.map((h, j) => (
+                      <Bullet key={j}>{h}</Bullet>
                     ))}
                   </ul>
-                </div>
-
-                <div className="lg:w-44">
-                  <h4 className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-                    {t("experience.stackLabel", locale)}
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                )}
+                {stack.length > 0 && (
+                  <div className="mt-8">
+                    <h4 className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
+                      {t("experience.stackLabel", locale)}
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Explicit toggle button */}
+          {hasMore && (
+            <button
+              onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-4 py-2 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+              {open ? t("experience.collapse", locale) : t("experience.expand", locale)}
+            </button>
+          )}
+        </div>
+
+        <ChevronDown
+          className={`mt-2 hidden h-5 w-5 shrink-0 text-white/20 transition-transform duration-300 md:block ${
+            open ? "rotate-180 text-accent-green/60" : ""
+          }`}
+        />
+      </div>
     </motion.div>
   );
 }
@@ -151,7 +162,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="relative px-6 py-32">
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[140px]" />
+      <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-emerald/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           index="02"

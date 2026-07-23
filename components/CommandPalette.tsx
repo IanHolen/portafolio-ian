@@ -150,11 +150,11 @@ export default function CommandPalette() {
                   key={item.id}
                   onClick={item.action}
                   onMouseEnter={() => setActive(i)}
-                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
-                    i === active ? "bg-accent-teal/10 text-white" : "text-white/60 hover:text-white"
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green ${
+                    i === active ? "bg-accent-green/10 text-white" : "text-white/60 hover:text-white"
                   }`}
                 >
-                  <span className={i === active ? "text-accent-teal" : "text-white/40"}>{item.icon}</span>
+                  <span className={i === active ? "text-accent-green" : "text-white/40"}>{item.icon}</span>
                   <span className="flex-1">{item.label}</span>
                   {item.hint && <span className="text-[10px] text-white/30">{item.hint}</span>}
                 </button>

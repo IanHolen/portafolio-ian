@@ -14,8 +14,12 @@ const translations = {
   // ─── Hero ───
   "hero.available": { es: "Disponible para nuevos proyectos", en: "Available for new projects" },
   "hero.tagline": {
-    es: "Diseño y construyo productos completos — front, back, datos e IA — desde plataformas SaaS propias hasta arquitecturas event-driven sobre Microsoft Fabric y Azure.",
-    en: "I design and build complete products — front, back, data, and AI — from my own SaaS platforms to event-driven architectures on Microsoft Fabric and Azure.",
+    es: "Construyo productos de punta a punta —del front-end al pipeline— combinando React, Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Fundador de 5 plataformas SaaS llevadas de la idea a producción.",
+    en: "I build products end-to-end —from the front-end to the pipeline— pairing React, Node.js, and AI integrations with modern data architectures on Microsoft Fabric and Azure. Founder of 5 SaaS platforms taken from idea to production.",
+  },
+  "hero.locationLine": {
+    es: "Ciudad de México · Disponible para proyectos remotos",
+    en: "Mexico City · Available for remote work",
   },
   "hero.role": {
     es: "Soy Fullstack Developer & Data Engineer",
@@ -24,6 +28,7 @@ const translations = {
   "hero.basedIn": { es: "basado en", en: "based in" },
   "hero.cta": { es: "Ver mi trabajo", en: "See my work" },
   "hero.contact": { es: "Contáctame", en: "Contact me" },
+  "hero.downloadCv": { es: "Descargar CV", en: "Download CV" },
   "hero.scroll": { es: "scroll", en: "scroll" },
   "hero.stat.platforms": { es: "plataformas", en: "platforms" },
   "hero.stat.stores": { es: "tiendas", en: "stores" },
@@ -56,7 +61,7 @@ const translations = {
   // ─── Experience ───
   "experience.kicker": { es: "Experiencia", en: "Experience" },
   "experience.title": { es: "Dónde he construido.", en: "Where I've built." },
-  "experience.expand": { es: "Ver detalle", en: "See detail" },
+  "experience.expand": { es: "Ver más detalle", en: "See more detail" },
   "experience.collapse": { es: "Ocultar detalle", en: "Hide detail" },
   "experience.achievements": { es: "Logros", en: "Achievements" },
   "experience.impact": { es: "Impacto", en: "Impact" },
@@ -183,6 +188,13 @@ const translations = {
   "products.status.live": { es: "En vivo", en: "Live" },
   "products.status.internal": { es: "Solución interna", en: "Internal solution" },
   "products.status.wip": { es: "En desarrollo", en: "In progress" },
+  "products.wip.title": { es: "Plataforma en desarrollo", en: "Platform in development" },
+  "products.wip.body": {
+    es: "NotarIA sigue en desarrollo activo (beta). Algunas secciones pueden cambiar o no estar disponibles todavía. ¿Quieres visitar la beta de todas formas?",
+    en: "NotarIA is still under active development (beta). Some sections may change or not be available yet. Do you want to visit the beta anyway?",
+  },
+  "products.wip.visit": { es: "Visitar beta", en: "Visit beta" },
+  "products.wip.close": { es: "Cerrar", en: "Close" },
   "products.items": {
     es: [
       {
@@ -229,94 +241,94 @@ const translations = {
     es: [
       {
         title: "Customer Service + Chatter",
-        blurb: "Módulo de Customer Service con gestión de incidencias integrado al core de la v2.0, más 'Chatter': mensajería cliente–agente en tiempo real para un soporte fluido.",
+        blurb: "Módulo de Customer Service de nivel enterprise con un sistema de gestión de incidencias integrado al núcleo de la plataforma v2.0. Incluye 'Chatter', un motor de mensajería cliente–agente en tiempo real que reduce la fricción del soporte y acelera los tiempos de respuesta — construido sobre React, Node.js, MySQL y Twilio para escalar sin perder inmediatez.",
         metric: "Soporte en tiempo real",
       },
       {
         title: "AI Support Chatbot",
-        blurb: "Chatbot inteligente de soporte con LLMs (OpenAI) embebido en la página de tracking de órdenes, automatizando la atención al cliente end-to-end.",
+        blurb: "Asistente de soporte impulsado por IA (LLMs de OpenAI) embebido directamente en la página de tracking de órdenes. Resuelve dudas de clientes de forma autónoma 24/7, desvía tickets del equipo humano y entrega respuestas contextualizadas sobre el estado de cada envío — soporte que escala solo.",
         metric: "IA · OpenAI",
       },
       {
         title: "Analytics & Automations",
-        blurb: "Dashboards de analítica con insights detallados de envíos y órdenes, más un módulo de automatizaciones dentro de la plataforma v2.0.",
+        blurb: "Suite de dashboards de analítica con insights accionables de envíos, órdenes y operación, más un motor de automatizaciones que elimina trabajo manual repetitivo. Visualizaciones en tiempo real con Recharts y ApexCharts que dan a cada cliente visibilidad total de su logística en un vistazo.",
         metric: "v2.0",
       },
       {
         title: "Inventory & E-commerce Hub",
-        blurb: "Módulo de inventario e integraciones que conectan ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube y Wix para unificar órdenes e inventario en una sola vista.",
+        blurb: "Hub de inventario que unifica 7+ integraciones — ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube y Wix — en una sola fuente de verdad. Sincroniza órdenes e inventario entre canales en tiempo real, eliminando la doble captura y los desajustes de stock que cuestan ventas.",
         metric: "7+ integraciones",
       },
       {
         title: "MCP Server",
-        blurb: "Servidor MCP (Model Context Protocol) que permite consultar y actuar sobre los datos de cuenta a través de modelos de lenguaje.",
+        blurb: "Servidor MCP (Model Context Protocol) que expone los datos de cuenta a modelos de lenguaje, permitiendo consultar y ejecutar acciones sobre la operación con lenguaje natural. Una capa 'LLM-native' que convierte la plataforma en algo accionable por agentes de IA — infraestructura pensada para el futuro del software.",
         metric: "LLM-native",
       },
       {
         title: "Tiendas 2.0 — Event-Driven Architecture",
-        blurb: "Arquitectura event-driven en tiempo real para ingesta y procesamiento de eventos, basada en KQL para analítica de alto desempeño y monitoreo operacional en escala enterprise.",
+        blurb: "Arquitectura event-driven en tiempo real que ingiere y procesa eventos operativos a escala nacional, sobre bases KQL diseñadas para analítica de altísimo desempeño. La columna vertebral de datos que da monitoreo en vivo a una red de 3,400+ tiendas en 21 regiones — ingeniería crítica para un retailer de gran escala.",
         metric: "3,400+ tiendas · 21 regiones",
       },
       {
         title: "Main Pipeline Optimization",
-        blurb: "Refactor y optimización del pipeline principal que alimenta 10 modelos semánticos. Reducción significativa en tiempos de refresh y mejora de confiabilidad.",
+        blurb: "Refactor integral del pipeline principal que alimenta 10 modelos semánticos de negocio. Rediseñé la orquestación y el particionado para recortar los tiempos de refresh en un 35% y elevar la confiabilidad, entregando decisiones más rápidas y frescas a la dirección.",
         metric: "−35% refresh time",
       },
       {
         title: "Ticket Data Extraction",
-        blurb: "Rediseño del flujo de extracción de tickets sobre Azure Data Factory y Microsoft Fabric, con paralelización y particionado optimizado.",
+        blurb: "Rediseño del flujo de extracción de tickets sobre Azure Data Factory y Microsoft Fabric, con paralelización y particionado optimizado que llevó el proceso de 4h30 a 1h07 — una mejora de ~76% que desbloqueó analítica casi en tiempo real sobre millones de transacciones.",
         metric: "4h30 → 1h07",
       },
       {
         title: "Data Hub Landing Page",
-        blurb: "Hub centralizado de dashboards y documentación que mejora la accesibilidad y descubrimiento de datos para directores y gerentes a nivel corporativo.",
+        blurb: "Hub central que unifica dashboards y documentación en un único punto de entrada, democratizando el acceso a los datos para +570 directores y gerentes. Convirtió reportes dispersos en una experiencia de autoservicio con gobernanza — data que la gente por fin encuentra y usa.",
         metric: "+570 stakeholders",
       },
     ],
     en: [
       {
         title: "Customer Service + Chatter",
-        blurb: "Customer Service module with incident management integrated into the v2.0 core, plus 'Chatter': real-time client–agent messaging for smooth support.",
+        blurb: "Enterprise-grade Customer Service module with an incident-management system wired into the core of the v2.0 platform. Includes 'Chatter', a real-time client–agent messaging engine that cuts support friction and speeds up response times — built on React, Node.js, MySQL, and Twilio to scale without losing immediacy.",
         metric: "Real-time support",
       },
       {
         title: "AI Support Chatbot",
-        blurb: "Intelligent LLM support chatbot (OpenAI) embedded in the order-tracking page, automating customer assistance end-to-end.",
+        blurb: "AI-powered support assistant (OpenAI LLMs) embedded directly in the order-tracking page. It resolves customer questions autonomously 24/7, deflects tickets from the human team, and delivers contextual answers about each shipment's status — support that scales itself.",
         metric: "AI · OpenAI",
       },
       {
         title: "Analytics & Automations",
-        blurb: "Analytics dashboards with detailed shipment and order insights, plus an automations module inside the v2.0 platform.",
+        blurb: "A suite of analytics dashboards with actionable shipment, order, and operations insights, plus an automations engine that removes repetitive manual work. Real-time visualizations with Recharts and ApexCharts that give every client full visibility into their logistics at a glance.",
         metric: "v2.0",
       },
       {
         title: "Inventory & E-commerce Hub",
-        blurb: "Inventory module and integrations connecting ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube, and Wix to unify orders and inventory in one view.",
+        blurb: "An inventory hub unifying 7+ integrations — ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube, and Wix — into a single source of truth. Syncs orders and inventory across channels in real time, eliminating double entry and stock mismatches that cost sales.",
         metric: "7+ integrations",
       },
       {
         title: "MCP Server",
-        blurb: "MCP (Model Context Protocol) server that lets you query and act on account data through large language models.",
+        blurb: "An MCP (Model Context Protocol) server that exposes account data to language models, letting you query and take action on the operation in natural language. An 'LLM-native' layer that makes the platform actionable by AI agents — infrastructure built for where software is heading.",
         metric: "LLM-native",
       },
       {
         title: "Tiendas 2.0 — Event-Driven Architecture",
-        blurb: "Real-time event-driven architecture for event ingestion and processing, based on KQL for high-performance analytics and operational monitoring at enterprise scale.",
+        blurb: "A real-time event-driven architecture that ingests and processes operational events at national scale, on KQL databases engineered for extreme-performance analytics. The data backbone that gives live monitoring to a network of 3,400+ stores across 21 regions — mission-critical engineering for a large-scale retailer.",
         metric: "3,400+ stores · 21 regions",
       },
       {
         title: "Main Pipeline Optimization",
-        blurb: "Refactoring and optimization of the main pipeline feeding 10 semantic models. Significant reduction in refresh times and reliability improvement.",
+        blurb: "A full refactor of the main pipeline powering 10 business semantic models. I redesigned the orchestration and partitioning to cut refresh times by 35% and raise reliability, delivering faster, fresher decisions to leadership.",
         metric: "−35% refresh time",
       },
       {
         title: "Ticket Data Extraction",
-        blurb: "Redesign of the ticket extraction flow on Azure Data Factory and Microsoft Fabric, with optimized parallelization and partitioning.",
+        blurb: "Redesign of the ticket-extraction flow on Azure Data Factory and Microsoft Fabric, with optimized parallelization and partitioning that took the process from 4h30 to 1h07 — a ~76% improvement that unlocked near-real-time analytics over millions of transactions.",
         metric: "4h30 → 1h07",
       },
       {
         title: "Data Hub Landing Page",
-        blurb: "Centralized dashboard and documentation hub that improves data accessibility and discovery for directors and managers at the corporate level.",
+        blurb: "A central hub unifying dashboards and documentation into a single entry point, democratizing data access for 570+ directors and managers. It turned scattered reports into a governed self-service experience — data people can finally find and use.",
         metric: "+570 stakeholders",
       },
     ],
@@ -326,8 +338,8 @@ const translations = {
   "skills.kicker": { es: "Habilidades", en: "Skills" },
   "skills.title": { es: "Mi stack técnico.", en: "My tech stack." },
   "skills.groups": {
-    es: ["Fullstack & Web", "Cloud & Data Engineering", "Lenguajes & Datos", "Bases de datos & Backend", "IA & Integraciones", "BI, Herramientas & Diseño"],
-    en: ["Fullstack & Web", "Cloud & Data Engineering", "Languages & Data", "Databases & Backend", "AI & Integrations", "BI, Tools & Design"],
+    es: ["Fullstack & Web", "Cloud & DevOps", "Lenguajes & Datos", "Bases de datos & Backend", "IA & Integraciones", "BI, Viz & Herramientas"],
+    en: ["Fullstack & Web", "Cloud & DevOps", "Languages & Data", "Databases & Backend", "AI & Integrations", "BI, Viz & Tools"],
   },
   "skills.interests": {
     es: [
@@ -349,6 +361,9 @@ const translations = {
   "github.kicker": { es: "Open Source", en: "Open Source" },
   "github.title": { es: "Mi actividad en GitHub.", en: "My GitHub activity." },
   "github.recentActivity": { es: "Actividad reciente", en: "Recent activity" },
+  "github.contributions": { es: "contribuciones en el último año", en: "contributions in the last year" },
+  "github.less": { es: "Menos", en: "Less" },
+  "github.more": { es: "Más", en: "More" },
   "github.topLanguages": { es: "Lenguajes más usados", en: "Top languages" },
   "github.featured": { es: "Repos públicos destacados", en: "Featured public repos" },
   "github.privateNote": {

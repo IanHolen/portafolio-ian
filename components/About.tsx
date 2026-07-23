@@ -40,7 +40,7 @@ export default function About() {
 
   return (
     <section id="about" className="relative px-6 py-32">
-      <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-accent-cyan/15 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-accent-emerald/15 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="01" kicker={t("about.kicker", locale)} title={t("about.title", locale)} />
 
@@ -65,7 +65,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
                 className="flex items-start gap-3 text-white/60"
               >
-                <span className="mt-2 h-px w-6 bg-gradient-to-r from-accent-teal to-transparent" />
+                <span className="mt-2 h-px w-6 bg-gradient-to-r from-accent-green to-transparent" />
                 <span>{b}</span>
               </motion.li>
             ))}

@@ -10,6 +10,7 @@ export const profile = {
   location: "Ciudad de México",
   email: "holenderian@gmail.com",
   phone: "+52 55 4790 3290",
+  cvUrl: "/cv-ian-holender.pdf",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
@@ -123,7 +124,7 @@ export const products: Product[] = [
     year: "2025",
     status: "live",
     tags: ["React 19", "TypeScript", "Supabase", "Python MCP", "Cloudflare"],
-    accent: "from-teal-500/25 to-cyan-500/5",
+    accent: "from-green-500/25 to-emerald-500/5",
   },
   {
     name: "Visión 360",
@@ -133,7 +134,7 @@ export const products: Product[] = [
     year: "2025",
     status: "internal",
     tags: ["React", "TypeScript", "Supabase", "three.js", "RLS"],
-    accent: "from-cyan-500/25 to-sky-500/5",
+    accent: "from-emerald-500/25 to-green-500/5",
   },
   {
     name: "Certificaciones AI",
@@ -143,7 +144,7 @@ export const products: Product[] = [
     year: "2025",
     status: "live",
     tags: ["Next.js 16", "Prisma", "Supabase", "Gemini / Groq", "i18n"],
-    accent: "from-emerald-500/25 to-teal-500/5",
+    accent: "from-emerald-500/25 to-green-500/5",
   },
   {
     name: "Credit Operations Platform",
@@ -153,7 +154,7 @@ export const products: Product[] = [
     year: "2025",
     status: "internal",
     tags: ["React", "Node.js", "Express", "PostgreSQL", "JWT + bcrypt"],
-    accent: "from-amber-500/20 to-orange-500/5",
+    accent: "from-lime-500/20 to-emerald-500/5",
   },
   {
     name: "NotarIA",
@@ -163,7 +164,7 @@ export const products: Product[] = [
     year: "2026",
     status: "wip",
     tags: ["Next.js 16", "Supabase", "Anthropic SDK", "shadcn/ui", "Multi-tenant"],
-    accent: "from-teal-500/25 to-emerald-500/5",
+    accent: "from-orange-500/30 to-amber-500/10",
   },
 ];
 
@@ -189,7 +190,7 @@ export const projects: Project[] = [
     year: "2026",
     company: "eShip / Segmail",
     metric: "Soporte en tiempo real",
-    accent: "from-teal-500/30 to-cyan-500/10",
+    accent: "from-green-500/30 to-emerald-500/10",
   },
   {
     title: "AI Support Chatbot",
@@ -199,7 +200,7 @@ export const projects: Project[] = [
     year: "2026",
     company: "eShip / Segmail",
     metric: "IA · OpenAI",
-    accent: "from-cyan-500/30 to-sky-500/10",
+    accent: "from-emerald-500/30 to-green-500/10",
   },
   {
     title: "Analytics & Automations",
@@ -209,7 +210,7 @@ export const projects: Project[] = [
     year: "2026",
     company: "eShip / Segmail",
     metric: "v2.0",
-    accent: "from-emerald-500/30 to-teal-500/10",
+    accent: "from-emerald-500/30 to-green-500/10",
   },
   {
     title: "Inventory & E-commerce Hub",
@@ -219,7 +220,7 @@ export const projects: Project[] = [
     year: "2026",
     company: "eShip / Segmail",
     metric: "7+ integraciones",
-    accent: "from-amber-500/25 to-orange-500/10",
+    accent: "from-lime-500/25 to-emerald-500/10",
   },
   {
     title: "MCP Server",
@@ -229,7 +230,7 @@ export const projects: Project[] = [
     year: "2026",
     company: "eShip / Segmail",
     metric: "LLM-native",
-    accent: "from-teal-500/30 to-emerald-500/10",
+    accent: "from-green-500/30 to-emerald-500/10",
   },
   // ── Corporativo Tiendas 3B (Data Engineering) ──
   {
@@ -240,7 +241,7 @@ export const projects: Project[] = [
     year: "2025",
     company: "Corporativo Tiendas 3B",
     metric: "3,400+ tiendas · 21 regiones",
-    accent: "from-cyan-500/30 to-sky-500/10",
+    accent: "from-emerald-500/30 to-green-500/10",
   },
   {
     title: "Main Pipeline Optimization",
@@ -250,7 +251,7 @@ export const projects: Project[] = [
     year: "2025",
     company: "Corporativo Tiendas 3B",
     metric: "−35% refresh time",
-    accent: "from-teal-500/30 to-cyan-500/10",
+    accent: "from-green-500/30 to-emerald-500/10",
   },
   {
     title: "Ticket Data Extraction",
@@ -260,7 +261,7 @@ export const projects: Project[] = [
     year: "2025",
     company: "Corporativo Tiendas 3B",
     metric: "4h30 → 1h07",
-    accent: "from-emerald-500/30 to-teal-500/10",
+    accent: "from-emerald-500/30 to-green-500/10",
   },
   {
     title: "Data Hub Landing Page",
@@ -270,7 +271,7 @@ export const projects: Project[] = [
     year: "2025",
     company: "Corporativo Tiendas 3B",
     metric: "+570 stakeholders",
-    accent: "from-amber-500/25 to-orange-500/10",
+    accent: "from-lime-500/25 to-emerald-500/10",
   },
 ];
 
@@ -292,27 +293,27 @@ export const skills = {
   groups: [
     {
       label: "Fullstack & Web",
-      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "Tailwind CSS", "REST APIs"],
+      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "JavaScript", "Tailwind CSS", "Material UI", "HTML", "CSS", "REST APIs", "WebSockets", "Vite"],
     },
     {
-      label: "Cloud & Data Engineering",
-      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "Vercel"],
+      label: "Cloud & DevOps",
+      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "Vercel", "Cloudflare"],
     },
     {
       label: "Lenguajes & Datos",
-      items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "JavaScript"],
+      items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "MATLAB"],
     },
     {
       label: "Bases de datos & Backend",
-      items: ["PostgreSQL", "MySQL", "Supabase", "Prisma", "JWT / Auth"],
+      items: ["PostgreSQL", "MySQL", "Supabase", "Prisma", "JWT", "bcrypt", "RLS"],
     },
     {
       label: "IA & Integraciones",
-      items: ["OpenAI", "Anthropic", "Gemini / Groq", "MCP", "Shopify", "Odoo", "Mercado Libre"],
+      items: ["OpenAI", "Anthropic", "Gemini / Groq", "MCP", "LLMs", "Shopify", "Odoo", "Mercado Libre", "Amazon", "Twilio", "Resend"],
     },
     {
-      label: "BI, Herramientas & Diseño",
-      items: ["Power BI", "Tableau", "Git / GitHub", "Figma", "Canva", "Adobe Premiere"],
+      label: "BI, Viz & Herramientas",
+      items: ["Power BI", "Tableau", "Recharts", "ApexCharts", "three.js", "Git / GitHub", "Figma", "Canva", "Adobe Premiere", "Playwright"],
     },
   ],
   interests: [

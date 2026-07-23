@@ -74,16 +74,16 @@ export default function Navbar() {
         >
           <a
             href="#top"
-            className="font-display text-lg italic tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 rounded-full"
+            className="font-display text-lg italic tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 rounded-full"
           >
-            {profile.firstName.toLowerCase()}<span className="text-accent-teal">.</span>{profile.lastName.toLowerCase()}
+            {profile.firstName.toLowerCase()}<span className="text-accent-green">.</span>{profile.lastName.toLowerCase()}
           </a>
           <nav role="navigation" aria-label={locale === "es" ? "Navegación principal" : "Main navigation"} className="hidden items-center gap-8 text-sm md:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative transition rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
+                className={`relative transition rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
                   activeId === link.id ? "text-white" : "text-white/60 hover:text-white"
                 }`}
               >
@@ -91,7 +91,7 @@ export default function Navbar() {
                 {activeId === link.id && (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent-teal"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent-green"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -102,17 +102,17 @@ export default function Navbar() {
             <LangToggle />
             <a
               href="#contact"
-              className="group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group relative overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10 inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               <span className="relative z-10">{t("nav.cta", locale)}</span>
-              <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-teal to-accent-cyan transition-transform duration-500 group-hover:translate-y-0" />
+              <span className="absolute inset-0 -z-0 translate-y-full bg-gradient-to-tr from-accent-green to-accent-emerald transition-transform duration-500 group-hover:translate-y-0" />
             </a>
           </div>
           <div className="flex items-center gap-3 md:hidden">
             <LangToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="inline-flex items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-flex items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               aria-label={menuOpen ? t("nav.menuClose", locale) : t("nav.menuOpen", locale)}
             >
               {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -138,7 +138,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 + i * 0.06 }}
-                className="font-display text-3xl font-light text-white/80 transition hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal"
+                className="font-display text-3xl font-light text-white/80 transition hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green"
               >
                 {link.label}
               </motion.a>
@@ -149,7 +149,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 + links.length * 0.06 }}
-              className="mt-4 rounded-full border border-accent-teal/50 bg-accent-teal/10 px-8 py-3 text-lg font-medium text-accent-teal transition hover:bg-accent-teal/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal"
+              className="mt-4 rounded-full border border-accent-green/50 bg-accent-green/10 px-8 py-3 text-lg font-medium text-accent-green transition hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green"
             >
               {t("nav.cta", locale)}
             </motion.a>

@@ -88,7 +88,7 @@ export default function Contact() {
     >
       {/* atmospheric glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-teal/20 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-green/20 blur-[140px]" />
       </div>
 
       <div className="mx-auto max-w-6xl">
@@ -99,7 +99,7 @@ export default function Contact() {
           transition={{ duration: 0.9 }}
           className="text-center"
         >
-          <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-teal">
+          <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-green">
             {t("contact.kicker", locale)}
           </p>
           <h2 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl">
@@ -114,14 +114,14 @@ export default function Contact() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <a
               href={`mailto:${profile.email}`}
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-base font-medium text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-base font-medium text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               {profile.email}
               <ArrowUpRight className="h-5 w-5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <button
               onClick={copyEmail}
-              className="relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-5 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-5 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               aria-label={t("contact.copyEmail", locale)}
             >
               {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
@@ -161,7 +161,7 @@ export default function Contact() {
                 <p className="mt-3 text-white/60">{t("contact.formThanks", locale)}</p>
                 <button
                   onClick={resetForm}
-                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  className="mt-6 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm text-white/70 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
                   {t("contact.formAnother", locale)}
                 </button>
@@ -191,7 +191,7 @@ export default function Contact() {
                     aria-label={t("contact.formName", locale)}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-teal/50 focus:outline-none focus:ring-2 focus:ring-accent-teal/20"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
                 </div>
@@ -203,7 +203,7 @@ export default function Contact() {
                     aria-label={t("contact.formEmail", locale)}
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-teal/50 focus:outline-none focus:ring-2 focus:ring-accent-teal/20"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
                 </div>
@@ -215,7 +215,7 @@ export default function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-teal/50 focus:outline-none focus:ring-2 focus:ring-accent-teal/20"
+                    className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-white placeholder:text-white/30 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
                   />
                   {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
                 </div>
@@ -226,7 +226,7 @@ export default function Contact() {
                     <button
                       type="button"
                       onClick={() => setSubmitError("")}
-                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal rounded"
+                      className="mt-2 text-xs text-white/50 underline transition hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green rounded"
                     >
                       {t("contact.formRetry", locale)}
                     </button>
@@ -236,7 +236,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  className="w-full rounded-xl bg-white px-6 py-4 text-sm font-medium text-black transition hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
                   {loading ? t("contact.formSending", locale) : t("contact.formSubmit", locale)}
                 </button>
@@ -256,9 +256,9 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
-                <item.icon className="h-5 w-5 text-accent-teal" />
+                <item.icon className="h-5 w-5 text-accent-green" />
                 <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-white/60">
                   {item.label}
                 </p>
@@ -276,7 +276,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${s.label} ${t("contact.socialSuffix", locale)}`}
-              className="group inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-white/70 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-white/70 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               {s.label}
               <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

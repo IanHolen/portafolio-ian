@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, Download, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
@@ -142,13 +142,13 @@ export default function Hero() {
           custom={0}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/60"
         >
-          <Sparkles className="h-3 w-3 text-accent-teal" />
+          <Sparkles className="h-3 w-3 text-accent-green" />
           {t("hero.available", locale)}
         </motion.div>
 
-        <h1 className="font-display text-[clamp(3rem,9vw,8rem)] font-light leading-[0.95] tracking-tight">
-          <SplitText text={profile.firstName} className="block text-white/90" />
-          <SplitText text={profile.lastName} className="block italic text-gradient" />
+        <h1 className="font-grotesk text-[clamp(3rem,9vw,7.5rem)] font-bold leading-[0.9] tracking-tight">
+          <SplitText text={profile.firstName} className="block text-white" />
+          <SplitText text={profile.lastName} className="block text-white/55" />
         </h1>
 
         <motion.p
@@ -156,7 +156,7 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
           custom={1.5}
-          className="mt-6 font-mono text-sm uppercase tracking-[0.25em] text-accent-teal md:text-base"
+          className="mt-6 font-mono text-sm uppercase tracking-[0.25em] text-accent-green md:text-base"
         >
           {t("hero.role", locale)}
         </motion.p>
@@ -166,11 +166,21 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
           custom={2}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-white/60 md:text-xl"
+          className="mt-6 max-w-2xl text-lg leading-relaxed text-white/65 md:text-xl"
         >
-          {t("hero.tagline", locale)}{" "}
-          <span className="text-white/80">{t("hero.basedIn", locale)} {profile.location}.</span>
+          {t("hero.tagline", locale)}
         </motion.p>
+
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={2.4}
+          className="mt-5 flex items-center gap-2 text-sm text-white/45"
+        >
+          <MapPin className="h-4 w-4 text-accent-green" />
+          {t("hero.locationLine", locale)}
+        </motion.div>
 
         <motion.div
           initial="hidden"
@@ -182,7 +192,7 @@ export default function Hero() {
           <MagneticWrap>
             <a
               href="#work"
-              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               <span className="relative z-10 inline-flex items-center gap-2">
                 {t("hero.cta", locale)}
@@ -193,12 +203,21 @@ export default function Hero() {
           <MagneticWrap>
             <a
               href="#contact"
-              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               {t("hero.contact", locale)}
             </a>
           </MagneticWrap>
-          {/* CV download — hidden until Ian uploads his real PDF to /public */}
+          <MagneticWrap>
+            <a
+              href={profile.cvUrl}
+              download
+              className="group inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-7 py-4 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
+              {t("hero.downloadCv", locale)}
+            </a>
+          </MagneticWrap>
         </motion.div>
 
         {/* Animated Stats */}
@@ -235,7 +254,7 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-teal"
+              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-green"
             />
           </div>
           <span>{t("hero.scroll", locale)}</span>

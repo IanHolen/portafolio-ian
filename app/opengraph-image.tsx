@@ -17,7 +17,7 @@ export default function OGImage() {
           justifyContent: "space-between",
           padding: 80,
           background:
-            "radial-gradient(ellipse at 20% 30%, rgba(45,212,191,0.35), transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(34,211,238,0.25), transparent 60%), #08080a",
+            "radial-gradient(ellipse at 20% 30%, rgba(34,197,94,0.35), transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(16,185,129,0.25), transparent 60%), #08080a",
           color: "white",
           fontFamily: "serif",
         }}
@@ -29,7 +29,7 @@ export default function OGImage() {
             gap: 16,
             fontSize: 28,
             fontWeight: 600,
-            color: "#2dd4bf",
+            color: "#22c55e",
             letterSpacing: 4,
             textTransform: "uppercase",
             fontFamily: "sans-serif",
@@ -43,8 +43,8 @@ export default function OGImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgba(45,212,191,0.15)",
-              border: "1px solid rgba(45,212,191,0.4)",
+              background: "rgba(34,197,94,0.15)",
+              border: "1px solid rgba(34,197,94,0.4)",
               color: "#ffffff",
               fontSize: 32,
               fontStyle: "italic",
@@ -72,7 +72,7 @@ export default function OGImage() {
               style={{
                 fontStyle: "italic",
                 background:
-                  "linear-gradient(90deg,#5eead4 0%,#2dd4bf 50%,#22d3ee 100%)",
+                  "linear-gradient(90deg,#4ade80 0%,#22c55e 50%,#10b981 100%)",
                 backgroundClip: "text",
                 color: "transparent",
               }}

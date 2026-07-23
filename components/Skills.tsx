@@ -13,7 +13,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative overflow-hidden px-6 py-32">
-      <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-accent-teal/10 blur-[150px]" />
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-accent-green/10 blur-[150px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="05" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
 
@@ -27,10 +27,10 @@ export default function Skills() {
               transition={{ duration: 0.5, delay: gi * 0.07, ease: [0.2, 0.8, 0.2, 1] }}
               className="border-glow group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.035]"
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-teal/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent-green/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-4 flex items-center gap-2">
-                  <span className="font-mono text-xs text-accent-teal/70">0{gi + 1}</span>
+                  <span className="font-mono text-xs text-accent-green/70">0{gi + 1}</span>
                   <h3 className="text-sm font-semibold tracking-wide text-white">
                     {groupLabels[gi] ?? group.label}
                   </h3>
@@ -43,7 +43,7 @@ export default function Skills() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: gi * 0.07 + ii * 0.03 }}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/75 transition-colors duration-200 hover:border-accent-teal/40 hover:bg-accent-teal/10 hover:text-accent-teal"
+                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/75 transition-colors duration-200 hover:border-accent-green/40 hover:bg-accent-green/10 hover:text-accent-green"
                     >
                       {item}
                     </motion.span>
