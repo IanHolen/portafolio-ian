@@ -2,11 +2,11 @@ export const profile = {
   name: "Ian Holender",
   firstName: "Ian",
   lastName: "Holender",
-  title: "Data Engineer",
+  title: "Fullstack Developer & Data Engineer",
   specialty:
-    "Arquitecturas de datos modernas, event-driven, sobre Microsoft Fabric y Azure.",
+    "Construyo productos end-to-end y arquitecturas de datos modernas — de la interfaz al pipeline.",
   tagline:
-    "Diseño pipelines escalables, resilientes y auditables — con CI/CD sólido y data quality en mente — para llevar analítica de grado producción a escala.",
+    "Diseño y construyo productos completos — front, back, datos e IA — desde plataformas SaaS propias hasta arquitecturas event-driven sobre Microsoft Fabric y Azure.",
   location: "Ciudad de México",
   email: "holenderian@gmail.com",
   phone: "+52 55 4790 3290",
@@ -19,12 +19,12 @@ export const profile = {
 
 export const about = {
   intro:
-    "Soy Data Engineer enfocado en construir plataformas de datos modernas sobre Microsoft Fabric y Azure. Me apasiona el cruce entre ingeniería robusta, performance y experiencia de quien consume los datos.",
+    "Soy Fullstack Developer y Data Engineer. Construyo productos completos — de la interfaz al pipeline — combinando React/Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Además soy fundador de varias plataformas SaaS que llevé de idea a producción.",
   bullets: [
-    "He optimizado pipelines a través de 21 regiones y +3,400 tiendas.",
-    "Reduje tiempos de procesamiento clave hasta en un 35%.",
-    "Comprometido con CI/CD, data quality y auditabilidad end-to-end.",
-    "Disponible para nuevos retos de ingeniería de datos y arquitectura cloud.",
+    "Desarrollo features customer-facing, dashboards e integraciones LLM y e-commerce en eShip/Segmail.",
+    "Fundador de 5 plataformas propias (SaaS, e-learning, IA legal) llevadas a producción.",
+    "Diseñé arquitecturas event-driven en 21 regiones y +3,400 tiendas, reduciendo tiempos hasta 35%.",
+    "Comprometido con CI/CD, data quality, seguridad y auditabilidad end-to-end.",
   ],
 };
 
@@ -40,10 +40,26 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    role: "Fullstack Developer",
+    company: "eShip / Segmail",
+    location: "Ciudad de México",
+    period: "Feb 2026 — Presente",
+    description:
+      "Construyo features end-to-end para la plataforma v2.0: módulo de Customer Service, chatbot con LLMs, dashboards de analítica e integraciones de e-commerce.",
+    highlights: [
+      "Módulo de Customer Service + 'Chatter', mensajería cliente–agente en tiempo real (React, Node.js, MySQL, Twilio).",
+      "Chatbot de soporte con LLMs (OpenAI) en la página de tracking de órdenes.",
+      "Dashboards de analítica y módulo de automatizaciones en v2.0 (Recharts / ApexCharts).",
+      "Integraciones con Shopify, Odoo, Tiendanube, Wix, ShipHero, Amazon y Mercado Libre.",
+      "Diseño de un servidor MCP para consultar y actuar sobre datos vía LLMs.",
+    ],
+    stack: ["React", "Node.js", "MySQL", "OpenAI", "MCP", "Twilio"],
+  },
+  {
     role: "Data Engineer",
     company: "Corporativo Tiendas 3B",
     location: "Ciudad de México",
-    period: "May 2025 — Presente",
+    period: "May 2025 — Ene 2026",
     description:
       "Implementación de arquitectura event-driven en tiempo real para el proyecto Tiendas 2.0, con bases KQL para analítica de alto desempeño y monitoreo operacional.",
     highlights: [
@@ -86,6 +102,72 @@ export const experience: Experience[] = [
   },
 ];
 
+/* ─── Productos propios (plataformas SaaS que fundé / co-fundé) ─── */
+export type Product = {
+  name: string;
+  role: string;
+  domain: string;
+  href?: string;
+  year: string;
+  status: "live" | "internal" | "wip";
+  tags: string[];
+  accent: string;
+};
+
+export const products: Product[] = [
+  {
+    name: "MeshCode",
+    role: "Co-founder",
+    domain: "meshcode.io",
+    href: "https://meshcode.io",
+    year: "2025",
+    status: "live",
+    tags: ["React 19", "TypeScript", "Supabase", "Python MCP", "Cloudflare"],
+    accent: "from-teal-500/25 to-cyan-500/5",
+  },
+  {
+    name: "Visión 360",
+    role: "Founder",
+    domain: "shoplogix-vision360.com",
+    href: "https://shoplogix-vision360.com",
+    year: "2025",
+    status: "internal",
+    tags: ["React", "TypeScript", "Supabase", "three.js", "RLS"],
+    accent: "from-cyan-500/25 to-sky-500/5",
+  },
+  {
+    name: "Certificaciones AI",
+    role: "Founder",
+    domain: "certificacionesai.com",
+    href: "https://certificacionesai.com",
+    year: "2025",
+    status: "live",
+    tags: ["Next.js 16", "Prisma", "Supabase", "Gemini / Groq", "i18n"],
+    accent: "from-emerald-500/25 to-teal-500/5",
+  },
+  {
+    name: "Credit Operations Platform",
+    role: "Founder",
+    domain: "Solución interna",
+    href: "https://misfichasnexsys.com",
+    year: "2025",
+    status: "internal",
+    tags: ["React", "Node.js", "Express", "PostgreSQL", "JWT + bcrypt"],
+    accent: "from-amber-500/20 to-orange-500/5",
+  },
+  {
+    name: "NotarIA",
+    role: "Founder",
+    domain: "notaria-app-beta.vercel.app",
+    href: "https://notaria-app-beta.vercel.app",
+    year: "2026",
+    status: "wip",
+    tags: ["Next.js 16", "Supabase", "Anthropic SDK", "shadcn/ui", "Multi-tenant"],
+    accent: "from-teal-500/25 to-emerald-500/5",
+  },
+];
+
+/* ─── Trabajo & Data Engineering (proyectos internos en empresa) ─── */
 export type Project = {
   title: string;
   blurb: string;
@@ -104,7 +186,7 @@ export const projects: Project[] = [
     tags: ["Event-Driven", "KQL", "Microsoft Fabric", "Realtime"],
     year: "2025",
     metric: "3,400+ tiendas en 21 regiones",
-    accent: "from-violet-500/30 to-blue-500/10",
+    accent: "from-teal-500/30 to-cyan-500/10",
   },
   {
     title: "Main Pipeline Optimization",
@@ -113,7 +195,7 @@ export const projects: Project[] = [
     tags: ["Performance", "ADF", "PySpark", "Power BI"],
     year: "2025",
     metric: "−35% refresh time",
-    accent: "from-rose-500/30 to-fuchsia-500/10",
+    accent: "from-cyan-500/30 to-sky-500/10",
   },
   {
     title: "Ticket Data Extraction",
@@ -122,7 +204,7 @@ export const projects: Project[] = [
     tags: ["ADF", "Microsoft Fabric", "ETL"],
     year: "2025",
     metric: "4h30 → 1h07",
-    accent: "from-emerald-500/30 to-cyan-500/10",
+    accent: "from-emerald-500/30 to-teal-500/10",
   },
   {
     title: "Data Hub Landing Page",
@@ -131,58 +213,56 @@ export const projects: Project[] = [
     tags: ["Power BI", "UX", "Documentación"],
     year: "2025",
     metric: "+570 stakeholders",
-    accent: "from-amber-500/30 to-rose-500/10",
+    accent: "from-amber-500/25 to-orange-500/10",
   },
 ];
 
 export const skills = {
   core: [
-    "Microsoft Fabric",
-    "Azure",
-    "Azure Data Factory",
-    "Azure DevOps",
+    "React",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
     "Python",
     "SQL",
-    "KQL",
-    "PySpark",
+    "Microsoft Fabric",
+    "Azure",
+    "PostgreSQL",
+    "Supabase",
+    "LLMs",
     "Power BI",
-    "Tableau",
-    "C#",
-    "JavaScript",
-    "Git",
   ],
   groups: [
     {
-      label: "Cloud & Data",
-      items: [
-        "Microsoft Azure",
-        "Microsoft Fabric",
-        "Azure Data Factory",
-        "Azure DevOps (CI/CD)",
-      ],
+      label: "Fullstack & Web",
+      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "Tailwind CSS", "REST APIs"],
     },
     {
-      label: "Programación & Datos",
+      label: "Cloud & Data Engineering",
+      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "Vercel"],
+    },
+    {
+      label: "Lenguajes & Datos",
       items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "JavaScript"],
     },
     {
-      label: "Visualización & BI",
-      items: ["Power BI", "Tableau", "PowerPoint"],
+      label: "Bases de datos & Backend",
+      items: ["PostgreSQL", "MySQL", "Supabase", "Prisma", "JWT / Auth"],
     },
     {
-      label: "Herramientas",
-      items: ["Git/GitHub", "Cisco Packet Tracer", "MATLAB"],
+      label: "IA & Integraciones",
+      items: ["OpenAI", "Anthropic", "Gemini / Groq", "MCP", "Shopify", "Odoo", "Mercado Libre"],
     },
     {
-      label: "Web & Diseño",
-      items: ["HTML", "CSS", "Figma", "Canva", "Adobe Premiere Pro"],
+      label: "BI, Herramientas & Diseño",
+      items: ["Power BI", "Tableau", "Git / GitHub", "Figma", "Canva", "Adobe Premiere"],
     },
   ],
   interests: [
-    "Pipelines Escalables",
+    "Product Engineering",
+    "Fullstack Development",
     "Cloud-native Engineering",
-    "Backend & Data Systems",
-    "System Reliability",
+    "AI Integration",
     "Data Quality & Compliance",
     "CI/CD & Automation",
     "System Design",
@@ -208,14 +288,18 @@ export const languages = [
 ];
 
 export const heroStats = [
+  { value: 5, suffix: "", label: "plataformas" },
   { value: 3400, suffix: "+", label: "tiendas" },
   { value: 35, suffix: "%", label: "más rápido" },
-  { value: 21, suffix: "", label: "regiones" },
   { value: 570, suffix: "+", label: "stakeholders" },
 ];
 
-// TODO: Replace with Ian's real certifications and credential URLs
-export const certifications = [
-  { title: "Microsoft Certified: Azure Data Engineer Associate", issuer: "Microsoft", date: "2025", icon: "azure", credentialUrl: "" },
-  { title: "Microsoft Certified: Fabric Analytics Engineer Associate", issuer: "Microsoft", date: "2025", icon: "fabric", credentialUrl: "" },
-];
+// Empty until Ian adds his real certifications + credential URLs.
+// The Certifications section auto-hides while this array is empty.
+export const certifications: {
+  title: string;
+  issuer: string;
+  date: string;
+  icon: string;
+  credentialUrl: string;
+}[] = [];

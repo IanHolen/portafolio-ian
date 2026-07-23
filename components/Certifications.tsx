@@ -15,6 +15,9 @@ const ICON_COLORS: Record<string, string> = {
 export default function Certifications() {
   const { locale } = useLocale();
 
+  // Auto-hide until Ian adds real certifications to lib/data.ts
+  if (!certifications.length) return null;
+
   return (
     <section className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
@@ -31,7 +34,7 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`group flex items-start gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${!cert.credentialUrl ? "cursor-default" : ""}`}
+                className={`group flex items-start gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${!cert.credentialUrl ? "cursor-default" : ""}`}
               >
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white"
@@ -40,14 +43,14 @@ export default function Certifications() {
                   {cert.issuer[0]}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-white group-hover:text-accent-violet transition">
+                  <h3 className="font-medium text-white group-hover:text-accent-teal transition">
                     {cert.title}
                   </h3>
                   <p className="mt-1 text-sm text-white/50">
                     {cert.issuer} · {cert.date}
                   </p>
                   {cert.credentialUrl && (
-                    <span className="mt-3 inline-flex items-center gap-1 text-xs text-accent-violet/70 group-hover:text-accent-violet transition">
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs text-accent-teal/70 group-hover:text-accent-teal transition">
                       {t("certs.viewCredential", locale)} <ExternalLink className="h-3 w-3" />
                     </span>
                   )}

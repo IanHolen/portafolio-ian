@@ -148,7 +148,7 @@ export default function GitHub() {
 
   return (
     <section id="github" className="relative px-6 py-32">
-      <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-violet/10 blur-[140px]" />
+      <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-teal/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
 
@@ -210,10 +210,10 @@ export default function GitHub() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                    className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-white/20 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
                     <div className="flex items-start justify-between">
-                      <h4 className="font-mono text-sm font-medium text-white group-hover:text-accent-violet transition">
+                      <h4 className="font-mono text-sm font-medium text-white group-hover:text-accent-teal transition">
                         {repo.name}
                       </h4>
                       <ExternalLink className="h-3.5 w-3.5 text-white/30 transition group-hover:text-white/60" />
@@ -274,7 +274,7 @@ export default function GitHub() {
                     className="relative flex items-start gap-4 py-2.5"
                     style={{ opacity: 1 - i * 0.08 }}
                   >
-                    <div className="relative z-10 mt-0.5 flex h-[11px] w-[11px] items-center justify-center rounded-full border border-white/20 bg-ink-950 text-accent-violet">
+                    <div className="relative z-10 mt-0.5 flex h-[11px] w-[11px] items-center justify-center rounded-full border border-white/20 bg-ink-950 text-accent-teal">
                       {eventIcon(ev.type)}
                     </div>
                     <div className="flex-1 min-w-0">

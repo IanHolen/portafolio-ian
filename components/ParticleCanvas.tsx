@@ -64,7 +64,7 @@ export default function ParticleCanvas() {
 
         ctx!.beginPath();
         ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(139,92,246,${p.o})`;
+        ctx!.fillStyle = `rgba(45,212,191,${p.o})`;
         ctx!.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -76,7 +76,7 @@ export default function ParticleCanvas() {
             ctx!.beginPath();
             ctx!.moveTo(p.x, p.y);
             ctx!.lineTo(q.x, q.y);
-            ctx!.strokeStyle = `rgba(139,92,246,${0.08 * (1 - dist / CONNECT_DIST)})`;
+            ctx!.strokeStyle = `rgba(45,212,191,${0.08 * (1 - dist / CONNECT_DIST)})`;
             ctx!.stroke();
           }
         }

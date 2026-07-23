@@ -9,18 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Warm graphite base — neutral near-black, no blue cast
         ink: {
-          950: "#070709",
-          900: "#0b0b10",
-          800: "#12121a",
-          700: "#1b1b26",
-          600: "#2a2a38",
+          950: "#08080a",
+          900: "#0c0d10",
+          800: "#131419",
+          700: "#1c1e25",
+          600: "#2b2e37",
         },
+        // Cool teal/cyan primary + warm amber signal. No violet/purple.
         accent: {
-          violet: "#8b5cf6",
-          blue: "#3b82f6",
-          rose: "#f43f5e",
-          lime: "#a3e635",
+          teal: "#2dd4bf",
+          cyan: "#22d3ee",
+          mint: "#5eead4",
+          amber: "#fbbf24",
         },
       },
       fontFamily: {
@@ -34,6 +36,7 @@ const config: Config = {
         "slow-spin": "spin 20s linear infinite",
         "fade-up": "fade-up 0.8s ease-out forwards",
         shimmer: "shimmer 2.5s linear infinite",
+        "pulse-glow": "pulse-glow 4s ease-in-out infinite",
       },
       keyframes: {
         "gradient-x": {
@@ -52,12 +55,16 @@ const config: Config = {
           "0%": { "background-position": "-1000px 0" },
           "100%": { "background-position": "1000px 0" },
         },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.85" },
+        },
       },
       backgroundImage: {
         "grid-pattern":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
         "radial-fade":
-          "radial-gradient(ellipse at top, rgba(139,92,246,0.15), transparent 60%)",
+          "radial-gradient(ellipse at top, rgba(45,212,191,0.12), transparent 62%)",
       },
     },
   },

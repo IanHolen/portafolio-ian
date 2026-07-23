@@ -4,6 +4,7 @@ const translations = {
   // ─── Navbar ───
   "nav.about": { es: "Sobre mí", en: "About" },
   "nav.experience": { es: "Experiencia", en: "Experience" },
+  "nav.products": { es: "Productos", en: "Products" },
   "nav.work": { es: "Trabajo", en: "Work" },
   "nav.contact": { es: "Contacto", en: "Contact" },
   "nav.cta": { es: "Trabajemos juntos", en: "Let's work together" },
@@ -13,13 +14,18 @@ const translations = {
   // ─── Hero ───
   "hero.available": { es: "Disponible para nuevos proyectos", en: "Available for new projects" },
   "hero.tagline": {
-    es: "Diseño pipelines escalables, resilientes y auditables — con CI/CD sólido y data quality en mente — para llevar analítica de grado producción a escala.",
-    en: "I design scalable, resilient, and auditable pipelines — with solid CI/CD and data quality in mind — to deliver production-grade analytics at scale.",
+    es: "Diseño y construyo productos completos — front, back, datos e IA — desde plataformas SaaS propias hasta arquitecturas event-driven sobre Microsoft Fabric y Azure.",
+    en: "I design and build complete products — front, back, data, and AI — from my own SaaS platforms to event-driven architectures on Microsoft Fabric and Azure.",
+  },
+  "hero.role": {
+    es: "Soy Fullstack Developer & Data Engineer",
+    en: "I'm a Fullstack Developer & Data Engineer",
   },
   "hero.basedIn": { es: "basado en", en: "based in" },
   "hero.cta": { es: "Ver mi trabajo", en: "See my work" },
   "hero.contact": { es: "Contáctame", en: "Contact me" },
   "hero.scroll": { es: "scroll", en: "scroll" },
+  "hero.stat.platforms": { es: "plataformas", en: "platforms" },
   "hero.stat.stores": { es: "tiendas", en: "stores" },
   "hero.stat.faster": { es: "más rápido", en: "faster" },
   "hero.stat.regions": { es: "regiones", en: "regions" },
@@ -27,23 +33,23 @@ const translations = {
 
   // ─── About ───
   "about.kicker": { es: "Sobre mí", en: "About me" },
-  "about.title": { es: "Una intro corta.", en: "A short intro." },
+  "about.title": { es: "Builder end-to-end.", en: "End-to-end builder." },
   "about.intro": {
-    es: "Soy Data Engineer enfocado en construir plataformas de datos modernas sobre Microsoft Fabric y Azure. Me apasiona el cruce entre ingeniería robusta, performance y experiencia de quien consume los datos.",
-    en: "I'm a Data Engineer focused on building modern data platforms on Microsoft Fabric and Azure. I'm passionate about the intersection of robust engineering, performance, and the experience of data consumers.",
+    es: "Soy Fullstack Developer y Data Engineer. Construyo productos completos — de la interfaz al pipeline — combinando React/Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Además soy fundador de varias plataformas SaaS que llevé de idea a producción.",
+    en: "I'm a Fullstack Developer and Data Engineer. I build complete products — from the interface to the pipeline — combining React/Node.js and AI integrations with modern data architectures on Microsoft Fabric and Azure. I'm also the founder of several SaaS platforms I took from idea to production.",
   },
   "about.bullets": {
     es: [
-      "He optimizado pipelines a través de 21 regiones y +3,400 tiendas.",
-      "Reduje tiempos de procesamiento clave hasta en un 35%.",
-      "Comprometido con CI/CD, data quality y auditabilidad end-to-end.",
-      "Disponible para nuevos retos de ingeniería de datos y arquitectura cloud.",
+      "Desarrollo features customer-facing, dashboards e integraciones LLM y e-commerce en eShip/Segmail.",
+      "Fundador de 5 plataformas propias (SaaS, e-learning, IA legal) llevadas a producción.",
+      "Diseñé arquitecturas event-driven en 21 regiones y +3,400 tiendas, reduciendo tiempos hasta 35%.",
+      "Comprometido con CI/CD, data quality, seguridad y auditabilidad end-to-end.",
     ],
     en: [
-      "Optimized pipelines across 21 regions and 3,400+ stores.",
-      "Reduced key processing times by up to 35%.",
-      "Committed to CI/CD, data quality, and end-to-end auditability.",
-      "Available for new data engineering and cloud architecture challenges.",
+      "I build customer-facing features, dashboards, and LLM & e-commerce integrations at eShip/Segmail.",
+      "Founder of 5 own platforms (SaaS, e-learning, legal AI) taken to production.",
+      "Designed event-driven architectures across 21 regions and 3,400+ stores, cutting times by up to 35%.",
+      "Committed to CI/CD, data quality, security, and end-to-end auditability.",
     ],
   },
 
@@ -53,9 +59,22 @@ const translations = {
   "experience.items": {
     es: [
       {
+        role: "Fullstack Developer",
+        company: "eShip / Segmail",
+        period: "Feb 2026 — Presente",
+        description: "Construyo features end-to-end para la plataforma v2.0: módulo de Customer Service, chatbot con LLMs, dashboards de analítica e integraciones de e-commerce.",
+        highlights: [
+          "Módulo de Customer Service + 'Chatter', mensajería cliente–agente en tiempo real (React, Node.js, MySQL, Twilio).",
+          "Chatbot de soporte con LLMs (OpenAI) en la página de tracking de órdenes.",
+          "Dashboards de analítica y módulo de automatizaciones en v2.0 (Recharts / ApexCharts).",
+          "Integraciones con Shopify, Odoo, Tiendanube, Wix, ShipHero, Amazon y Mercado Libre.",
+          "Diseño de un servidor MCP para consultar y actuar sobre datos vía LLMs.",
+        ],
+      },
+      {
         role: "Data Engineer",
         company: "Corporativo Tiendas 3B",
-        period: "May 2025 — Presente",
+        period: "May 2025 — Ene 2026",
         description: "Implementación de arquitectura event-driven en tiempo real para el proyecto Tiendas 2.0, con bases KQL para analítica de alto desempeño y monitoreo operacional.",
         highlights: [
           "Pipelines escalables en 21 regiones (~3,400 tiendas).",
@@ -85,9 +104,22 @@ const translations = {
     ],
     en: [
       {
+        role: "Fullstack Developer",
+        company: "eShip / Segmail",
+        period: "Feb 2026 — Present",
+        description: "I build end-to-end features for the v2.0 platform: a Customer Service module, an LLM chatbot, analytics dashboards, and e-commerce integrations.",
+        highlights: [
+          "Customer Service module + 'Chatter', real-time client–agent messaging (React, Node.js, MySQL, Twilio).",
+          "LLM support chatbot (OpenAI) on the order-tracking page.",
+          "Analytics dashboards and an automations module in v2.0 (Recharts / ApexCharts).",
+          "Integrations with Shopify, Odoo, Tiendanube, Wix, ShipHero, Amazon, and Mercado Libre.",
+          "Designed an MCP server to query and act on data through LLMs.",
+        ],
+      },
+      {
         role: "Data Engineer",
         company: "Corporativo Tiendas 3B",
-        period: "May 2025 — Present",
+        period: "May 2025 — Jan 2026",
         description: "Implementation of a real-time event-driven architecture for the Tiendas 2.0 project, with KQL databases for high-performance analytics and operational monitoring.",
         highlights: [
           "Scalable pipelines across 21 regions (~3,400 stores).",
@@ -117,9 +149,53 @@ const translations = {
     ],
   },
 
-  // ─── Projects ───
-  "projects.kicker": { es: "Trabajo seleccionado", en: "Selected work" },
-  "projects.title": { es: "Proyectos recientes.", en: "Recent projects." },
+  // ─── Products (own platforms) ───
+  "products.kicker": { es: "Productos", en: "Products" },
+  "products.title": { es: "Plataformas que he construido.", en: "Platforms I've built." },
+  "products.visit": { es: "Visitar sitio", en: "Visit site" },
+  "products.status.live": { es: "En vivo", en: "Live" },
+  "products.status.internal": { es: "Solución interna", en: "Internal solution" },
+  "products.status.wip": { es: "En desarrollo", en: "In progress" },
+  "products.items": {
+    es: [
+      {
+        blurb: "Infraestructura en tiempo real que permite a múltiples agentes de IA de código (Claude Code, Cursor, Cline) colaborar como un equipo entre máquinas: memoria compartida, task boards, mensajería MCP y un dashboard en vivo. Incluye un CLI publicado en Python (pip install meshcode).",
+      },
+      {
+        blurb: "Plataforma interactiva para el manejo y control de operaciones a nivel directivo. Solución interna con jerarquía de roles, aislamiento multi-tenant (RLS), dashboards ejecutivos con mapa mundial 3D, tableros Kanban y un asistente de IA con datos en contexto.",
+      },
+      {
+        blurb: "Plataforma e-learning de cursos de IA para audiencia no técnica en LATAM: 15 cursos / 110+ lecciones con quizzes, tutor de IA y sandbox, planes de aprendizaje personalizados, certificados en PDF y panel de administración con métricas reales.",
+      },
+      {
+        blurb: "Plataforma web que gestiona el ciclo completo de solicitudes de crédito (captura → revisión → aprobación) entre equipos de ventas, crédito y administración. Solución interna con control de acceso por rol, comentarios por campo, logs de acceso y dashboard analítico.",
+      },
+      {
+        blurb: "Plataforma de gestión notarial con IA, pensada como reemplazo de sistemas legacy. Aislamiento multi-tenant por notaría, expedientes, archivo unificado de identidad (RFC/CURP/CFDI 4.0, PLD) y captura + generación de documentos asistida por IA.",
+      },
+    ],
+    en: [
+      {
+        blurb: "Real-time infrastructure that lets multiple AI coding agents (Claude Code, Cursor, Cline) collaborate as a team across machines: shared memory, task boards, MCP messaging, and a live dashboard. Ships a published Python CLI (pip install meshcode).",
+      },
+      {
+        blurb: "Interactive platform for managing and controlling operations at the executive level. Internal solution with role hierarchy, multi-tenant isolation (RLS), executive dashboards with a 3D world map, Kanban boards, and a data-grounded AI assistant.",
+      },
+      {
+        blurb: "E-learning platform of AI courses for a non-technical LATAM audience: 15 courses / 110+ lessons with quizzes, an AI tutor and sandbox, personalized learning plans, PDF certificates, and an admin panel with real metrics.",
+      },
+      {
+        blurb: "Web platform managing the full credit-application lifecycle (capture → review → approval) across sales, credit, and admin teams. Internal solution with role-based access, per-field comments, access logs, and an analytics dashboard.",
+      },
+      {
+        blurb: "AI-powered notarial management platform, built as a replacement for legacy systems. Multi-tenant isolation per notary, case files, a unified identity archive (RFC/CURP/CFDI 4.0, PLD), and AI-assisted capture and document generation.",
+      },
+    ],
+  },
+
+  // ─── Work (data engineering / internal projects) ───
+  "projects.kicker": { es: "Trabajo & Data Engineering", en: "Work & Data Engineering" },
+  "projects.title": { es: "Ingeniería en producción.", en: "Engineering in production." },
   "projects.scrollLeft": { es: "Desplazar izquierda", en: "Scroll left" },
   "projects.scrollRight": { es: "Desplazar derecha", en: "Scroll right" },
   "projects.items": {
@@ -173,17 +249,17 @@ const translations = {
   "skills.kicker": { es: "Habilidades", en: "Skills" },
   "skills.title": { es: "Mi stack técnico.", en: "My tech stack." },
   "skills.groups": {
-    es: ["Cloud & Data", "Programación & Datos", "Visualización & BI", "Herramientas", "Web & Diseño"],
-    en: ["Cloud & Data", "Programming & Data", "Visualization & BI", "Tools", "Web & Design"],
+    es: ["Fullstack & Web", "Cloud & Data Engineering", "Lenguajes & Datos", "Bases de datos & Backend", "IA & Integraciones", "BI, Herramientas & Diseño"],
+    en: ["Fullstack & Web", "Cloud & Data Engineering", "Languages & Data", "Databases & Backend", "AI & Integrations", "BI, Tools & Design"],
   },
   "skills.interests": {
     es: [
-      "Pipelines Escalables", "Cloud-native Engineering", "Backend & Data Systems",
-      "System Reliability", "Data Quality & Compliance", "CI/CD & Automation", "System Design",
+      "Product Engineering", "Fullstack Development", "Cloud-native Engineering",
+      "AI Integration", "Data Quality & Compliance", "CI/CD & Automation", "System Design",
     ],
     en: [
-      "Scalable Pipelines", "Cloud-native Engineering", "Backend & Data Systems",
-      "System Reliability", "Data Quality & Compliance", "CI/CD & Automation", "System Design",
+      "Product Engineering", "Fullstack Development", "Cloud-native Engineering",
+      "AI Integration", "Data Quality & Compliance", "CI/CD & Automation", "System Design",
     ],
   },
 
@@ -228,12 +304,12 @@ const translations = {
   },
 
   // ─── Contact ───
-  "contact.kicker": { es: "09 — Contacto", en: "09 — Contact" },
+  "contact.kicker": { es: "Contacto", en: "Contact" },
   "contact.title1": { es: "Hagamos algo", en: "Let's build something" },
   "contact.title2": { es: "extraordinario.", en: "extraordinary." },
   "contact.subtitle": {
-    es: "Si estás construyendo algo en datos, cloud o necesitas un partner técnico, escríbeme.",
-    en: "If you're building something in data, cloud, or need a technical partner, reach out.",
+    es: "Si estás construyendo un producto, en datos, cloud o IA, o necesitas un partner técnico, escríbeme.",
+    en: "If you're building a product — in data, cloud, or AI — or need a technical partner, reach out.",
   },
   "contact.copyEmail": { es: "Copiar email", en: "Copy email" },
   "contact.copied": { es: "Copiado", en: "Copied" },
@@ -271,7 +347,8 @@ const translations = {
   "cmd.home": { es: "Inicio", en: "Home" },
   "cmd.about": { es: "Sobre mí", en: "About" },
   "cmd.experience": { es: "Experiencia", en: "Experience" },
-  "cmd.projects": { es: "Proyectos", en: "Projects" },
+  "cmd.products": { es: "Productos", en: "Products" },
+  "cmd.projects": { es: "Trabajo", en: "Work" },
   "cmd.skills": { es: "Skills", en: "Skills" },
   "cmd.github": { es: "GitHub", en: "GitHub" },
   "cmd.education": { es: "Educación", en: "Education" },

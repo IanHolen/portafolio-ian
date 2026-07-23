@@ -97,10 +97,10 @@ export default function Projects() {
 
   return (
     <section id="work" className="relative px-6 py-32">
-      <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-rose-500/10 blur-[140px]" />
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          index="03"
+          index="04"
           kicker={t("projects.kicker", locale)}
           title={t("projects.title", locale)}
         />
@@ -110,7 +110,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(-1)}
             disabled={!canScrollLeft}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             aria-label={t("projects.scrollLeft", locale)}
           >
             <ChevronLeft className="h-5 w-5" />
@@ -118,7 +118,7 @@ export default function Projects() {
           <button
             onClick={() => scroll(1)}
             disabled={!canScrollRight}
-            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="rounded-full border border-white/10 p-2 text-white/40 transition hover:border-white/20 hover:text-white disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             aria-label={t("projects.scrollRight", locale)}
           >
             <ChevronRight className="h-5 w-5" />
@@ -164,7 +164,7 @@ export default function Projects() {
         {/* Progress bar */}
         <div className="mx-auto mt-6 hidden h-1 max-w-xs overflow-hidden rounded-full bg-white/10 md:block">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-accent-violet to-accent-blue transition-all duration-150"
+            className="h-full rounded-full bg-gradient-to-r from-accent-teal to-accent-cyan transition-all duration-150"
             style={{ width: `${Math.max(20, progress * 100)}%`, marginLeft: `${progress * (100 - Math.max(20, progress * 100))}%` }}
           />
         </div>
@@ -177,7 +177,7 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
   return (
     <TiltCard
       href={p.href}
-      className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 transition-all duration-500 hover:border-white/20 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+      className="group relative block h-full overflow-hidden rounded-3xl border border-white/10 bg-ink-900 p-8 transition-all duration-500 hover:border-white/20 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
     >
       <div
         className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
@@ -195,7 +195,7 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
         </div>
 
         {pt.metric && (
-          <div className="mb-4 inline-block rounded-full border border-accent-violet/30 bg-accent-violet/10 px-4 py-1.5 font-mono text-sm font-medium text-accent-violet">
+          <div className="mb-4 inline-block rounded-full border border-accent-teal/30 bg-accent-teal/10 px-4 py-1.5 font-mono text-sm font-medium text-accent-teal">
             {pt.metric}
           </div>
         )}

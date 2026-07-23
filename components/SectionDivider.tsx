@@ -1,4 +1,4 @@
-export default function SectionDivider({ color = "rgba(139,92,246,0.05)" }: { color?: string }) {
+export default function SectionDivider({ color = "rgba(45,212,191,0.05)" }: { color?: string }) {
   return (
     <div className="relative -my-1 h-16 w-full overflow-hidden" aria-hidden="true">
       <svg

@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Home, User, Briefcase, Code, FolderGit2, GraduationCap, Mail, Copy, ExternalLink } from "lucide-react";
-import { profile, projects } from "@/lib/data";
+import { profile, products, projects } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
@@ -26,11 +26,19 @@ export default function CommandPalette() {
     { id: "home", label: t("cmd.home", locale), icon: <Home className="h-4 w-4" />, action: () => navigate("#top") },
     { id: "about", label: t("cmd.about", locale), icon: <User className="h-4 w-4" />, action: () => navigate("#about") },
     { id: "experience", label: t("cmd.experience", locale), icon: <Briefcase className="h-4 w-4" />, action: () => navigate("#experience") },
+    { id: "products", label: t("cmd.products", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#products") },
     { id: "projects", label: t("cmd.projects", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
     { id: "skills", label: t("cmd.skills", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
     { id: "github", label: t("cmd.github", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#github") },
     { id: "education", label: t("cmd.education", locale), icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#education") },
     { id: "contact", label: t("cmd.contact", locale), icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
+    ...products.map((p) => ({
+      id: `product-${p.name}`,
+      label: p.name,
+      icon: <FolderGit2 className="h-4 w-4" />,
+      action: () => (p.href ? window.open(p.href, "_blank") : navigate("#products")),
+      hint: t("cmd.hintProject", locale),
+    })),
     ...projects.map((p) => ({
       id: `project-${p.title}`,
       label: p.title,
@@ -142,11 +150,11 @@ export default function CommandPalette() {
                   key={item.id}
                   onClick={item.action}
                   onMouseEnter={() => setActive(i)}
-                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet ${
-                    i === active ? "bg-accent-violet/10 text-white" : "text-white/60 hover:text-white"
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
+                    i === active ? "bg-accent-teal/10 text-white" : "text-white/60 hover:text-white"
                   }`}
                 >
-                  <span className={i === active ? "text-accent-violet" : "text-white/40"}>{item.icon}</span>
+                  <span className={i === active ? "text-accent-teal" : "text-white/40"}>{item.icon}</span>
                   <span className="flex-1">{item.label}</span>
                   {item.hint && <span className="text-[10px] text-white/30">{item.hint}</span>}
                 </button>

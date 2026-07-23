@@ -27,14 +27,14 @@ export default function Skills() {
             className="font-display text-4xl font-light italic text-white/30 md:text-6xl"
           >
             {skill}
-            <span className="ml-12 inline-block h-2.5 w-2.5 -translate-y-[0.15em] rounded-full bg-accent-violet/60 align-middle" />
+            <span className="ml-12 inline-block h-2.5 w-2.5 -translate-y-[0.15em] rounded-full bg-accent-teal/60 align-middle" />
           </span>
         ))}
       </motion.div>
 
       <div className="mx-auto mt-20 max-w-6xl px-6">
-        <SectionHeader index="04" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <SectionHeader index="05" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           {skills.groups.map((group, gi) => (
             <motion.div
               key={group.label}
@@ -44,7 +44,7 @@ export default function Skills() {
               transition={{ duration: 0.5, delay: gi * 0.08 }}
               className="border-glow rounded-2xl border border-white/10 bg-white/[0.02] p-5"
             >
-              <h3 className="mb-3 text-sm font-semibold tracking-wide text-accent-violet">
+              <h3 className="mb-3 text-sm font-semibold tracking-wide text-accent-teal">
                 {groupLabels[gi] ?? group.label}
               </h3>
               <div className="flex flex-wrap gap-2">

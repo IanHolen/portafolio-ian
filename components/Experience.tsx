@@ -55,7 +55,7 @@ export default function Experience() {
                         key={j}
                         className="flex items-start gap-3 text-sm text-white/60"
                       >
-                        <span className="mt-2 h-px w-6 shrink-0 bg-gradient-to-r from-accent-violet to-transparent" />
+                        <span className="mt-2 h-px w-6 shrink-0 bg-gradient-to-r from-accent-teal to-transparent" />
                         <span>{h}</span>
                       </li>
                     ))}

@@ -111,9 +111,9 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 const statLabelKeys = [
+  "hero.stat.platforms",
   "hero.stat.stores",
   "hero.stat.faster",
-  "hero.stat.regions",
   "hero.stat.stakeholders",
 ] as const;
 
@@ -121,9 +121,9 @@ export default function Hero() {
   const { locale } = useLocale();
 
   const stats = [
-    { value: 3400, suffix: "+", label: t(statLabelKeys[0], locale) },
-    { value: 35, suffix: "%", label: t(statLabelKeys[1], locale) },
-    { value: 21, suffix: "", label: t(statLabelKeys[2], locale) },
+    { value: 5, suffix: "", label: t(statLabelKeys[0], locale) },
+    { value: 3400, suffix: "+", label: t(statLabelKeys[1], locale) },
+    { value: 35, suffix: "%", label: t(statLabelKeys[2], locale) },
     { value: 570, suffix: "+", label: t(statLabelKeys[3], locale) },
   ];
 
@@ -142,7 +142,7 @@ export default function Hero() {
           custom={0}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/60"
         >
-          <Sparkles className="h-3 w-3 text-accent-violet" />
+          <Sparkles className="h-3 w-3 text-accent-teal" />
           {t("hero.available", locale)}
         </motion.div>
 
@@ -155,12 +155,21 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
+          custom={1.5}
+          className="mt-6 font-mono text-sm uppercase tracking-[0.25em] text-accent-teal md:text-base"
+        >
+          {t("hero.role", locale)}
+        </motion.p>
+
+        <motion.p
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
           custom={2}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl"
+          className="mt-6 max-w-2xl text-lg leading-relaxed text-white/60 md:text-xl"
         >
           {t("hero.tagline", locale)}{" "}
-          <span className="text-white/90">{profile.title}</span> {t("hero.basedIn", locale)}{" "}
-          {profile.location}.
+          <span className="text-white/80">{t("hero.basedIn", locale)} {profile.location}.</span>
         </motion.p>
 
         <motion.div
@@ -173,7 +182,7 @@ export default function Hero() {
           <MagneticWrap>
             <a
               href="#work"
-              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="group relative overflow-hidden rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               <span className="relative z-10 inline-flex items-center gap-2">
                 {t("hero.cta", locale)}
@@ -184,7 +193,7 @@ export default function Hero() {
           <MagneticWrap>
             <a
               href="#contact"
-              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-block rounded-full border border-white/10 px-7 py-4 text-sm text-white/80 transition hover:border-white/30 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               {t("hero.contact", locale)}
             </a>
@@ -226,7 +235,7 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-violet"
+              className="absolute left-1/2 top-1.5 h-2 w-1 -translate-x-1/2 rounded-full bg-accent-teal"
             />
           </div>
           <span>{t("hero.scroll", locale)}</span>

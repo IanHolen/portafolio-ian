@@ -26,16 +26,20 @@ const jetbrains = JetBrains_Mono({
 });
 
 const SITE_URL = "https://ianholender.com";
-const SITE_TITLE = "Ian Holender — Data Engineer";
+const SITE_TITLE = "Ian Holender — Fullstack Developer & Data Engineer";
 const SITE_DESCRIPTION =
-  "Ian Holender — Data Engineer. Scalable pipelines on Microsoft Fabric & Azure. Portafolio personal / Personal portfolio.";
+  "Ian Holender — Fullstack Developer & Data Engineer. Productos end-to-end con React/Node.js e IA, y arquitecturas de datos sobre Microsoft Fabric & Azure. Portafolio personal / Personal portfolio.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   keywords: [
+    "Fullstack Developer",
     "Data Engineer",
+    "React",
+    "Next.js",
+    "Node.js",
     "Microsoft Fabric",
     "Azure",
     "Ian Holender",
@@ -81,7 +85,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: localeScript }} />
       </head>
-      <body className="font-sans selection:bg-accent-violet/40">
+      <body className="font-sans selection:bg-accent-teal/30">
         <Providers>
           <SkipLink />
           <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />

@@ -17,7 +17,7 @@ export default function SectionHeader({ index, title, kicker }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet"
+          className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent-teal"
         >
           {index} {kicker && `— ${kicker}`}
         </motion.div>

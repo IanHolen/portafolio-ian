@@ -16,7 +16,7 @@ export default function Education() {
     <section id="education" className="relative px-6 py-32">
       <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
         <div>
-          <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
+          <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-teal">
             07 — {t("education.kicker", locale)}
           </div>
           <div className="space-y-6">
@@ -42,7 +42,7 @@ export default function Education() {
         </div>
 
         <div>
-          <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-violet">
+          <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-teal">
             08 — {t("languages.kicker", locale)}
           </div>
           <div className="space-y-4">
