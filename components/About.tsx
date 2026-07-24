@@ -51,7 +51,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8 }}
-              className="font-display text-2xl font-light leading-snug text-ink-700 md:text-3xl"
+              className="text-justify font-display text-2xl font-light leading-snug text-ink-700 md:text-3xl"
             >
               {highlightIntro(t("about.intro", locale))}
             </motion.p>
@@ -61,7 +61,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="max-w-xl text-lg leading-relaxed text-ink-600"
+              className="max-w-xl text-justify text-lg leading-relaxed text-ink-600"
             >
               {t("about.intro2", locale)}
             </motion.p>
