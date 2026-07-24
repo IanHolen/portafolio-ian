@@ -102,9 +102,8 @@ export default function Contact() {
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent-green">
             {t("contact.kicker", locale)}
           </p>
-          <h2 className="font-display text-5xl font-light leading-[0.95] tracking-tight md:text-8xl">
-            {t("contact.title1", locale)}
-            <br />
+          <h2 className="font-display text-4xl font-light leading-[1.05] tracking-tight md:text-7xl">
+            {t("contact.title1", locale)}{" "}
             <span className="italic text-gradient">{t("contact.title2", locale)}</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-lg text-ink-600">
