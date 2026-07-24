@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, MouseEvent } from "react";
+import { useRef, useState, useCallback, useEffect, MouseEvent, PointerEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
@@ -66,8 +66,80 @@ export default function Projects() {
   const { locale } = useLocale();
   const projectTexts = tArray<ProjectTranslation>("projects.items", locale);
 
-  // Duplicate the list so the marquee loops seamlessly (translateX -50%).
+  // Duplicate the list so the auto-scroll loops seamlessly.
   const loop = [...projects, ...projects];
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false); // paused while hovered / dragging
+  const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: false });
+
+  // Auto-scroll: gently advances on its own, but stops whenever the user is
+  // interacting (hover or drag), so they can move it and read everything.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    let raf = 0;
+    const speed = 0.9; // px per frame (~54px/s)
+    const step = () => {
+      if (el && !pausedRef.current) {
+        const half = el.scrollWidth / 2;
+        let next = el.scrollLeft + speed;
+        if (half > 0 && next >= half) next -= half;
+        el.scrollLeft = next;
+      }
+      raf = requestAnimationFrame(step);
+    };
+    if (!reduce) raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  // Keep the manual scroll position within the first copy for a seamless loop.
+  const onScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const half = el.scrollWidth / 2;
+    if (half <= 0) return;
+    if (el.scrollLeft >= half) el.scrollLeft -= half;
+    else if (el.scrollLeft < 0) el.scrollLeft += half;
+  }, []);
+
+  const pause = () => (pausedRef.current = true);
+  const resume = () => {
+    pausedRef.current = false;
+    drag.current.down = false;
+  };
+
+  // Drag-to-scroll (grab and pull), works for mouse and touch.
+  const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    drag.current = { down: true, startX: e.clientX, startLeft: el.scrollLeft, moved: false };
+    pausedRef.current = true;
+  };
+  const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.down) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 4) drag.current.moved = true;
+    el.scrollLeft = drag.current.startLeft - dx;
+  };
+  const endDrag = () => {
+    drag.current.down = false;
+  };
+  // If the pointer moved (a real drag), swallow the click so cards don't navigate.
+  const onClickCapture = (e: MouseEvent<HTMLDivElement>) => {
+    if (drag.current.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = false;
+    }
+  };
 
   return (
     <section id="work" className="relative overflow-hidden px-6 py-32">
@@ -95,31 +167,41 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Desktop: auto-scrolling marquee (horizontal only, pauses on hover) */}
+      {/* Desktop: auto-scrolls, pauses on hover, and you can drag/scroll it */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="projects-marquee-wrap group relative hidden overflow-hidden md:block"
+        className="relative hidden md:block"
       >
         {/* Edge fades into the paper background */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
 
         <div
-          className="projects-marquee-track flex w-max animate-marquee items-stretch py-2 group-hover:[animation-play-state:paused]"
-          style={{ animationDuration: "70s" }}
+          ref={scrollRef}
+          onScroll={onScroll}
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onClickCapture={onClickCapture}
+          className="projects-marquee-wrap no-scrollbar cursor-grab overflow-x-auto active:cursor-grabbing"
         >
-          {loop.map((p, i) => (
-            <div
-              key={`${p.title}-${i}`}
-              aria-hidden={i >= projects.length}
-              className="mr-6 w-[500px] shrink-0"
-            >
-              <ProjectCard p={p} pt={projectTexts[i % projects.length]} />
-            </div>
-          ))}
+          <div className="flex w-max items-stretch py-2">
+            {loop.map((p, i) => (
+              <div
+                key={`${p.title}-${i}`}
+                aria-hidden={i >= projects.length}
+                className="mr-6 w-[500px] shrink-0 select-none"
+              >
+                <ProjectCard p={p} pt={projectTexts[i % projects.length]} />
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
