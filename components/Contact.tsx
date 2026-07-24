@@ -104,7 +104,7 @@ export default function Contact() {
           </p>
           <h2 className="font-display text-4xl font-light leading-[1.05] tracking-tight md:text-7xl">
             {t("contact.title1", locale)}{" "}
-            <span className="italic text-gradient">{t("contact.title2", locale)}</span>
+            <span className="text-gradient">{t("contact.title2", locale)}</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-lg text-ink-600">
             {t("contact.subtitle", locale)}
