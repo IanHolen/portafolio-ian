@@ -414,8 +414,8 @@ const translations = {
 
   // ─── Contact ───
   "contact.kicker": { es: "Contacto", en: "Contact" },
-  "contact.title1": { es: "Hagamos algo", en: "Let's build something" },
-  "contact.title2": { es: "extraordinario.", en: "extraordinary." },
+  "contact.title1": { es: "Trabajemos", en: "Let's work" },
+  "contact.title2": { es: "juntos.", en: "together." },
   "contact.subtitle": {
     es: "Si estás construyendo un producto, en datos, cloud o IA, o necesitas un partner técnico, escríbeme.",
     en: "If you're building a product — in data, cloud, or AI — or need a technical partner, reach out.",
