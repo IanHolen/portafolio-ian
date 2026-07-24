@@ -42,21 +42,25 @@ const translations = {
   "about.kicker": { es: "Sobre mí", en: "About me" },
   "about.title": { es: "Builder end-to-end.", en: "End-to-end builder." },
   "about.intro": {
-    es: "Soy Fullstack Developer y Data Engineer. Construyo productos completos — de la interfaz al pipeline — combinando React/Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Además soy fundador de varias plataformas SaaS que llevé de idea a producción.",
-    en: "I'm a Fullstack Developer and Data Engineer. I build complete products — from the interface to the pipeline — combining React/Node.js and AI integrations with modern data architectures on Microsoft Fabric and Azure. I'm also the founder of several SaaS platforms I took from idea to production.",
+    es: "Soy Fullstack Developer, AI Engineer y Data Engineer, radicado en Ciudad de México. Hoy construyo productos en tiempo real con IA en eShip/Segmail — features customer-facing, chatbots con LLMs, servicios de mensajería en vivo y servidores MCP que conectan modelos de lenguaje directo a la plataforma — sobre React/Node.js y arquitecturas de datos event-driven en Microsoft Fabric y Azure.",
+    en: "I'm a Fullstack Developer, AI Engineer, and Data Engineer based in Mexico City. Today I build AI-powered, real-time products at eShip/Segmail — customer-facing features, LLM chatbots, live messaging services, and MCP servers that connect language models straight to the platform — on React/Node.js and event-driven data architectures over Microsoft Fabric and Azure.",
+  },
+  "about.intro2": {
+    es: "Antes diseñé pipelines de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me muevo igual de cómodo en la interfaz que en el pipeline: me gusta ser dueño del producto completo, no de una sola capa.",
+    en: "Before that I designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%. In parallel, I've founded five of my own platforms — from a multi-tenant CRM to an AI notarial platform — taking each one from idea to production. I'm equally at home in the interface and in the pipeline: I like owning the whole product, not just a single layer.",
   },
   "about.bullets": {
     es: [
-      "Desarrollo features customer-facing, dashboards e integraciones LLM y e-commerce en eShip/Segmail.",
-      "Fundador de 5 plataformas propias (SaaS, e-learning, IA legal) llevadas a producción.",
-      "Diseñé arquitecturas event-driven en 21 regiones y +3,400 tiendas, reduciendo tiempos hasta 35%.",
-      "Comprometido con CI/CD, data quality, seguridad y auditabilidad end-to-end.",
+      "En eShip/Segmail construyo features, chatbots con LLMs, integraciones MCP y dashboards en una plataforma en producción con 12,000+ usuarios.",
+      "Fundador de 5 plataformas propias (SaaS, e-learning, IA legal) llevadas de idea a producción.",
+      "Diseñé pipelines de datos en 21 regiones y +3,400 tiendas, reduciendo tiempos de procesamiento hasta 35%.",
+      "Ingeniero en Tecnologías Computacionales por el Tec de Monterrey.",
     ],
     en: [
-      "I build customer-facing features, dashboards, and LLM & e-commerce integrations at eShip/Segmail.",
-      "Founder of 5 own platforms (SaaS, e-learning, legal AI) taken to production.",
-      "Designed event-driven architectures across 21 regions and 3,400+ stores, cutting times by up to 35%.",
-      "Committed to CI/CD, data quality, security, and end-to-end auditability.",
+      "At eShip/Segmail I build features, LLM chatbots, MCP integrations, and dashboards on a production platform serving 12,000+ users.",
+      "Founder of 5 own platforms (SaaS, e-learning, legal AI) taken from idea to production.",
+      "Designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%.",
+      "Computer Technologies Engineer from Tec de Monterrey.",
     ],
   },
 

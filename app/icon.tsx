@@ -14,12 +14,12 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#08080a",
-          color: "#22c55e",
-          fontSize: 20,
-          fontWeight: 700,
+          background: "#18180f",
+          color: "#f3f1ea",
+          fontSize: 19,
+          fontWeight: 600,
           letterSpacing: -1,
-          fontFamily: "serif",
+          fontFamily: "Georgia, 'Times New Roman', serif",
         }}
       >
         IH

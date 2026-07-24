@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 // Self-hosted variable fonts (no external fetch — works offline and on Vercel)
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: ["/opengraph-image"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f3f1ea",
+  colorScheme: "light",
 };
 
 // Inline script to set locale from localStorage before first paint (prevents flash)

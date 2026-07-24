@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Ian Holender — Data Engineer";
+export const alt = "Ian Holender — Fullstack Developer & Data Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,19 +17,19 @@ export default function OGImage() {
           justifyContent: "space-between",
           padding: 80,
           background:
-            "radial-gradient(ellipse at 20% 30%, rgba(34,197,94,0.35), transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(16,185,129,0.25), transparent 60%), #08080a",
-          color: "white",
-          fontFamily: "serif",
+            "radial-gradient(ellipse at 22% 18%, rgba(28,91,58,0.10), transparent 55%), radial-gradient(ellipse 120% 90% at 50% -10%, #f7f5ee 0%, #f3f1ea 60%)",
+          color: "#18180f",
+          fontFamily: "Georgia, 'Times New Roman', serif",
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 16,
-            fontSize: 28,
+            gap: 18,
+            fontSize: 26,
             fontWeight: 600,
-            color: "#22c55e",
+            color: "#5b5747",
             letterSpacing: 4,
             textTransform: "uppercase",
             fontFamily: "sans-serif",
@@ -43,12 +43,12 @@ export default function OGImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgba(34,197,94,0.15)",
-              border: "1px solid rgba(34,197,94,0.4)",
-              color: "#ffffff",
-              fontSize: 32,
-              fontStyle: "italic",
+              background: "#18180f",
+              color: "#f3f1ea",
+              fontSize: 30,
+              fontWeight: 600,
               letterSpacing: -2,
+              fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
             IH
@@ -59,39 +59,29 @@ export default function OGImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div
             style={{
-              fontSize: 140,
-              lineHeight: 1,
-              fontWeight: 300,
-              letterSpacing: -4,
+              fontSize: 146,
+              lineHeight: 0.92,
+              fontWeight: 500,
+              letterSpacing: -5,
               display: "flex",
               flexDirection: "column",
             }}
           >
-            <span style={{ color: "rgba(255,255,255,0.9)" }}>Ian</span>
-            <span
-              style={{
-                fontStyle: "italic",
-                background:
-                  "linear-gradient(90deg,#4ade80 0%,#22c55e 50%,#10b981 100%)",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Holender
-            </span>
+            <span style={{ color: "#18180f" }}>Ian</span>
+            <span style={{ color: "#a8a494" }}>Holender</span>
           </div>
           <div
             style={{
-              fontSize: 34,
-              color: "rgba(255,255,255,0.65)",
+              fontSize: 33,
+              color: "#5b5747",
               fontFamily: "sans-serif",
-              marginTop: 16,
-              maxWidth: 820,
-              lineHeight: 1.3,
+              marginTop: 22,
+              maxWidth: 860,
+              lineHeight: 1.35,
             }}
           >
-            Data Engineer — arquitecturas event-driven sobre Microsoft Fabric y
-            Azure.
+            Fullstack Developer &amp; Data Engineer — productos con IA en tiempo
+            real y arquitecturas de datos sobre Microsoft Fabric &amp; Azure.
           </div>
         </div>
 
@@ -101,14 +91,14 @@ export default function OGImage() {
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 22,
-            color: "rgba(255,255,255,0.5)",
+            color: "#8a8676",
             fontFamily: "sans-serif",
             letterSpacing: 2,
             textTransform: "uppercase",
           }}
         >
           <span>Ciudad de México</span>
-          <span>portafolio-ian.vercel.app</span>
+          <span>ianholender.com</span>
         </div>
       </div>
     ),

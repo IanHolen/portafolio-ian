@@ -14,14 +14,14 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "radial-gradient(circle at 30% 30%, rgba(34,197,94,0.45), transparent 60%), #08080a",
-          color: "#ffffff",
-          fontSize: 96,
-          fontWeight: 300,
-          fontStyle: "italic",
-          fontFamily: "serif",
-          letterSpacing: -4,
+          backgroundColor: "#18180f",
+          backgroundImage:
+            "radial-gradient(circle at 30% 25%, rgba(28,91,58,0.40), transparent 62%)",
+          color: "#f3f1ea",
+          fontSize: 92,
+          fontWeight: 500,
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          letterSpacing: -3,
         }}
       >
         IH

@@ -6,7 +6,7 @@ import HighlightText from "./HighlightText";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
-const HIGHLIGHT_TERMS = ["Fullstack Developer", "Data Engineer", "React/Node.js", "Microsoft Fabric", "Azure", "SaaS", "producción"];
+const HIGHLIGHT_TERMS = ["Fullstack Developer", "AI Engineer", "Data Engineer", "React/Node.js", "Microsoft Fabric", "Azure", "MCP", "LLMs", "producción"];
 
 function highlightIntro(text: string) {
   const parts: (string | JSX.Element)[] = [];
@@ -45,15 +45,27 @@ export default function About() {
         <SectionHeader index="01" kicker={t("about.kicker", locale)} title={t("about.title", locale)} />
 
         <div className="grid gap-16 md:grid-cols-12">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8 }}
-            className="md:col-span-7 font-display text-2xl font-light leading-snug text-ink-700 md:text-3xl"
-          >
-            {highlightIntro(t("about.intro", locale))}
-          </motion.p>
+          <div className="md:col-span-7 space-y-8">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8 }}
+              className="font-display text-2xl font-light leading-snug text-ink-700 md:text-3xl"
+            >
+              {highlightIntro(t("about.intro", locale))}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="max-w-xl text-lg leading-relaxed text-ink-600"
+            >
+              {t("about.intro2", locale)}
+            </motion.p>
+          </div>
 
           <ul className="md:col-span-5 space-y-5">
             {bullets.map((b, i) => (
