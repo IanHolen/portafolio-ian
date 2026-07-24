@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
-import TechStack from "./TechStack";
+import { techMeta } from "./techIcons";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -17,8 +17,6 @@ export default function Skills() {
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-accent-green/10 blur-[150px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="05" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
-
-        <TechStack label={t("skills.stackLabel", locale)} />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skills.groups.map((group, gi) => (
@@ -39,18 +37,26 @@ export default function Skills() {
                   </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {group.items.map((item, ii) => (
-                    <motion.span
-                      key={item}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: gi * 0.07 + ii * 0.03 }}
-                      className="rounded-full border border-ink-900/10 bg-black/[0.04] px-3 py-1.5 text-xs text-ink-700 transition-colors duration-200 hover:border-accent-green/40 hover:bg-accent-green/10 hover:text-accent-green"
-                    >
-                      {item}
-                    </motion.span>
-                  ))}
+                  {group.items.map((item, ii) => {
+                    const { Icon, color } = techMeta(item);
+                    return (
+                      <motion.span
+                        key={item}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: gi * 0.07 + ii * 0.03 }}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-ink-900/10 bg-card px-3 py-1.5 text-xs text-ink-700 transition-colors duration-200 hover:border-ink-900/25 hover:text-ink-900"
+                      >
+                        <Icon
+                          aria-hidden
+                          className="h-3.5 w-3.5 shrink-0"
+                          style={{ color }}
+                        />
+                        {item}
+                      </motion.span>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
