@@ -75,7 +75,7 @@ const translations = {
   "experience.items": {
     es: [
       {
-        role: "Fullstack Developer",
+        role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Presente",
         description: "Construyo features end-to-end para la plataforma logística v2.0 — de la interfaz al backend — combinando producto, tiempo real e integraciones de IA y e-commerce.",
@@ -91,7 +91,7 @@ const translations = {
         ],
       },
       {
-        role: "Data Engineer",
+        role: "Data Engineer & Data Analyst",
         company: "Corporativo Tiendas 3B",
         period: "May 2025 — Ene 2026",
         description: "Diseñé arquitecturas de datos modernas y event-driven para el proyecto Tiendas 2.0, llevando analítica de grado producción a escala nacional.",
@@ -131,7 +131,7 @@ const translations = {
     ],
     en: [
       {
-        role: "Fullstack Developer",
+        role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Present",
         description: "I build end-to-end features for the v2.0 logistics platform — from interface to backend — blending product, real-time, and AI & e-commerce integrations.",
@@ -147,7 +147,7 @@ const translations = {
         ],
       },
       {
-        role: "Data Engineer",
+        role: "Data Engineer & Data Analyst",
         company: "Corporativo Tiendas 3B",
         period: "May 2025 — Jan 2026",
         description: "Designed modern, event-driven data architectures for the Tiendas 2.0 project, bringing production-grade analytics to national scale.",
