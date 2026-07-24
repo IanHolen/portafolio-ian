@@ -63,6 +63,21 @@ export default function Products() {
                 <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-black/[0.04] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative z-10 flex h-full flex-col">
+                  {/* Platform preview */}
+                  <div
+                    className={`relative mb-7 overflow-hidden rounded-xl border border-ink-900/10 bg-ink-950 ${
+                      featured ? "aspect-[24/9]" : "aspect-[16/10]"
+                    }`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+
                   <div className="mb-6 flex items-start justify-between gap-4">
                     <span className="font-mono text-xs uppercase tracking-[0.25em] text-ink-400">
                       {String(i + 1).padStart(2, "0")} · {p.role}

@@ -113,11 +113,13 @@ export type Product = {
   status: "live" | "internal" | "wip";
   tags: string[];
   accent: string;
+  image: string;
 };
 
 export const products: Product[] = [
   {
     name: "MeshCode",
+    image: "/platforms/meshcode.jpg",
     role: "Co-founder",
     domain: "meshcode.io",
     href: "https://meshcode.io",
@@ -128,6 +130,7 @@ export const products: Product[] = [
   },
   {
     name: "Visión 360",
+    image: "/platforms/vision360.jpg",
     role: "Founder",
     domain: "shoplogix-vision360.com",
     href: "https://shoplogix-vision360.com",
@@ -138,6 +141,7 @@ export const products: Product[] = [
   },
   {
     name: "Certificaciones AI",
+    image: "/platforms/certificaciones.jpg",
     role: "Founder",
     domain: "certificacionesai.com",
     href: "https://certificacionesai.com",
@@ -148,6 +152,7 @@ export const products: Product[] = [
   },
   {
     name: "Credit Operations Platform",
+    image: "/platforms/credit-ops.jpg",
     role: "Founder",
     domain: "Solución interna",
     href: "https://misfichasnexsys.com",
@@ -158,6 +163,7 @@ export const products: Product[] = [
   },
   {
     name: "NotarIA",
+    image: "/platforms/notaria.jpg",
     role: "Founder",
     domain: "notaria-app-beta.vercel.app",
     href: "https://notaria-app-beta.vercel.app",
