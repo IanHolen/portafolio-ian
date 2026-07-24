@@ -17,7 +17,7 @@ export default function Education() {
       <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
         <div>
           <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-green">
-            07 — {t("education.kicker", locale)}
+            06 — {t("education.kicker", locale)}
           </div>
           <div className="space-y-6">
             {educationItems.map((ed, i) => (
@@ -43,7 +43,7 @@ export default function Education() {
 
         <div>
           <div className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-green">
-            08 — {t("languages.kicker", locale)}
+            07 — {t("languages.kicker", locale)}
           </div>
           <div className="space-y-4">
             {languageItems.map((lang, i) => (

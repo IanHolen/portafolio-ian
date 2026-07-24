@@ -148,32 +148,39 @@ export default function GitHub() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [repos, setRepos] = useState<ReposPayload | null>(null);
   const [contrib, setContrib] = useState<Contributions | null>(null);
-  const [error, setError] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    Promise.all([
-      fetch("/api/github/profile").then((r) => (r.ok ? r.json() : Promise.reject())),
-      fetch("/api/github/repos").then((r) => (r.ok ? r.json() : Promise.reject())),
-      fetch("/api/github/contributions").then((r) => (r.ok ? r.json() : null)).catch(() => null),
-    ])
-      .then(([p, r, c]) => {
-        setProfile(p);
-        setRepos(r);
-        setContrib(c);
-      })
-      .catch(() => setError(true));
+    let active = true;
+    // Independent fetch: one endpoint failing (e.g. GitHub REST rate-limit)
+    // must NOT take down the whole section — the activity map uses a separate,
+    // auth-free API and should still render.
+    const get = async (url: string) => {
+      try {
+        const r = await fetch(url);
+        if (!r.ok) return null;
+        const d = await r.json();
+        return d && d.error ? null : d;
+      } catch {
+        return null;
+      }
+    };
+    (async () => {
+      const [p, r, c] = await Promise.all([
+        get("/api/github/profile"),
+        get("/api/github/repos"),
+        get("/api/github/contributions"),
+      ]);
+      if (!active) return;
+      setProfile(p);
+      setRepos(r);
+      setContrib(c);
+      setReady(true);
+    })();
+    return () => {
+      active = false;
+    };
   }, []);
-
-  if (error) {
-    return (
-      <section id="github" className="relative px-6 py-32">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
-          <p className="mt-8 text-center text-ink-400">{t("github.unavailable", locale)}</p>
-        </div>
-      </section>
-    );
-  }
 
   const stats = profile
     ? [
@@ -188,7 +195,7 @@ export default function GitHub() {
     <section id="github" className="relative px-6 py-32">
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-green/10 blur-[140px]" />
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="06" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
+        <SectionHeader index="08" kicker={t("github.kicker", locale)} title={t("github.title", locale)} />
 
         {/* Stats bar */}
         <motion.div
@@ -221,7 +228,7 @@ export default function GitHub() {
                 ))}
               </div>
             </>
-          ) : (
+          ) : ready ? null : (
             <div className="flex items-center gap-8">
               <Skeleton className="h-14 w-14 rounded-full" />
               <Skeleton className="h-10 w-64" />
@@ -254,6 +261,10 @@ export default function GitHub() {
                 <span>{t("github.more", locale)}</span>
               </div>
             </>
+          ) : ready ? (
+            <p className="py-8 text-center text-sm text-ink-400">
+              {t("github.unavailable", locale)}
+            </p>
           ) : (
             <Skeleton className="h-28 w-full rounded-xl" />
           )}
@@ -285,7 +296,7 @@ export default function GitHub() {
                 ))}
               </div>
             </div>
-          ) : (
+          ) : ready ? null : (
             <Skeleton className="h-14 w-full rounded-xl" />
           )}
           <p className="mt-6 max-w-xl text-xs leading-relaxed text-ink-400">

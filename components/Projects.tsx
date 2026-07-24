@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect, MouseEvent } from "react";
+import { useRef, useState, useCallback, MouseEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 import { useLocale } from "./I18nProvider";
@@ -39,7 +39,7 @@ function TiltCard({ children, className, href }: { children: React.ReactNode; cl
   const inner = (
     <>
       <div
-        className="pointer-events-none absolute inset-0 z-20 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 z-20 rounded-3xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
         style={{
           background: `radial-gradient(circle at ${shine.x}% ${shine.y}%, rgba(255,255,255,0.06) 0%, transparent 60%)`,
         }}
@@ -64,111 +64,64 @@ function TiltCard({ children, className, href }: { children: React.ReactNode; cl
 
 export default function Projects() {
   const { locale } = useLocale();
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const projectTexts = tArray<ProjectTranslation>("projects.items", locale);
 
-  const updateScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    if (maxScroll > 0) {
-      setProgress(el.scrollLeft / maxScroll);
-    }
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < maxScroll - 10);
-  }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", updateScroll, { passive: true });
-    updateScroll();
-    return () => el.removeEventListener("scroll", updateScroll);
-  }, [updateScroll]);
-
-  const scroll = useCallback((dir: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * 520, behavior: "smooth" });
-  }, []);
+  // Duplicate the list so the marquee loops seamlessly (translateX -50%).
+  const loop = [...projects, ...projects];
 
   return (
-    <section id="work" className="relative px-6 py-32">
+    <section id="work" className="relative overflow-hidden px-6 py-32">
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[140px]" />
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto mb-12 max-w-6xl">
         <SectionHeader
           index="04"
           kicker={t("projects.kicker", locale)}
           title={t("projects.title", locale)}
         />
-
-        {/* Desktop scroll arrows */}
-        <div className="mb-4 hidden items-center justify-end gap-2 md:flex">
-          <button
-            onClick={() => scroll(-1)}
-            disabled={!canScrollLeft}
-            className="rounded-full border border-ink-900/10 p-2 text-ink-400 transition hover:border-ink-900/15 hover:text-ink-900 disabled:opacity-30 disabled:hover:border-ink-900/10 disabled:hover:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-            aria-label={t("projects.scrollLeft", locale)}
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => scroll(1)}
-            disabled={!canScrollRight}
-            className="rounded-full border border-ink-900/10 p-2 text-ink-400 transition hover:border-ink-900/15 hover:text-ink-900 disabled:opacity-30 disabled:hover:border-ink-900/10 disabled:hover:text-ink-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-            aria-label={t("projects.scrollRight", locale)}
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
       </div>
 
-      {/* Horizontal scroll container — stacked on mobile, horizontal on md+ */}
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-6 md:hidden">
-          {projects.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.08 }}
-            >
-              <ProjectCard p={p} pt={projectTexts[i]} />
-            </motion.div>
-          ))}
-        </div>
+      {/* Mobile: stacked vertical list */}
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 md:hidden">
+        {projects.map((p, i) => (
+          <motion.div
+            key={p.title}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, delay: i * 0.08 }}
+          >
+            <ProjectCard p={p} pt={projectTexts[i]} />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Desktop: auto-scrolling marquee (horizontal only, pauses on hover) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="projects-marquee-wrap group relative hidden overflow-hidden md:block"
+      >
+        {/* Edge fades into the paper background */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
 
         <div
-          ref={scrollRef}
-          className="no-scrollbar hidden snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:flex"
+          className="projects-marquee-track flex w-max animate-marquee items-stretch py-2 group-hover:[animation-play-state:paused]"
+          style={{ animationDuration: "70s" }}
         >
-          {projects.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.08 }}
-              className="shrink-0 snap-center"
-              style={{ minWidth: "500px" }}
+          {loop.map((p, i) => (
+            <div
+              key={`${p.title}-${i}`}
+              aria-hidden={i >= projects.length}
+              className="mr-6 w-[500px] shrink-0"
             >
-              <ProjectCard p={p} pt={projectTexts[i]} />
-            </motion.div>
+              <ProjectCard p={p} pt={projectTexts[i % projects.length]} />
+            </div>
           ))}
         </div>
-
-        {/* Progress bar */}
-        <div className="mx-auto mt-6 hidden h-1 max-w-xs overflow-hidden rounded-full bg-black/[0.06] md:block">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-accent-green to-accent-emerald transition-all duration-150"
-            style={{ width: `${Math.max(20, progress * 100)}%`, marginLeft: `${progress * (100 - Math.max(20, progress * 100))}%` }}
-          />
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -177,12 +130,12 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
   return (
     <TiltCard
       href={p.href}
-      className="group relative block h-full overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 transition-all duration-500 hover:border-ink-900/15 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      className="group/card relative block h-full overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 transition-all duration-500 hover:border-ink-900/15 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
       <div
-        className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
+        className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-700 group-hover/card:opacity-100`}
       />
-      <div className="pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full bg-black/[0.04] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full bg-black/[0.04] opacity-0 blur-3xl transition-opacity duration-500 group-hover/card:opacity-100" />
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="mb-10 flex items-start justify-between">
@@ -190,7 +143,7 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
             {p.company} · {p.year}
           </span>
           {p.href && (
-            <ArrowUpRight className="h-5 w-5 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink-900" />
+            <ArrowUpRight className="h-5 w-5 text-ink-400 transition group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-ink-900" />
           )}
         </div>
 

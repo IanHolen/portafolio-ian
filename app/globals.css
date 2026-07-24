@@ -146,6 +146,15 @@ body {
   .animate-marquee {
     animation: none !important;
   }
+
+  /* Projects marquee: no auto-motion, but keep every card reachable by manual swipe */
+  .projects-marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .projects-marquee-wrap {
+    overflow-x: auto !important;
+  }
 }
 
 /* hide native cursor on devices where custom cursor is active */
