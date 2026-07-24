@@ -299,19 +299,19 @@ export const skills = {
   groups: [
     {
       label: "Fullstack & Web",
-      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "JavaScript", "Tailwind CSS", "Material UI", "HTML", "CSS", "REST APIs", "WebSockets", "Vite"],
+      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "JavaScript", "GraphQL", "Tailwind CSS", "Material UI", "HTML", "CSS", "REST APIs", "WebSockets", "Vite"],
     },
     {
       label: "Cloud & DevOps",
-      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "Vercel", "Cloudflare"],
+      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "Docker", "Vercel", "Cloudflare"],
     },
     {
       label: "Lenguajes & Datos",
-      items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "MATLAB"],
+      items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "Unity", "MATLAB"],
     },
     {
       label: "Bases de datos & Backend",
-      items: ["PostgreSQL", "MySQL", "Supabase", "Prisma", "JWT", "bcrypt", "RLS"],
+      items: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Prisma", "JWT", "bcrypt", "RLS"],
     },
     {
       label: "IA & Integraciones",

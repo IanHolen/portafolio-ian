@@ -343,6 +343,7 @@ const translations = {
   // ─── Skills ───
   "skills.kicker": { es: "Habilidades", en: "Skills" },
   "skills.title": { es: "Mi stack técnico.", en: "My tech stack." },
+  "skills.stackLabel": { es: "Stack principal", en: "Core stack" },
   "skills.groups": {
     es: ["Fullstack & Web", "Cloud & DevOps", "Lenguajes & Datos", "Bases de datos & Backend", "IA & Integraciones", "BI, Viz & Herramientas"],
     en: ["Fullstack & Web", "Cloud & DevOps", "Languages & Data", "Databases & Backend", "AI & Integrations", "BI, Viz & Tools"],

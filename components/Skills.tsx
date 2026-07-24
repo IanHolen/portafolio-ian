@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import TechStack from "./TechStack";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -16,6 +17,8 @@ export default function Skills() {
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-accent-green/10 blur-[150px]" />
       <div className="mx-auto max-w-6xl">
         <SectionHeader index="05" kicker={t("skills.kicker", locale)} title={t("skills.title", locale)} />
+
+        <TechStack label={t("skills.stackLabel", locale)} />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skills.groups.map((group, gi) => (
