@@ -74,7 +74,7 @@ export default function Projects() {
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[140px]" />
       <div className="mx-auto mb-12 max-w-6xl">
         <SectionHeader
-          index="04"
+          index="06"
           kicker={t("projects.kicker", locale)}
           title={t("projects.title", locale)}
         />

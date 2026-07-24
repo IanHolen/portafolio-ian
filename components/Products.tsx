@@ -40,7 +40,7 @@ export default function Products() {
 
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          index="03"
+          index="05"
           kicker={t("products.kicker", locale)}
           title={t("products.title", locale)}
         />

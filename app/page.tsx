@@ -23,11 +23,12 @@ export default function Home() {
       <SectionDivider color="rgba(24,24,15,0.05)" />
       <Experience />
       <SectionDivider color="rgba(24,24,15,0.06)" />
-      <Products />
+      <Education />
       <SectionDivider color="rgba(28,91,58,0.06)" />
+      <Products />
+      <SectionDivider color="rgba(24,24,15,0.06)" />
       <Projects />
       <Skills />
-      <Education />
       <Certifications />
       <SectionDivider color="rgba(24,24,15,0.05)" />
       <GitHub />
