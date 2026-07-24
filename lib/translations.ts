@@ -17,6 +17,7 @@ const translations = {
     es: "Construyo productos de punta a punta —del front-end al pipeline— combinando React, Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Fundador de 5 plataformas SaaS llevadas de la idea a producción.",
     en: "I build products end-to-end —from the front-end to the pipeline— pairing React, Node.js, and AI integrations with modern data architectures on Microsoft Fabric and Azure. Founder of 5 SaaS platforms taken from idea to production.",
   },
+  "hero.workedAt": { es: "Experiencia en", en: "Experience at" },
   "hero.locationLine": {
     es: "Ciudad de México · Disponible para proyectos remotos",
     en: "Mexico City · Available for remote work",

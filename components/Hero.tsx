@@ -192,6 +192,28 @@ export default function Hero() {
             </motion.div>
           </div>
         </div>
+
+        {/* Worked-at strip — fills the lower space + adds credibility */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={4}
+          className="mt-20 flex flex-col gap-4 border-t border-ink-900/10 pt-8 md:mt-28 md:flex-row md:items-baseline md:gap-10"
+        >
+          <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400">
+            {t("hero.workedAt", locale)}
+          </span>
+          <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2 font-display text-xl text-ink-500 md:text-2xl">
+            <span className="transition-colors hover:text-ink-800">eShip / Segmail</span>
+            <span className="text-ink-300">·</span>
+            <span className="transition-colors hover:text-ink-800">Corporativo Tiendas 3B</span>
+            <span className="text-ink-300">·</span>
+            <span className="transition-colors hover:text-ink-800">IBSO</span>
+            <span className="text-ink-300">·</span>
+            <span className="transition-colors hover:text-ink-800">Shoplogix</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
