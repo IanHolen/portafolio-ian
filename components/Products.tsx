@@ -17,7 +17,7 @@ const STATUS_STYLES: Record<
   { dot: string; text: string; ring: string; pulse: boolean }
 > = {
   live: { dot: "bg-accent-green", text: "text-accent-green", ring: "border-accent-green/30 bg-accent-green/10", pulse: false },
-  internal: { dot: "bg-black/[0.04]0", text: "text-ink-600", ring: "border-ink-900/15 bg-black/[0.04]", pulse: false },
+  internal: { dot: "bg-ink-400", text: "text-ink-600", ring: "border-ink-900/15 bg-black/[0.04]", pulse: false },
   wip: { dot: "bg-accent-orange", text: "text-accent-orange", ring: "border-accent-orange/40 bg-accent-orange/10", pulse: true },
 };
 

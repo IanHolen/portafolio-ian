@@ -31,6 +31,7 @@ const translations = {
   "hero.downloadCv": { es: "Descargar CV", en: "Download CV" },
   "hero.scroll": { es: "scroll", en: "scroll" },
   "hero.stat.platforms": { es: "Plataformas propias", en: "Own platforms" },
+  "hero.stat.years": { es: "Años construyendo", en: "Years building" },
   "hero.stat.stores": { es: "Tiendas impactadas", en: "Stores impacted" },
   "hero.stat.faster": { es: "Más rápido", en: "Faster" },
   "hero.stat.regions": { es: "Regiones", en: "Regions" },

@@ -96,9 +96,7 @@ export default function Hero() {
 
   const stats = [
     { value: 5, suffix: "", label: t("hero.stat.platforms", locale) },
-    { value: 3400, suffix: "+", label: t("hero.stat.stores", locale) },
-    { value: 35, suffix: "%", label: t("hero.stat.faster", locale) },
-    { value: 21, suffix: "", label: t("hero.stat.regions", locale) },
+    { value: 3, suffix: "+", label: t("hero.stat.years", locale) },
   ];
 
   return (
