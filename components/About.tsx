@@ -78,6 +78,29 @@ export default function About() {
             >
               {t("about.intro2", locale)}
             </motion.p>
+
+            {/* Quick facts — compact info cards, right after the intro */}
+            <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2">
+              {info.map((it, i) => (
+                <motion.div
+                  key={it.label}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="rounded-2xl border border-ink-900/10 bg-card p-5"
+                >
+                  <div className="mb-3 flex items-center gap-2 text-accent-green">
+                    <it.Icon className="h-4 w-4" strokeWidth={1.75} />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
+                      {it.label}
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
+                  {it.sub && <p className="mt-1 text-xs leading-snug text-ink-500">{it.sub}</p>}
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <ul className="md:col-span-5 space-y-5">
@@ -95,29 +118,6 @@ export default function About() {
               </motion.li>
             ))}
           </ul>
-        </div>
-
-        {/* Quick facts — compact info cards */}
-        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {info.map((it, i) => (
-            <motion.div
-              key={it.label}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="rounded-2xl border border-ink-900/10 bg-card p-5"
-            >
-              <div className="mb-3 flex items-center gap-2 text-accent-green">
-                <it.Icon className="h-4 w-4" strokeWidth={1.75} />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
-                  {it.label}
-                </span>
-              </div>
-              <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
-              {it.sub && <p className="mt-1 text-xs leading-snug text-ink-500">{it.sub}</p>}
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
