@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect, MouseEvent, PointerEvent } from "react";
+import { useRef, useState, useCallback, MouseEvent, PointerEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 import { useLocale } from "./I18nProvider";
@@ -13,6 +13,8 @@ interface ProjectTranslation {
   blurb: string;
   metric: string;
 }
+
+const CARD_STEP = 524; // card width (500) + gap (24)
 
 function TiltCard({ children, className, href }: { children: React.ReactNode; className?: string; href?: string }) {
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -66,60 +68,29 @@ export default function Projects() {
   const { locale } = useLocale();
   const projectTexts = tArray<ProjectTranslation>("projects.items", locale);
 
-  // Duplicate the list so the auto-scroll loops seamlessly.
-  const loop = [...projects, ...projects];
-
   const scrollRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false); // paused while hovered / dragging
   const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: false });
 
-  // Auto-scroll: gently advances on its own, but stops whenever the user is
-  // interacting (hover or drag), so they can move it and read everything.
-  useEffect(() => {
+  // Arrows: advance one card; wrap around at the ends (loop).
+  const scrollByDir = useCallback((dir: number) => {
     const el = scrollRef.current;
     if (!el) return;
-
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-
-    let raf = 0;
-    const speed = 0.9; // px per frame (~54px/s)
-    const step = () => {
-      if (el && !pausedRef.current) {
-        const half = el.scrollWidth / 2;
-        let next = el.scrollLeft + speed;
-        if (half > 0 && next >= half) next -= half;
-        el.scrollLeft = next;
-      }
-      raf = requestAnimationFrame(step);
-    };
-    if (!reduce) raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    const max = el.scrollWidth - el.clientWidth;
+    const cur = el.scrollLeft;
+    if (dir > 0) {
+      if (cur >= max - 8) el.scrollTo({ left: 0, behavior: "smooth" });
+      else el.scrollBy({ left: CARD_STEP, behavior: "smooth" });
+    } else {
+      if (cur <= 8) el.scrollTo({ left: max, behavior: "smooth" });
+      else el.scrollBy({ left: -CARD_STEP, behavior: "smooth" });
+    }
   }, []);
-
-  // Keep the manual scroll position within the first copy for a seamless loop.
-  const onScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const half = el.scrollWidth / 2;
-    if (half <= 0) return;
-    if (el.scrollLeft >= half) el.scrollLeft -= half;
-    else if (el.scrollLeft < 0) el.scrollLeft += half;
-  }, []);
-
-  const pause = () => (pausedRef.current = true);
-  const resume = () => {
-    pausedRef.current = false;
-    drag.current.down = false;
-  };
 
   // Drag-to-scroll (grab and pull), works for mouse and touch.
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
     const el = scrollRef.current;
     if (!el) return;
     drag.current = { down: true, startX: e.clientX, startLeft: el.scrollLeft, moved: false };
-    pausedRef.current = true;
   };
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
     if (!drag.current.down) return;
@@ -144,12 +115,30 @@ export default function Projects() {
   return (
     <section id="work" className="relative overflow-hidden px-6 py-32">
       <div className="pointer-events-none absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[140px]" />
-      <div className="mx-auto mb-12 max-w-6xl">
+      <div className="mx-auto mb-8 max-w-6xl">
         <SectionHeader
           index="04"
           kicker={t("projects.kicker", locale)}
           title={t("projects.title", locale)}
         />
+
+        {/* Arrows */}
+        <div className="mt-4 hidden items-center justify-end gap-2 md:flex">
+          <button
+            onClick={() => scrollByDir(-1)}
+            aria-label={t("projects.scrollLeft", locale)}
+            className="rounded-full border border-ink-900/10 p-2.5 text-ink-500 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => scrollByDir(1)}
+            aria-label={t("projects.scrollRight", locale)}
+            className="rounded-full border border-ink-900/10 p-2.5 text-ink-500 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile: stacked vertical list */}
@@ -167,7 +156,7 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Desktop: auto-scrolls, pauses on hover, and you can drag/scroll it */}
+      {/* Desktop: static — drag it or use the arrows to move it */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -181,24 +170,18 @@ export default function Projects() {
 
         <div
           ref={scrollRef}
-          onScroll={onScroll}
-          onMouseEnter={pause}
-          onMouseLeave={resume}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
           onClickCapture={onClickCapture}
-          className="projects-marquee-wrap no-scrollbar cursor-grab overflow-x-auto active:cursor-grabbing"
+          className="no-scrollbar cursor-grab overflow-x-auto scroll-smooth active:cursor-grabbing"
         >
           <div className="flex w-max items-stretch py-2">
-            {loop.map((p, i) => (
-              <div
-                key={`${p.title}-${i}`}
-                aria-hidden={i >= projects.length}
-                className="mr-6 w-[500px] shrink-0 select-none"
-              >
-                <ProjectCard p={p} pt={projectTexts[i % projects.length]} />
+            {projects.map((p, i) => (
+              <div key={p.title} className="mr-6 w-[500px] shrink-0 select-none">
+                <ProjectCard p={p} pt={projectTexts[i]} />
               </div>
             ))}
           </div>

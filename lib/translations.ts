@@ -14,8 +14,8 @@ const translations = {
   // ─── Hero ───
   "hero.available": { es: "Disponible para nuevos proyectos", en: "Available for new projects" },
   "hero.tagline": {
-    es: "Construyo productos completos, del front-end al pipeline de datos, con foco en IA. He fundado 5 plataformas propias y las llevé de la idea a producción.",
-    en: "I build complete products, from the front-end to the data pipeline, with a focus on AI. I've founded 5 of my own platforms and taken them from idea to production.",
+    es: "Construyo productos completos, de la interfaz a los datos, con foco en IA. He fundado 5 plataformas propias y las llevé de la idea a producción.",
+    en: "I build complete products, from the interface to the data, with a focus on AI. I've founded 5 of my own platforms and taken them from idea to production.",
   },
   "hero.workedAt": { es: "Experiencia en", en: "Experience at" },
   "hero.locationLine": {
