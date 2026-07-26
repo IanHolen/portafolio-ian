@@ -100,7 +100,12 @@ export default function Hero() {
   ];
 
   const info = [
-    { Icon: Briefcase, label: t("about.info.role", locale), value: t("about.info.roleValue", locale) },
+    {
+      Icon: Briefcase,
+      label: t("about.info.role", locale),
+      value: t("about.info.roleValue", locale),
+      sub: t("about.info.roleSub", locale),
+    },
     {
       Icon: GraduationCap,
       label: t("about.info.education", locale),

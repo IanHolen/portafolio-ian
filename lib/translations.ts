@@ -14,8 +14,8 @@ const translations = {
   // ─── Hero ───
   "hero.available": { es: "Disponible para nuevos proyectos", en: "Available for new projects" },
   "hero.tagline": {
-    es: "Construyo productos completos, de la interfaz a los datos, con foco en IA. He fundado 5 plataformas propias y las llevé de la idea a producción.",
-    en: "I build complete products, from the interface to the data, with a focus on AI. I've founded 5 of my own platforms and taken them from idea to production.",
+    es: "Convierto ideas en productos completos —de la interfaz a los datos— con IA en el núcleo. He llevado 5 plataformas propias de cero a producción.",
+    en: "I turn ideas into complete products —from the interface to the data— with AI at the core. I've taken 5 of my own platforms from zero to production.",
   },
   "hero.workedAt": { es: "Experiencia en", en: "Experience at" },
   "hero.locationLine": {
@@ -46,8 +46,8 @@ const translations = {
     en: "I'm a Fullstack Developer specialized in AI and Data Engineering, based in Mexico City. Today I build AI-powered, real-time products at eShip/Segmail — customer-facing features, LLM chatbots, live messaging services, and MCP servers that connect language models straight to the platform — on React/Node.js and event-driven data architectures over Microsoft Fabric and Azure.",
   },
   "about.intro2": {
-    es: "Antes diseñé pipelines de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me gusta hacerme cargo del producto completo, de principio a fin.",
-    en: "Before that I designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%. In parallel, I've founded five of my own platforms — from a multi-tenant CRM to an AI notarial platform — taking each one from idea to production. I like owning the whole product, end to end.",
+    es: "Antes diseñé pipelines de extracción y procesamiento de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me gusta hacerme cargo del producto completo, de principio a fin.",
+    en: "Before that I designed data extraction and processing pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%. In parallel, I've founded five of my own platforms — from a multi-tenant CRM to an AI notarial platform — taking each one from idea to production. I like owning the whole product, end to end.",
   },
   "about.bullets": {
     es: [
@@ -64,7 +64,8 @@ const translations = {
     ],
   },
   "about.info.role": { es: "Rol", en: "Role" },
-  "about.info.roleValue": { es: "Fullstack Developer & Data Engineer", en: "Fullstack Developer & Data Engineer" },
+  "about.info.roleValue": { es: "Fullstack Developer", en: "Fullstack Developer" },
+  "about.info.roleSub": { es: "Especializado en IA e Ing. de Datos", en: "Specialized in AI & Data Engineering" },
   "about.info.education": { es: "Educación", en: "Education" },
   "about.info.educationValue": { es: "Ing. en Tecnologías Computacionales", en: "B.S. Computer Technologies Eng." },
   "about.info.educationSub": { es: "Tec de Monterrey · + Marketing, CEU Madrid", en: "Tec de Monterrey · + Marketing, CEU Madrid" },
