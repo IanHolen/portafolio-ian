@@ -156,17 +156,16 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Desktop: static — drag it or use the arrows to move it */}
+      {/* Desktop: static — drag it or use the arrows to move it (cards snap into place) */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative hidden md:block"
+        className="relative mx-auto hidden max-w-6xl md:block"
       >
-        {/* Edge fades into the paper background */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
+        {/* Soft fade on the right hints there's more to slide */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-paper to-transparent" />
 
         <div
           ref={scrollRef}
@@ -176,11 +175,11 @@ export default function Projects() {
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
           onClickCapture={onClickCapture}
-          className="no-scrollbar cursor-grab overflow-x-auto scroll-smooth active:cursor-grabbing"
+          className="no-scrollbar cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"
         >
-          <div className="flex w-max items-stretch py-2">
+          <div className="flex w-max items-stretch py-2 pr-6">
             {projects.map((p, i) => (
-              <div key={p.title} className="mr-6 w-[500px] shrink-0 select-none">
+              <div key={p.title} className="mr-6 w-[500px] shrink-0 snap-start select-none">
                 <ProjectCard p={p} pt={projectTexts[i]} />
               </div>
             ))}
