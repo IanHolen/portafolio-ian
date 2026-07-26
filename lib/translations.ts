@@ -46,8 +46,8 @@ const translations = {
     en: "I'm a Fullstack Developer specialized in AI and Data Engineering, based in Mexico City. Today I build AI-powered, real-time products at eShip/Segmail — customer-facing features, LLM chatbots, live messaging services, and MCP servers that connect language models straight to the platform — on React/Node.js and event-driven data architectures over Microsoft Fabric and Azure.",
   },
   "about.intro2": {
-    es: "Antes diseñé pipelines de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me muevo igual de cómodo en la interfaz que en el pipeline: me gusta ser dueño del producto completo, no de una sola capa.",
-    en: "Before that I designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%. In parallel, I've founded five of my own platforms — from a multi-tenant CRM to an AI notarial platform — taking each one from idea to production. I'm equally at home in the interface and in the pipeline: I like owning the whole product, not just a single layer.",
+    es: "Antes diseñé pipelines de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me gusta hacerme cargo del producto completo, de principio a fin.",
+    en: "Before that I designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%. In parallel, I've founded five of my own platforms — from a multi-tenant CRM to an AI notarial platform — taking each one from idea to production. I like owning the whole product, end to end.",
   },
   "about.bullets": {
     es: [
