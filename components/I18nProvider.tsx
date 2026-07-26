@@ -13,17 +13,18 @@ const I18nContext = createContext<I18nContextValue>({
   setLocale: () => {},
 });
 
-function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "es";
-  try {
-    const saved = localStorage.getItem("locale");
-    if (saved === "en" || saved === "es") return saved;
-  } catch {}
-  return "es";
-}
-
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
+  // Always start on the server default ("es") so the first client render
+  // matches the server HTML (avoids a hydration mismatch). Then, after mount,
+  // switch to the visitor's saved language.
+  const [locale, setLocaleState] = useState<Locale>("es");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("locale");
+      if (saved === "en" || saved === "es") setLocaleState(saved);
+    } catch {}
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;
