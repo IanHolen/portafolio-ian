@@ -6,7 +6,7 @@ import HighlightText from "./HighlightText";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
-const HIGHLIGHT_TERMS = ["Fullstack Developer", "AI Engineer", "Data Engineer", "React/Node.js", "Microsoft Fabric", "Azure", "MCP", "LLMs", "producción"];
+const HIGHLIGHT_TERMS = ["Fullstack Developer", "Ingeniería de Datos", "Data Engineering", "React/Node.js", "Microsoft Fabric", "Azure", "MCP", "LLMs"];
 
 function highlightIntro(text: string) {
   const parts: (string | JSX.Element)[] = [];

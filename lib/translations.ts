@@ -42,8 +42,8 @@ const translations = {
   "about.kicker": { es: "Sobre mí", en: "About me" },
   "about.title": { es: "Builder end-to-end.", en: "End-to-end builder." },
   "about.intro": {
-    es: "Soy Fullstack Developer, AI Engineer y Data Engineer, radicado en Ciudad de México. Hoy construyo productos en tiempo real con IA en eShip/Segmail — features customer-facing, chatbots con LLMs, servicios de mensajería en vivo y servidores MCP que conectan modelos de lenguaje directo a la plataforma — sobre React/Node.js y arquitecturas de datos event-driven en Microsoft Fabric y Azure.",
-    en: "I'm a Fullstack Developer, AI Engineer, and Data Engineer based in Mexico City. Today I build AI-powered, real-time products at eShip/Segmail — customer-facing features, LLM chatbots, live messaging services, and MCP servers that connect language models straight to the platform — on React/Node.js and event-driven data architectures over Microsoft Fabric and Azure.",
+    es: "Soy Fullstack Developer con especialidad en IA e Ingeniería de Datos, radicado en Ciudad de México. Hoy construyo productos en tiempo real con IA en eShip/Segmail — features customer-facing, chatbots con LLMs, servicios de mensajería en vivo y servidores MCP que conectan modelos de lenguaje directo a la plataforma — sobre React/Node.js y arquitecturas de datos event-driven en Microsoft Fabric y Azure.",
+    en: "I'm a Fullstack Developer specialized in AI and Data Engineering, based in Mexico City. Today I build AI-powered, real-time products at eShip/Segmail — customer-facing features, LLM chatbots, live messaging services, and MCP servers that connect language models straight to the platform — on React/Node.js and event-driven data architectures over Microsoft Fabric and Azure.",
   },
   "about.intro2": {
     es: "Antes diseñé pipelines de datos para 21 regiones y más de 3,400 tiendas, recortando tiempos de procesamiento hasta un 35%. Y en paralelo fundé cinco plataformas propias — de un CRM multi-tenant a una plataforma de IA notarial — que llevé de idea a producción. Me muevo igual de cómodo en la interfaz que en el pipeline: me gusta ser dueño del producto completo, no de una sola capa.",
