@@ -102,8 +102,8 @@ export default function Hero() {
   return (
     <section id="top" className="relative flex min-h-screen items-center px-6 pt-32">
       <div className="mx-auto w-full max-w-6xl">
-        <div className="grid gap-14 md:grid-cols-[1.35fr_1fr] md:items-end">
-          {/* Left: identity */}
+        <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center lg:gap-16">
+          {/* Left: identity + pitch + CTA + stats */}
           <div>
             <motion.div
               initial="hidden"
@@ -116,7 +116,7 @@ export default function Hero() {
               {t("hero.available", locale)}
             </motion.div>
 
-            <h1 className="font-display text-[clamp(3.2rem,8.5vw,7.5rem)] font-medium leading-[0.92] tracking-tight">
+            <h1 className="font-display text-[clamp(2.8rem,6.5vw,6rem)] font-medium leading-[0.92] tracking-tight">
               <SplitText text={profile.firstName} className="block text-ink-900" />
               <SplitText text={profile.lastName} className="block text-ink-400" />
             </h1>
@@ -126,20 +126,17 @@ export default function Hero() {
               animate="visible"
               variants={fadeUp}
               custom={2}
-              className="mt-7 font-mono text-sm uppercase tracking-[0.18em] text-ink-600"
+              className="mt-6 font-mono text-sm uppercase tracking-[0.18em] text-ink-600"
             >
               {t("hero.role", locale)}
             </motion.p>
-          </div>
 
-          {/* Right: pitch + CTA + stats */}
-          <div className="md:pb-3">
             <motion.p
               initial="hidden"
               animate="visible"
               variants={fadeUp}
               custom={2.6}
-              className="text-lg leading-relaxed text-ink-700"
+              className="mt-6 max-w-md text-lg leading-relaxed text-ink-700"
             >
               {t("hero.tagline", locale)}
             </motion.p>
@@ -177,7 +174,7 @@ export default function Hero() {
               animate="visible"
               variants={fadeUp}
               custom={3.5}
-              className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-900/10 pt-7 sm:grid-cols-4"
+              className="mt-10 grid max-w-md grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-900/10 pt-7"
             >
               {stats.map((s) => (
                 <div key={s.label}>
@@ -191,6 +188,25 @@ export default function Hero() {
               ))}
             </motion.div>
           </div>
+
+          {/* Right: portrait */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+            className="relative mx-auto w-full max-w-[360px] md:max-w-none"
+          >
+            <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ian-portrait.jpg"
+                alt={`${profile.firstName} ${profile.lastName}`}
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
+            </div>
+          </motion.div>
         </div>
 
         {/* Worked-at strip — fills the lower space + adds credibility */}
