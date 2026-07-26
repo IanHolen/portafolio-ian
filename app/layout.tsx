@@ -4,7 +4,6 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
 import "@fontsource-variable/fraunces";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 import CommandPalette from "@/components/CommandPalette";
 import ReadingProgress from "@/components/ReadingProgress";
 import Providers from "@/components/Providers";
@@ -70,7 +69,6 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className="has-custom-cursor"
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: localeScript }} />
@@ -81,7 +79,6 @@ export default function RootLayout({
           <div className="pointer-events-none fixed inset-0 -z-10 bg-radial-fade" />
           <div className="pointer-events-none fixed inset-0 -z-10 bg-grid-pattern [background-size:56px_56px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
           <ReadingProgress />
-          <CustomCursor />
           <CommandPalette />
           {children}
         </Providers>

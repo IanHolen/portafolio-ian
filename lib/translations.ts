@@ -14,8 +14,8 @@ const translations = {
   // ─── Hero ───
   "hero.available": { es: "Disponible para nuevos proyectos", en: "Available for new projects" },
   "hero.tagline": {
-    es: "Construyo productos de punta a punta —del front-end al pipeline— combinando React, Node.js e integraciones de IA con arquitecturas de datos modernas sobre Microsoft Fabric y Azure. Fundador de 5 plataformas SaaS llevadas de la idea a producción.",
-    en: "I build products end-to-end —from the front-end to the pipeline— pairing React, Node.js, and AI integrations with modern data architectures on Microsoft Fabric and Azure. Founder of 5 SaaS platforms taken from idea to production.",
+    es: "Construyo productos completos, del front-end al pipeline de datos, con foco en IA. He fundado 5 plataformas propias y las llevé de la idea a producción.",
+    en: "I build complete products, from the front-end to the data pipeline, with a focus on AI. I've founded 5 of my own platforms and taken them from idea to production.",
   },
   "hero.workedAt": { es: "Experiencia en", en: "Experience at" },
   "hero.locationLine": {
