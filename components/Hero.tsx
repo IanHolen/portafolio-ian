@@ -158,7 +158,54 @@ export default function Hero() {
               animate="visible"
               variants={fadeUp}
               custom={3.1}
-              className="mt-8 flex flex-wrap items-center gap-3"
+              className="mt-8 grid max-w-md grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-900/10 pt-7"
+            >
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-3xl font-medium text-ink-900">
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Quick facts */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={3.5}
+              className="mt-8 grid max-w-md grid-cols-2 gap-3"
+            >
+              {info.map((it) => (
+                <div
+                  key={it.label}
+                  className="rounded-2xl border border-ink-900/10 bg-card p-4"
+                >
+                  <div className="mb-2 flex items-center gap-2 text-accent-green">
+                    <it.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
+                      {it.label}
+                    </span>
+                  </div>
+                  <p className="text-xs font-medium leading-snug text-ink-900">{it.value}</p>
+                  {it.sub && (
+                    <p className="mt-0.5 text-[10px] leading-snug text-ink-500">{it.sub}</p>
+                  )}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTA buttons */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={4}
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
               <MagneticWrap>
                 <a
@@ -179,52 +226,6 @@ export default function Hero() {
                   {t("hero.downloadCv", locale)}
                 </a>
               </MagneticWrap>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              custom={3.5}
-              className="mt-10 grid max-w-md grid-cols-2 gap-x-8 gap-y-6 border-t border-ink-900/10 pt-7"
-            >
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p className="font-display text-3xl font-medium text-ink-900">
-                    <AnimatedCounter value={s.value} suffix={s.suffix} />
-                  </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-500">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Quick facts */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              custom={4}
-              className="mt-8 grid max-w-md grid-cols-2 gap-3"
-            >
-              {info.map((it) => (
-                <div
-                  key={it.label}
-                  className="rounded-2xl border border-ink-900/10 bg-card p-4"
-                >
-                  <div className="mb-2 flex items-center gap-2 text-accent-green">
-                    <it.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
-                      {it.label}
-                    </span>
-                  </div>
-                  <p className="text-xs font-medium leading-snug text-ink-900">{it.value}</p>
-                  {it.sub && (
-                    <p className="mt-0.5 text-[10px] leading-snug text-ink-500">{it.sub}</p>
-                  )}
-                </div>
-              ))}
             </motion.div>
           </div>
 
