@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -99,10 +99,22 @@ export default function Hero() {
     { value: 3, suffix: "+", label: t("hero.stat.years", locale) },
   ];
 
+  const info = [
+    { Icon: Briefcase, label: t("about.info.role", locale), value: t("about.info.roleValue", locale) },
+    {
+      Icon: GraduationCap,
+      label: t("about.info.education", locale),
+      value: t("about.info.educationValue", locale),
+      sub: t("about.info.educationSub", locale),
+    },
+    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale) },
+    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale) },
+  ];
+
   return (
     <section id="top" className="relative flex min-h-screen items-center px-6 pt-32">
       <div className="mx-auto w-full max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center lg:gap-16">
+        <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-stretch lg:gap-16">
           {/* Left: identity + pitch + CTA + stats */}
           <div>
             <motion.div
@@ -187,6 +199,33 @@ export default function Hero() {
                 </div>
               ))}
             </motion.div>
+
+            {/* Quick facts */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              custom={4}
+              className="mt-8 grid max-w-md grid-cols-2 gap-3"
+            >
+              {info.map((it) => (
+                <div
+                  key={it.label}
+                  className="rounded-2xl border border-ink-900/10 bg-card p-4"
+                >
+                  <div className="mb-2 flex items-center gap-2 text-accent-green">
+                    <it.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
+                      {it.label}
+                    </span>
+                  </div>
+                  <p className="text-xs font-medium leading-snug text-ink-900">{it.value}</p>
+                  {it.sub && (
+                    <p className="mt-0.5 text-[10px] leading-snug text-ink-500">{it.sub}</p>
+                  )}
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Right: portrait */}
@@ -194,16 +233,16 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-            className="relative mx-auto w-full max-w-[360px] md:max-w-none"
+            className="relative mx-auto w-full max-w-[360px] md:h-full md:max-w-none"
           >
             <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)] md:aspect-auto md:h-full md:min-h-[520px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/ian-portrait.jpg"
                 alt={`${profile.firstName} ${profile.lastName}`}
-                className="aspect-[4/5] w-full object-cover object-top"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
             </div>
           </motion.div>
