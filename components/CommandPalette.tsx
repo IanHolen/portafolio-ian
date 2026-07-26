@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Briefcase, Code, FolderGit2, GraduationCap, Mail, Copy, ExternalLink } from "lucide-react";
+import { Search, Home, User, Briefcase, Code, FolderGit2, Mail, Copy, ExternalLink } from "lucide-react";
 import { profile, products, projects } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -29,8 +29,6 @@ export default function CommandPalette() {
     { id: "products", label: t("cmd.products", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#products") },
     { id: "projects", label: t("cmd.projects", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
     { id: "skills", label: t("cmd.skills", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
-    { id: "github", label: t("cmd.github", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#github") },
-    { id: "education", label: t("cmd.education", locale), icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#education") },
     { id: "contact", label: t("cmd.contact", locale), icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
     ...products.map((p) => ({
       id: `product-${p.name}`,

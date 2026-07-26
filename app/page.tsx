@@ -2,10 +2,8 @@ import About from "@/components/About";
 import BackToTop from "@/components/BackToTop";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
-import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
-import GitHub from "@/components/GitHub";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Products from "@/components/Products";
@@ -22,8 +20,6 @@ export default function Home() {
       <About />
       <SectionDivider color="rgba(24,24,15,0.05)" />
       <Experience />
-      <SectionDivider color="rgba(24,24,15,0.06)" />
-      <Education />
       <SectionDivider color="rgba(28,91,58,0.06)" />
       <Products />
       <SectionDivider color="rgba(24,24,15,0.06)" />
@@ -31,8 +27,6 @@ export default function Home() {
       <Skills />
       <Certifications />
       <SectionDivider color="rgba(24,24,15,0.05)" />
-      <GitHub />
-      <SectionDivider color="rgba(24,24,15,0.06)" />
       <Contact />
       <Footer />
       <BackToTop />

@@ -63,6 +63,15 @@ const translations = {
       "Computer Technologies Engineer from Tec de Monterrey.",
     ],
   },
+  "about.info.role": { es: "Rol", en: "Role" },
+  "about.info.roleValue": { es: "Fullstack Developer & Data Engineer", en: "Fullstack Developer & Data Engineer" },
+  "about.info.education": { es: "Educación", en: "Education" },
+  "about.info.educationValue": { es: "Ing. en Tecnologías Computacionales", en: "B.S. Computer Technologies Eng." },
+  "about.info.educationSub": { es: "Tec de Monterrey · + Marketing, CEU Madrid", en: "Tec de Monterrey · + Marketing, CEU Madrid" },
+  "about.info.location": { es: "Ubicación", en: "Location" },
+  "about.info.locationValue": { es: "Ciudad de México, MX", en: "Mexico City, MX" },
+  "about.info.languages": { es: "Idiomas", en: "Languages" },
+  "about.info.languagesValue": { es: "Español · Inglés", en: "Spanish · English" },
 
   // ─── Experience ───
   "experience.kicker": { es: "Experiencia", en: "Experience" },
