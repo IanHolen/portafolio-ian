@@ -3,6 +3,9 @@
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
+import { SiGithub, SiGmail } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
+import type { IconType } from "react-icons";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -15,9 +18,18 @@ function heroBrand(label: string): string {
   return "#1c5b3a";
 }
 
+function heroBrandIcon(label: string): IconType | null {
+  const l = label.toLowerCase();
+  if (l.includes("linkedin")) return FaLinkedin;
+  if (l.includes("github")) return SiGithub;
+  if (l.includes("mail")) return SiGmail;
+  return null;
+}
+
 function HeroSocial({ label, href }: { label: string; href: string }) {
   const [hover, setHover] = useState(false);
   const color = heroBrand(label);
+  const Icon = heroBrandIcon(label);
   return (
     <a
       href={href}
@@ -26,8 +38,15 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
-      className="inline-flex flex-1 items-center justify-center rounded-full border border-ink-900/15 px-6 py-3.5 text-sm font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
+      {Icon && (
+        <Icon
+          className="h-[1.05rem] w-[1.05rem] shrink-0 transition-colors duration-200"
+          style={{ color: hover ? "#fff" : color }}
+          aria-hidden="true"
+        />
+      )}
       {label}
     </a>
   );
@@ -222,7 +241,7 @@ export default function Hero() {
               {info.map((it) => (
                 <div
                   key={it.label}
-                  className="rounded-2xl border border-ink-900/10 bg-card p-5"
+                  className="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-card p-5"
                 >
                   <div className="mb-2.5 flex items-center gap-2 text-accent-green">
                     <it.Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -232,10 +251,12 @@ export default function Hero() {
                   </div>
                   <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
                   {it.sub && (
-                    <p className="mt-1 text-[11px] leading-snug text-ink-500">{it.sub}</p>
+                    <p className="mt-auto pt-4 text-[13px] font-medium leading-snug text-ink-600">
+                      {it.sub}
+                    </p>
                   )}
                   {it.schools.length > 0 && (
-                    <div className="mt-2.5 space-y-1.5">
+                    <div className="mt-auto space-y-2 pt-3">
                       {it.schools.map((s) => (
                         <div key={s.src} className="flex items-center gap-2">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -244,9 +265,9 @@ export default function Hero() {
                             alt={s.name}
                             className="h-5 w-5 shrink-0 object-contain"
                           />
-                          <span className="text-[11px] leading-snug text-ink-500">
-                            {s.name}
-                            {s.note && <span className="text-ink-400"> · {s.note}</span>}
+                          <span className="text-[11px] leading-snug">
+                            <span className="font-semibold text-ink-800">{s.name}</span>
+                            {s.note && <span className="text-ink-500"> · {s.note}</span>}
                           </span>
                         </div>
                       ))}
