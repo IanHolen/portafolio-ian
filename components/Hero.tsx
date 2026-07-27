@@ -263,7 +263,7 @@ export default function Hero() {
           custom={3.9}
           className="mt-16 md:mt-20"
         >
-          <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center lg:gap-16">
             <div className="flex flex-wrap items-center gap-3">
               <MagneticWrap>
                 <a
@@ -285,7 +285,7 @@ export default function Hero() {
                 </a>
               </MagneticWrap>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               {profile.socials.map((s) => (
                 <HeroSocial key={s.label} label={s.label} href={s.href} />
               ))}
