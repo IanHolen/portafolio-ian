@@ -470,8 +470,7 @@ const translations = {
   },
 
   // ─── Footer ───
-  "footer.tagline": { es: "Sin plantillas. Sin atajos.", en: "No templates. No shortcuts." },
-  "footer.stack": { es: "Next.js · TypeScript · Tailwind · Vercel", en: "Next.js · TypeScript · Tailwind · Vercel" },
+  "footer.label": { es: "Portafolio personal", en: "Personal portfolio" },
 
   // ─── BackToTop ───
   "backToTop": { es: "Volver arriba", en: "Back to top" },
