@@ -18,11 +18,11 @@ interface ExpItem {
 }
 
 // Company logos by experience order (0: eShip/Segmail, 1: Tiendas 3B, 2: IBSO, 3: Shoplogix)
-const COMPANY_LOGOS = [
-  "/companies/eship.png",
-  "/companies/tiendas3b.png",
-  "/companies/ibso.png",
-  "/companies/shoplogix.png",
+const COMPANY_LOGOS: string[][] = [
+  ["/companies/eship.png", "/companies/segmail.png"],
+  ["/companies/tiendas3b.png"],
+  ["/companies/ibso.png"],
+  ["/companies/shoplogix.png"],
 ];
 
 const PREVIEW = 2; // highlights shown while collapsed (medium)
@@ -74,13 +74,18 @@ function ExperienceCard({
             {exp.role}
           </h3>
           <div className="mt-2 flex items-center gap-2.5">
-            {COMPANY_LOGOS[index] && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={COMPANY_LOGOS[index]}
-                alt={exp.company}
-                className="h-6 w-auto shrink-0 object-contain"
-              />
+            {(COMPANY_LOGOS[index]?.length ?? 0) > 0 && (
+              <div className="flex items-center gap-1.5">
+                {COMPANY_LOGOS[index].map((logo) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={logo}
+                    src={logo}
+                    alt={exp.company}
+                    className="h-6 w-auto shrink-0 object-contain"
+                  />
+                ))}
+              </div>
             )}
             <p className="text-sm text-accent-green">{exp.company}</p>
           </div>
