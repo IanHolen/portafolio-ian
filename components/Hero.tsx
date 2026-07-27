@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
-import { SiGithub, SiGmail } from "react-icons/si";
+import { SiGithub, SiGmail, SiWhatsapp } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { profile } from "@/lib/data";
@@ -14,6 +14,7 @@ function heroBrand(label: string): string {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return "#0A66C2";
   if (l.includes("github")) return "#18180f";
+  if (l.includes("whatsapp")) return "#25D366";
   if (l.includes("mail")) return "#dc2626";
   return "#1c5b3a";
 }
@@ -22,6 +23,7 @@ function heroBrandIcon(label: string): IconType | null {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return FaLinkedin;
   if (l.includes("github")) return SiGithub;
+  if (l.includes("whatsapp")) return SiWhatsapp;
   if (l.includes("mail")) return SiGmail;
   return null;
 }
@@ -35,6 +37,7 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      title={label.toLowerCase().includes("whatsapp") ? `WhatsApp · ${profile.phone}` : label}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
@@ -329,12 +332,10 @@ export default function Hero() {
                 </a>
               </MagneticWrap>
             </div>
-            <div className="mx-auto flex w-full max-w-[360px] items-center gap-4 md:max-w-none">
-              {profile.socials
-                .filter((s) => !s.label.toLowerCase().includes("mail"))
-                .map((s) => (
-                  <HeroSocial key={s.label} label={s.label} href={s.href} />
-                ))}
+            <div className="mx-auto flex w-full max-w-[360px] items-center gap-3 md:max-w-none">
+              {profile.socials.map((s) => (
+                <HeroSocial key={s.label} label={s.label} href={s.href} />
+              ))}
             </div>
           </div>
         </motion.div>

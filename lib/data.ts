@@ -11,10 +11,11 @@ export const profile = {
   email: "holenderian@gmail.com",
   phone: "+52 55 4790 3290",
   cvUrl: "/cv-ian-holender.pdf",
+  whatsapp: "525547903290",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
-    { label: "Email", href: "mailto:holenderian@gmail.com" },
+    { label: "WhatsApp", href: "https://wa.me/525547903290" },
   ],
 };
 
