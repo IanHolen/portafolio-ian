@@ -52,7 +52,7 @@ export default function AcademicDev() {
         </motion.div>
 
         {/* Mobile: swipeable carousel. Desktop: 3-col grid. */}
-        <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
+        <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
           {academicDevs.map((d, i) => {
             const isLive = d.status === "live";
             const typeMeta = TYPE_META[d.type];
@@ -70,7 +70,7 @@ export default function AcademicDev() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="border-glow group relative flex w-[85vw] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-7 text-left transition-all duration-500 hover:border-ink-900/15 md:w-full md:shrink md:snap-align-none"
+                className="border-glow group relative flex w-[86vw] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 text-left transition-all duration-500 hover:border-ink-900/15 md:w-full md:shrink md:snap-align-none md:p-9"
               >
                 <div
                   className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${d.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
@@ -122,7 +122,7 @@ export default function AcademicDev() {
                       href={d.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-display text-2xl font-light leading-tight tracking-tight text-ink-900 transition-colors hover:text-accent-green focus-visible:outline-none"
+                      className="font-display text-[1.7rem] font-light leading-tight tracking-tight text-ink-900 transition-colors hover:text-accent-green focus-visible:outline-none"
                     >
                       {d.name}
                     </a>
@@ -132,7 +132,7 @@ export default function AcademicDev() {
                     {d.year} · {d.domain}
                   </p>
 
-                  <p className="mt-4 text-sm leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
+                  <p className="mt-4 text-[0.95rem] leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
 
                   {/* Tags */}
                   <div className="mt-5 flex flex-wrap items-center gap-2">

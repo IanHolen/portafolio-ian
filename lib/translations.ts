@@ -272,22 +272,18 @@ const translations = {
     es: [
       {
         blurb:
-          "Videojuego 2D de plataformas hecho en Unity por un equipo del Tec. El proyecto original (Unity 2021 LTS) ya no compilaba en hardware moderno; lo migré a Unity 6, lo exporté a WebGL y reconecté su backend Node/Express + MySQL en la nube. Hoy es 100% jugable en el navegador, con login, registro y guardado de partida.",
-      },
-      {
-        blurb:
           "Sistema de recomendación de cultivos con machine learning. Rescaté el modelo original (que dependía de PyTorch) reimplementándolo en numpy para correr gratis, y separé el stack en un frontend React/Vite y un backend Flask con PostgreSQL. Recomienda el cultivo óptimo a partir de nutrientes del suelo y clima — en vivo.",
       },
       {
         blurb:
           "Plataforma de gestión de call center en tiempo real, construida 100% sobre AWS: Cognito para roles (supervisor/agente), AppSync (GraphQL) + DynamoDB para los datos, y Lambda + Amazon Connect para la telefonía y el softphone en el navegador. Como el backend vivía en una cuenta AWS ya cerrada, documenté su arquitectura cloud-native en una landing en vivo como caso de estudio.",
       },
-    ],
-    en: [
       {
         blurb:
-          "A 2D platformer built in Unity by a Tec team. The original project (Unity 2021 LTS) no longer compiled on modern hardware; I migrated it to Unity 6, exported it to WebGL, and reconnected its Node/Express + MySQL backend in the cloud. It's now fully playable in the browser, with login, signup, and save-game.",
+          "Videojuego 2D de plataformas hecho en Unity por un equipo del Tec. El proyecto original (Unity 2021 LTS) ya no compilaba en hardware moderno; lo migré a Unity 6, lo exporté a WebGL y reconecté su backend Node/Express + MySQL en la nube. Hoy es 100% jugable en el navegador, con login, registro y guardado de partida.",
       },
+    ],
+    en: [
       {
         blurb:
           "A crop-recommendation system powered by machine learning. I rescued the original model (which depended on PyTorch) by reimplementing it in numpy to run for free, and split the stack into a React/Vite frontend and a Flask + PostgreSQL backend. It recommends the optimal crop from soil nutrients and climate — live.",
@@ -295,6 +291,10 @@ const translations = {
       {
         blurb:
           "A real-time call-center management platform built entirely on AWS: Cognito for roles (supervisor/agent), AppSync (GraphQL) + DynamoDB for data, and Lambda + Amazon Connect for telephony and the in-browser softphone. Since the backend lived on a now-closed AWS account, I documented its cloud-native architecture in a live landing page as a case study.",
+      },
+      {
+        blurb:
+          "A 2D platformer built in Unity by a Tec team. The original project (Unity 2021 LTS) no longer compiled on modern hardware; I migrated it to Unity 6, exported it to WebGL, and reconnected its Node/Express + MySQL backend in the cloud. It's now fully playable in the browser, with login, signup, and save-game.",
       },
     ],
   },
