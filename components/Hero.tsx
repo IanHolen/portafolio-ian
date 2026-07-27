@@ -285,7 +285,7 @@ export default function Hero() {
                 </a>
               </MagneticWrap>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="mx-auto flex w-full max-w-[360px] items-center justify-between gap-3 md:max-w-none">
               {profile.socials.map((s) => (
                 <HeroSocial key={s.label} label={s.label} href={s.href} />
               ))}
