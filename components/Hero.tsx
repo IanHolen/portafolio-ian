@@ -39,7 +39,7 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
-      className="inline-flex min-w-0 shrink items-center justify-center gap-1.5 rounded-full border border-ink-900/15 px-3.5 py-3.5 text-[13px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:w-full sm:flex-1 sm:gap-2.5 sm:px-6 sm:py-4 sm:text-[15px]"
+      className="inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full border border-ink-900/15 px-2 py-3.5 text-[13px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:flex-1 sm:gap-2.5 sm:px-6 sm:py-4 sm:text-[15px]"
     >
       {Icon ? (
         <Icon
@@ -310,11 +310,11 @@ export default function Hero() {
           className="mt-16 md:mt-20"
         >
           <div className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center lg:gap-16">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="grid grid-cols-2 items-center gap-2 sm:flex sm:flex-wrap sm:gap-3">
               <MagneticWrap>
                 <a
                   href="#products"
-                  className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink-900 px-4 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:w-auto sm:px-6"
                 >
                   {t("hero.cta", locale)}
                   <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
@@ -324,14 +324,14 @@ export default function Hero() {
                 <a
                   href={profile.cvUrl}
                   download
-                  className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-ink-900/15 px-4 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:w-auto sm:px-6"
                 >
                   <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
                   {t("hero.downloadCv", locale)}
                 </a>
               </MagneticWrap>
             </div>
-            <div className="flex w-full items-center justify-center gap-2 sm:gap-3">
+            <div className="grid w-full grid-cols-3 items-center gap-2 sm:flex sm:gap-3">
               {profile.socials.map((s) => (
                 <HeroSocial
                   key={s.label}
