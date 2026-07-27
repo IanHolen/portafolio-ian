@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages, Mail, Phone } from "lucide-react";
+import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -255,7 +255,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Contact cards + CTA — above the companies line */}
+        {/* CTA buttons (left) + socials (right) on the same level */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -263,41 +263,7 @@ export default function Hero() {
           custom={3.9}
           className="mt-16 md:mt-20"
         >
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { Icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
-              { Icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s+/g, "")}` },
-              { Icon: MapPin, label: t("contact.infoLocation", locale), value: profile.location },
-            ].map((c) => {
-              const inner = (
-                <>
-                  <div className="mb-3 flex items-center gap-2.5 text-accent-green">
-                    <c.Icon className="h-4 w-4" strokeWidth={1.75} />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
-                      {c.label}
-                    </span>
-                  </div>
-                  <p className="break-words text-base font-medium leading-snug text-ink-900 md:text-lg">{c.value}</p>
-                </>
-              );
-              return c.href ? (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  className="rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-accent-green/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div key={c.label} className="rounded-2xl border border-ink-900/10 bg-card p-6">
-                  {inner}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* CTA buttons (left) + socials (right) on the same level */}
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <MagneticWrap>
                 <a

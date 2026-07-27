@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Copy, Check } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, MapPin, Copy, Check } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -74,6 +74,12 @@ export default function Contact() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
+
+  const contactInfo = [
+    { icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
+    { icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
+    { icon: MapPin, label: t("contact.infoLocation", locale), value: profile.location, href: undefined },
+  ];
 
   return (
     <section
@@ -237,6 +243,29 @@ export default function Contact() {
             )}
           </AnimatePresence>
         </motion.div>
+
+        <div className="mt-24 grid gap-6 md:grid-cols-3">
+          {contactInfo.map((item, i) => {
+            const Tag = item.href ? motion.a : motion.div;
+            return (
+              <Tag
+                key={item.label}
+                {...(item.href ? { href: item.href } : {})}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-ink-900/15 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              >
+                <item.icon className="h-5 w-5 text-accent-green" />
+                <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-ink-600">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-ink-900">{item.value}</p>
+              </Tag>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
