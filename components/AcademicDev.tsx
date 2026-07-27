@@ -147,12 +147,12 @@ export default function AcademicDev() {
                   </div>
 
                   {/* Actions */}
-                  <div className="mt-auto flex items-center gap-3 pt-7">
+                  <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-7">
                     <a
                       href={d.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+                      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
                         isLive
                           ? "bg-accent-green text-paper hover:bg-accent-green/90 focus-visible:ring-accent-green"
                           : "bg-sky-600 text-white hover:bg-sky-600/90 focus-visible:ring-sky-500"
@@ -165,7 +165,7 @@ export default function AcademicDev() {
                       href={d.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border border-ink-900/15 px-4 py-2 text-sm text-ink-700 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                      className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-900/15 px-3.5 py-2 text-sm text-ink-700 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                     >
                       <Github className="h-4 w-4" />
                       {t("academic.repo", locale)}

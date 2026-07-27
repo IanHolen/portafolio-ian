@@ -253,16 +253,16 @@ const translations = {
 
   // ─── Academic developments (Tec projects revived / deployed) ───
   "academic.kicker": { es: "Desarrollos Académicos", en: "Academic Work" },
-  "academic.title": { es: "Proyectos de la universidad.", en: "University projects." },
+  "academic.title": { es: "Proyectos académicos.", en: "Academic projects." },
   "academic.subtitle": {
-    es: "Proyectos universitarios (ITESM · Equipo 5) que rescaté del abandono y volví a desplegar en la nube — gratis y funcionando.",
-    en: "University projects (ITESM · Team 5) I rescued from abandonment and redeployed to the cloud — free and running.",
+    es: "Proyectos que construí en el Tec (ITESM · Equipo 5) y que quedaron abandonados al terminar los cursos. Los rescaté uno por uno, modernicé su stack y los redesplegué en la nube — hoy vuelven a estar en vivo, a costo cero.",
+    en: "Projects I built at Tec de Monterrey (ITESM · Team 5) that were left abandoned once the courses ended. I rescued each one, modernized its stack, and redeployed it to the cloud — now live again, at zero cost.",
   },
   "academic.badge": { es: "Tec de Monterrey", en: "Tec de Monterrey" },
   "academic.status.live": { es: "En vivo", en: "Live" },
   "academic.status.case": { es: "Caso de estudio", en: "Case study" },
   "academic.type.game": { es: "Videojuego", en: "Game" },
-  "academic.type.ai": { es: "IA", en: "AI" },
+  "academic.type.ai": { es: "Recomendación de cultivos", en: "Crop recommendation" },
   "academic.type.callcenter": { es: "Call Center", en: "Call Center" },
   "academic.visit": { es: "Ver proyecto", en: "View project" },
   "academic.play": { es: "Jugar ahora", en: "Play now" },
