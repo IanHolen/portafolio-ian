@@ -253,7 +253,7 @@ const translations = {
 
   // ─── Academic developments (Tec projects revived / deployed) ───
   "academic.kicker": { es: "Desarrollos Académicos", en: "Academic Work" },
-  "academic.title": { es: "Proyectos del Tec, revividos.", en: "University projects, revived." },
+  "academic.title": { es: "Proyectos de la universidad.", en: "University projects." },
   "academic.subtitle": {
     es: "Proyectos universitarios (ITESM · Equipo 5) que rescaté del abandono y volví a desplegar en la nube — gratis y funcionando.",
     en: "University projects (ITESM · Team 5) I rescued from abandonment and redeployed to the cloud — free and running.",
