@@ -15,17 +15,14 @@ function heroBrand(label: string): string {
 }
 
 function HeroSocial({ label, href }: { label: string; href: string }) {
-  const [hover, setHover] = useState(false);
   const color = heroBrand(label);
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={hover ? { borderColor: color, color } : undefined}
-      className="rounded-full border border-ink-900/15 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-500 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      style={{ backgroundColor: color }}
+      className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
       {label}
     </a>
@@ -260,7 +257,7 @@ export default function Hero() {
               animate="visible"
               variants={fadeUp}
               custom={3.6}
-              className="flex flex-wrap items-center justify-center gap-2.5 md:justify-start"
+              className="flex flex-wrap items-center justify-center gap-3 md:justify-start"
             >
               {profile.socials.map((s) => (
                 <HeroSocial key={s.label} label={s.label} href={s.href} />
@@ -277,7 +274,7 @@ export default function Hero() {
           custom={3.9}
           className="mt-16 md:mt-20"
         >
-          <div className="grid max-w-3xl gap-3 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3">
             {[
               { Icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
               { Icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s+/g, "")}` },
@@ -285,25 +282,25 @@ export default function Hero() {
             ].map((c) => {
               const inner = (
                 <>
-                  <div className="mb-2 flex items-center gap-2 text-accent-green">
-                    <c.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
+                  <div className="mb-3 flex items-center gap-2.5 text-accent-green">
+                    <c.Icon className="h-4 w-4" strokeWidth={1.75} />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
                       {c.label}
                     </span>
                   </div>
-                  <p className="break-words text-sm font-medium leading-snug text-ink-900">{c.value}</p>
+                  <p className="break-words text-base font-medium leading-snug text-ink-900 md:text-lg">{c.value}</p>
                 </>
               );
               return c.href ? (
                 <a
                   key={c.label}
                   href={c.href}
-                  className="rounded-2xl border border-ink-900/10 bg-card p-4 transition hover:border-accent-green/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                  className="rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-accent-green/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                 >
                   {inner}
                 </a>
               ) : (
-                <div key={c.label} className="rounded-2xl border border-ink-900/10 bg-card p-4">
+                <div key={c.label} className="rounded-2xl border border-ink-900/10 bg-card p-6">
                   {inner}
                 </div>
               );
