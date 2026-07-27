@@ -358,15 +358,15 @@ export const skills = {
   groups: [
     {
       label: "Fullstack & Web",
-      items: ["React", "Next.js", "Node.js", "Express", "TypeScript", "JavaScript", "GraphQL", "Tailwind CSS", "Material UI", "HTML", "CSS", "REST APIs", "WebSockets", "Vite"],
+      items: ["React", "Next.js", "Node.js", "Express", "Flask", "TypeScript", "JavaScript", "GraphQL", "Tailwind CSS", "Framer Motion", "Material UI", "HTML", "CSS", "REST APIs", "WebSockets", "WebGL", "Vite"],
     },
     {
       label: "Cloud & DevOps",
-      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "Docker", "Vercel", "Cloudflare"],
+      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "GitHub Actions", "GitHub Pages", "Render", "Aiven", "Docker", "Vercel", "Cloudflare"],
     },
     {
       label: "Lenguajes & Datos",
-      items: ["Python", "SQL", "KQL", "PySpark", "C/C++", "C#", "Unity", "MATLAB"],
+      items: ["Python", "SQL", "KQL", "PySpark", "NumPy", "Pandas", "C/C++", "C#", "Unity", "MATLAB"],
     },
     {
       label: "Bases de datos & Backend",
@@ -374,7 +374,7 @@ export const skills = {
     },
     {
       label: "IA & Integraciones",
-      items: ["OpenAI", "Anthropic", "Gemini / Groq", "MCP", "LLMs", "Shopify", "Odoo", "Mercado Libre", "Amazon", "Twilio", "Resend"],
+      items: ["OpenAI", "Anthropic", "Gemini / Groq", "MCP", "LLMs", "Machine Learning", "Shopify", "Odoo", "Mercado Libre", "Amazon", "Twilio", "Resend"],
     },
     {
       label: "BI, Viz & Herramientas",

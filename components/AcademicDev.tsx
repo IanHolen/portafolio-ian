@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Circle, Github, Gamepad2, Sprout, Headset, GraduationCap } from "lucide-react";
 import { academicDevs, type AcademicDev } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
-import SwipeHint from "./SwipeHint";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -42,21 +41,22 @@ export default function AcademicDev() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="-mt-8 mb-14 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          className="-mt-8 mb-16 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
         >
-          <p className="max-w-2xl text-ink-600">{t("academic.subtitle", locale)}</p>
+          <p className="max-w-3xl text-lg leading-relaxed text-ink-600">{t("academic.subtitle", locale)}</p>
           <span className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-ink-600">
             <GraduationCap className="h-3.5 w-3.5 text-accent-green" />
             {t("academic.badge", locale)}
           </span>
         </motion.div>
 
-        {/* Mobile: swipeable carousel. Desktop: 3-col grid. */}
-        <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
+        {/* Large horizontal cards, alternating image side. */}
+        <div className="flex flex-col gap-8 md:gap-10">
           {academicDevs.map((d, i) => {
             const isLive = d.status === "live";
             const typeMeta = TYPE_META[d.type];
             const TypeIcon = typeMeta.icon;
+            const reversed = i % 2 === 1;
             const ctaLabel = isLive
               ? d.type === "game"
                 ? t("academic.play", locale)
@@ -66,42 +66,45 @@ export default function AcademicDev() {
             return (
               <motion.article
                 key={d.name}
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-70px" }}
-                transition={{ duration: 0.7, delay: i * 0.08 }}
-                className="border-glow group relative flex w-[86vw] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 text-left transition-all duration-500 hover:border-ink-900/15 md:w-full md:shrink md:snap-align-none md:p-9"
+                transition={{ duration: 0.7, delay: 0.05 }}
+                className={`border-glow group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-ink-900/10 bg-card transition-all duration-500 hover:border-ink-900/15 md:items-stretch ${
+                  reversed ? "md:flex-row-reverse" : "md:flex-row"
+                }`}
               >
                 <div
                   className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${d.accent} opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
                 />
 
-                <div className="relative z-10 flex h-full flex-col">
-                  {/* Preview */}
-                  <a
-                    href={d.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${d.name} — ${ctaLabel}`}
-                    className="relative mb-6 block overflow-hidden rounded-xl border border-ink-900/10 bg-ink-950 aspect-[16/10] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={d.image}
-                      alt={`${d.name} preview`}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
-                  </a>
+                {/* Preview */}
+                <a
+                  href={d.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${d.name} — ${ctaLabel}`}
+                  className="relative block aspect-[16/10] w-full shrink-0 overflow-hidden bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-green md:aspect-auto md:w-[47%]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={d.image}
+                    alt={`${d.name} preview`}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-card/10" />
+                </a>
 
-                  {/* Type + status */}
-                  <div className="mb-4 flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-ink-900/10 bg-black/[0.03] px-2.5 py-1 text-[11px] font-medium text-ink-600">
-                      <TypeIcon className="h-3.5 w-3.5" />
+                {/* Content */}
+                <div className="relative z-10 flex flex-1 flex-col p-8 md:p-11">
+                  <div className="mb-5 flex items-center justify-between gap-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-ink-600">
+                      <TypeIcon className="h-4 w-4" />
                       {t(typeMeta.labelKey, locale)}
                     </span>
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${
                         isLive
                           ? "border-accent-green/30 bg-accent-green/10 text-accent-green"
                           : "border-sky-500/30 bg-sky-500/10 text-sky-600"
@@ -116,43 +119,40 @@ export default function AcademicDev() {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2.5">
                     <a
                       href={d.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-display text-[1.7rem] font-light leading-tight tracking-tight text-ink-900 transition-colors hover:text-accent-green focus-visible:outline-none"
+                      className="font-display text-3xl font-light leading-tight tracking-tight text-ink-900 transition-colors hover:text-accent-green focus-visible:outline-none md:text-4xl"
                     >
                       {d.name}
                     </a>
-                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-green" />
+                    <ArrowUpRight className="mt-1.5 h-6 w-6 shrink-0 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-green" />
                   </div>
-                  <p className="mt-1 font-mono text-xs text-ink-400">
+                  <p className="mt-2 font-mono text-xs text-ink-400">
                     {d.year} · {d.domain}
                   </p>
 
-                  <p className="mt-4 text-[0.95rem] leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
+                  <p className="mt-5 max-w-xl text-[1.02rem] leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
 
-                  {/* Tags */}
-                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                  <div className="mt-6 flex flex-wrap items-center gap-2">
                     {d.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-ink-900/10 bg-black/[0.03] px-2.5 py-1 text-[11px] text-ink-600"
+                        className="rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs text-ink-600"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* Actions */}
-                  <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-7">
+                  <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-9">
                     <a
                       href={d.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+                      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
                         isLive
                           ? "bg-accent-green text-paper hover:bg-accent-green/90 focus-visible:ring-accent-green"
                           : "bg-sky-600 text-white hover:bg-sky-600/90 focus-visible:ring-sky-500"
@@ -165,7 +165,7 @@ export default function AcademicDev() {
                       href={d.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-900/15 px-3.5 py-2 text-sm text-ink-700 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                      className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-900/15 px-5 py-2.5 text-sm text-ink-700 transition hover:border-ink-900/25 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                     >
                       <Github className="h-4 w-4" />
                       {t("academic.repo", locale)}
@@ -176,8 +176,6 @@ export default function AcademicDev() {
             );
           })}
         </div>
-
-        <SwipeHint className="mt-7" />
       </div>
     </section>
   );

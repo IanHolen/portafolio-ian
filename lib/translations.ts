@@ -255,8 +255,8 @@ const translations = {
   "academic.kicker": { es: "Desarrollos Académicos", en: "Academic Work" },
   "academic.title": { es: "Proyectos académicos.", en: "Academic projects." },
   "academic.subtitle": {
-    es: "Proyectos que construí en el Tec (ITESM · Equipo 5) y que quedaron abandonados al terminar los cursos. Los rescaté uno por uno, modernicé su stack y los redesplegué en la nube — hoy vuelven a estar en vivo, a costo cero.",
-    en: "Projects I built at Tec de Monterrey (ITESM · Team 5) that were left abandoned once the courses ended. I rescued each one, modernized its stack, and redeployed it to the cloud — now live again, at zero cost.",
+    es: "Software que construí en el Tecnológico de Monterrey (ITESM) y me negué a dejar morir en un repositorio. Tomé cada proyecto, lo modernicé de la arquitectura al deploy y lo devolví a la vida en la nube — hoy corren en vivo, de punta a punta y a costo cero.",
+    en: "Software I built at Tecnológico de Monterrey (ITESM) that I refused to let die in a repo. I took each project, modernized it from architecture to deploy, and brought it back to life in the cloud — now running live, end to end, at zero cost.",
   },
   "academic.badge": { es: "Tec de Monterrey", en: "Tec de Monterrey" },
   "academic.status.live": { es: "En vivo", en: "Live" },
