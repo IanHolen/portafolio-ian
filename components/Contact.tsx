@@ -305,8 +305,9 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-xl bg-ink-900 px-6 py-4 text-sm font-medium text-paper transition hover:bg-ink-900/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                  className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-ink-900 px-6 py-4 text-sm font-medium text-paper transition hover:bg-ink-900/90 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
                 >
+                  {!loading && <Mail className="h-4 w-4" />}
                   {loading ? t("contact.formSending", locale) : t("contact.formSubmit", locale)}
                 </button>
               </motion.form>

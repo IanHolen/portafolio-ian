@@ -76,7 +76,7 @@ export default function Navbar() {
             href="#top"
             className="font-display text-lg font-medium tracking-tight text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper rounded-full"
           >
-            {profile.firstName.toLowerCase()}<span className="text-accent-green">.</span>{profile.lastName.toLowerCase()}
+            {profile.navName}
           </a>
           <nav role="navigation" aria-label={locale === "es" ? "Navegación principal" : "Main navigation"} className="hidden items-center gap-8 text-sm md:flex">
             {links.map((link) => (

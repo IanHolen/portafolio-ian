@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import SwipeHint from "./SwipeHint";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -176,17 +177,7 @@ export default function Projects() {
         </div>
 
         {/* Mobile swipe hint */}
-        <div className="mt-6 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400 md:hidden">
-          <span>{t("projects.swipeHint", locale)}</span>
-          <motion.span
-            aria-hidden
-            animate={{ x: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-            className="inline-flex"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </motion.span>
-        </div>
+        <SwipeHint className="mt-7" />
       </motion.div>
     </section>
   );

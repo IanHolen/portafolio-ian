@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Circle, X } from "lucide-react";
 import { products, type Product } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
+import SwipeHint from "./SwipeHint";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -45,13 +46,14 @@ export default function Products() {
           title={t("products.title", locale)}
         />
 
-        <div className="grid gap-5 md:grid-cols-2">
+        {/* Mobile: swipeable carousel. Desktop: 2-col grid. */}
+        <div className="no-scrollbar -mx-6 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0">
           {products.map((p, i) => {
             const status = STATUS_STYLES[p.status];
             const featured = i === 0; // MeshCode spans full width on desktop
             const isWip = p.status === "wip";
 
-            const cardClass = `border-glow group relative flex w-full flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 text-left transition-all duration-500 hover:border-ink-900/15 md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+            const cardClass = `border-glow group relative flex w-[85vw] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-card p-8 text-left transition-all duration-500 hover:border-ink-900/15 md:w-full md:shrink md:snap-align-none md:p-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
               featured ? "md:col-span-2" : ""
             }`;
 
@@ -65,8 +67,8 @@ export default function Products() {
                 <div className="relative z-10 flex h-full flex-col">
                   {/* Platform preview */}
                   <div
-                    className={`relative mb-7 overflow-hidden rounded-xl border border-ink-900/10 bg-ink-950 ${
-                      featured ? "aspect-[24/9]" : "aspect-[16/10]"
+                    className={`relative mb-7 overflow-hidden rounded-xl border border-ink-900/10 bg-ink-950 aspect-[16/10] ${
+                      featured ? "md:aspect-[24/9]" : ""
                     }`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -167,6 +169,8 @@ export default function Products() {
             );
           })}
         </div>
+
+        <SwipeHint className="mt-7" />
       </div>
 
       {/* WIP popup */}

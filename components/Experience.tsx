@@ -200,7 +200,7 @@ export default function Experience() {
               exp={exp}
               stack={experience[i]?.stack ?? []}
               index={i}
-              defaultOpen={i === 0}
+              defaultOpen={false}
             />
           ))}
         </div>

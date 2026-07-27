@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages, MessageCircle } from "lucide-react";
+import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -22,7 +22,6 @@ function heroBrandIcon(label: string): BrandIcon | null {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return FaLinkedin;
   if (l.includes("github")) return SiGithub;
-  if (l.includes("contact")) return MessageCircle;
   return null;
 }
 
@@ -39,15 +38,23 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
-      className="inline-flex flex-1 items-center justify-center gap-2.5 rounded-full border border-ink-900/15 px-6 py-4 text-[15px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      className="inline-flex w-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-ink-900/15 px-3 py-3.5 text-[13px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:gap-2.5 sm:px-6 sm:py-4 sm:text-[15px]"
     >
-      {Icon && (
+      {Icon ? (
         <Icon
-          className="h-5 w-5 shrink-0 transition-colors duration-200"
+          className="h-4 w-4 shrink-0 transition-colors duration-200 sm:h-5 sm:w-5"
           style={{ color: hover ? "#fff" : color }}
         />
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/icons/contacts.png"
+          alt=""
+          aria-hidden="true"
+          className="h-[18px] w-[18px] shrink-0 rounded-[5px] object-contain sm:h-[22px] sm:w-[22px]"
+        />
       )}
-      {label}
+      <span className="truncate">{label}</span>
     </a>
   );
 }
@@ -329,7 +336,7 @@ export default function Hero() {
                 </a>
               </MagneticWrap>
             </div>
-            <div className="mx-auto flex w-full max-w-[360px] items-center gap-3 md:max-w-none">
+            <div className="mx-auto grid w-full max-w-[360px] grid-cols-3 items-center gap-2 sm:flex sm:gap-3 md:max-w-none">
               {profile.socials.map((s) => (
                 <HeroSocial
                   key={s.label}

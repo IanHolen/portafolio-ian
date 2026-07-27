@@ -255,9 +255,14 @@ const translations = {
   "projects.title": { es: "Ingeniería en producción.", en: "Engineering in production." },
   "projects.scrollLeft": { es: "Desplazar izquierda", en: "Scroll left" },
   "projects.scrollRight": { es: "Desplazar derecha", en: "Scroll right" },
-  "projects.swipeHint": { es: "Desliza para ver más", en: "Swipe for more" },
+  "common.swipeHint": { es: "Desliza para ver más", en: "Swipe for more" },
   "projects.items": {
     es: [
+      {
+        title: "MCP Server",
+        blurb: "Servidor MCP (Model Context Protocol) que expone los datos de cuenta a modelos de lenguaje, permitiendo consultar y ejecutar acciones sobre la operación con lenguaje natural. Una capa 'LLM-native' que convierte la plataforma en algo accionable por agentes de IA — infraestructura pensada para el futuro del software.",
+        metric: "LLM-native",
+      },
       {
         title: "Customer Service + Chatter",
         blurb: "Módulo de Customer Service de nivel enterprise con un sistema de gestión de incidencias integrado al núcleo de la plataforma v2.0. Incluye 'Chatter', un motor de mensajería cliente–agente en tiempo real que reduce la fricción del soporte y acelera los tiempos de respuesta — construido sobre React, Node.js, MySQL y Twilio para escalar sin perder inmediatez.",
@@ -277,11 +282,6 @@ const translations = {
         title: "Inventory & E-commerce Hub",
         blurb: "Hub de inventario que unifica 7+ integraciones — ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube y Wix — en una sola fuente de verdad. Sincroniza órdenes e inventario entre canales en tiempo real, eliminando la doble captura y los desajustes de stock que cuestan ventas.",
         metric: "7+ integraciones",
-      },
-      {
-        title: "MCP Server",
-        blurb: "Servidor MCP (Model Context Protocol) que expone los datos de cuenta a modelos de lenguaje, permitiendo consultar y ejecutar acciones sobre la operación con lenguaje natural. Una capa 'LLM-native' que convierte la plataforma en algo accionable por agentes de IA — infraestructura pensada para el futuro del software.",
-        metric: "LLM-native",
       },
       {
         title: "Tiendas 2.0 — Event-Driven Architecture",
@@ -306,6 +306,11 @@ const translations = {
     ],
     en: [
       {
+        title: "MCP Server",
+        blurb: "An MCP (Model Context Protocol) server that exposes account data to language models, letting you query and take action on the operation in natural language. An 'LLM-native' layer that makes the platform actionable by AI agents — infrastructure built for where software is heading.",
+        metric: "LLM-native",
+      },
+      {
         title: "Customer Service + Chatter",
         blurb: "Enterprise-grade Customer Service module with an incident-management system wired into the core of the v2.0 platform. Includes 'Chatter', a real-time client–agent messaging engine that cuts support friction and speeds up response times — built on React, Node.js, MySQL, and Twilio to scale without losing immediacy.",
         metric: "Real-time support",
@@ -324,11 +329,6 @@ const translations = {
         title: "Inventory & E-commerce Hub",
         blurb: "An inventory hub unifying 7+ integrations — ShipHero, Mercado Libre, Amazon, Odoo, Shopify, Tiendanube, and Wix — into a single source of truth. Syncs orders and inventory across channels in real time, eliminating double entry and stock mismatches that cost sales.",
         metric: "7+ integrations",
-      },
-      {
-        title: "MCP Server",
-        blurb: "An MCP (Model Context Protocol) server that exposes account data to language models, letting you query and take action on the operation in natural language. An 'LLM-native' layer that makes the platform actionable by AI agents — infrastructure built for where software is heading.",
-        metric: "LLM-native",
       },
       {
         title: "Tiendas 2.0 — Event-Driven Architecture",
@@ -438,7 +438,7 @@ const translations = {
   "contact.formName": { es: "Tu nombre", en: "Your name" },
   "contact.formEmail": { es: "Tu email", en: "Your email" },
   "contact.formMessage": { es: "Tu mensaje", en: "Your message" },
-  "contact.formSubmit": { es: "Enviar mensaje", en: "Send message" },
+  "contact.formSubmit": { es: "Enviar email", en: "Send email" },
   "contact.formSending": { es: "Enviando...", en: "Sending..." },
   "contact.formSent": { es: "Mensaje enviado", en: "Message sent" },
   "contact.formThanks": { es: "Gracias por escribirme. Te responderé lo antes posible.", en: "Thanks for writing. I'll get back to you as soon as possible." },
@@ -462,7 +462,7 @@ const translations = {
   },
   "contact.waName": { es: "Tu nombre", en: "Your name" },
   "contact.waMessage": { es: "¿En qué te ayudo?", en: "What can I help you with?" },
-  "contact.waSubmit": { es: "Abrir WhatsApp", en: "Open WhatsApp" },
+  "contact.waSubmit": { es: "Enviar WhatsApp", en: "Send WhatsApp" },
   "contact.waGreeting": { es: "Hola Ian, soy", en: "Hi Ian, this is" },
   "contact.waFallback": {
     es: "Vi tu portafolio y me gustaría platicar contigo.",

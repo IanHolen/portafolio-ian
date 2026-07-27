@@ -1,5 +1,6 @@
 export const profile = {
   name: "Ian Holender",
+  navName: "Ian Holender Mariaca",
   firstName: "Ian",
   lastName: "Holender",
   title: "Fullstack Developer & Data Engineer",
@@ -190,6 +191,16 @@ export type Project = {
 export const projects: Project[] = [
   // ── eShip / Segmail (Fullstack) ──
   {
+    title: "MCP Server",
+    blurb:
+      "Servidor MCP (Model Context Protocol) que permite consultar y actuar sobre los datos de cuenta a través de modelos de lenguaje.",
+    tags: ["MCP", "Node.js", "LLMs"],
+    year: "2026",
+    company: "eShip / Segmail",
+    metric: "LLM-native",
+    accent: "from-green-500/30 to-emerald-500/10",
+  },
+  {
     title: "Customer Service + Chatter",
     blurb:
       "Módulo de Customer Service con gestión de incidencias integrado al core de la v2.0, más 'Chatter': mensajería cliente–agente en tiempo real para soporte fluido.",
@@ -228,16 +239,6 @@ export const projects: Project[] = [
     company: "eShip / Segmail",
     metric: "7+ integraciones",
     accent: "from-lime-500/25 to-emerald-500/10",
-  },
-  {
-    title: "MCP Server",
-    blurb:
-      "Servidor MCP (Model Context Protocol) que permite consultar y actuar sobre los datos de cuenta a través de modelos de lenguaje.",
-    tags: ["MCP", "Node.js", "LLMs"],
-    year: "2026",
-    company: "eShip / Segmail",
-    metric: "LLM-native",
-    accent: "from-green-500/30 to-emerald-500/10",
   },
   // ── Corporativo Tiendas 3B (Data Engineering) ──
   {
