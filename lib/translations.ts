@@ -53,13 +53,13 @@ const translations = {
     es: [
       "En eShip/Segmail construyo features, chatbots con LLMs, integraciones MCP y dashboards en una plataforma en producción con 12,000+ usuarios.",
       "Fundador de 5 plataformas propias (SaaS, e-learning, IA legal) llevadas de idea a producción.",
-      "Diseñé pipelines de datos en 21 regiones y +3,400 tiendas, reduciendo tiempos de procesamiento hasta 35%.",
+      "Diseñé pipelines de extracción y procesamiento de datos en 21 regiones y +3,400 tiendas, reduciendo tiempos de procesamiento hasta 35%.",
       "Ingeniero en Tecnologías Computacionales por el Tec de Monterrey.",
     ],
     en: [
       "At eShip/Segmail I build features, LLM chatbots, MCP integrations, and dashboards on a production platform serving 12,000+ users.",
       "Founder of 5 own platforms (SaaS, e-learning, legal AI) taken from idea to production.",
-      "Designed data pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%.",
+      "Designed data extraction and processing pipelines across 21 regions and 3,400+ stores, cutting processing times by up to 35%.",
       "Computer Technologies Engineer from Tec de Monterrey.",
     ],
   },

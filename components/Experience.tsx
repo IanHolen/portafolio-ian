@@ -22,7 +22,7 @@ const PREVIEW = 2; // highlights shown while collapsed (medium)
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-3 text-sm leading-relaxed text-ink-700">
-      <span className="mt-[11px] h-px w-6 shrink-0 bg-gradient-to-r from-accent-green to-accent-green/30" />
+      <span className="mt-[11px] h-0.5 w-6 shrink-0 rounded-full bg-gradient-to-r from-accent-green to-accent-green/30" />
       <span>{children}</span>
     </li>
   );

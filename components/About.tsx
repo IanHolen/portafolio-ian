@@ -77,7 +77,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
                 className="flex items-start gap-3 text-ink-600"
               >
-                <span className="mt-2 h-px w-6 bg-gradient-to-r from-accent-green to-transparent" />
+                <span className="mt-[11px] h-0.5 w-6 shrink-0 rounded-full bg-gradient-to-r from-accent-green to-accent-green/30" />
                 <span>{b}</span>
               </motion.li>
             ))}

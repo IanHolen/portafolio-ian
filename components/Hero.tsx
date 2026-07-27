@@ -265,7 +265,7 @@ export default function Hero() {
           <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400">
             {t("hero.workedAt", locale)}
           </span>
-          <div className="flex flex-wrap items-center gap-x-9 gap-y-5">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
             {[
               { name: "eShip", logo: "/companies/eship.png" },
               { name: "Segmail", logo: "/companies/segmail.png" },
@@ -273,14 +273,17 @@ export default function Hero() {
               { name: "IBSO", logo: "/companies/ibso.png" },
               { name: "Shoplogix", logo: "/companies/shoplogix.png" },
             ].map((c) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={c.name}
-                src={c.logo}
-                alt={c.name}
-                title={c.name}
-                className="h-8 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-              />
+              <div key={c.name} className="group flex items-center gap-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={c.logo}
+                  alt={c.name}
+                  className="h-7 w-auto object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                />
+                <span className="font-display text-lg text-ink-500 transition-colors duration-300 group-hover:text-ink-900">
+                  {c.name}
+                </span>
+              </div>
             ))}
           </div>
         </motion.div>
