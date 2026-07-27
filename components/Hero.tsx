@@ -7,6 +7,31 @@ import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
+function heroBrand(label: string): string {
+  const l = label.toLowerCase();
+  if (l.includes("linkedin")) return "#0A66C2";
+  if (l.includes("github")) return "#18180f";
+  return "#1c5b3a";
+}
+
+function HeroSocial({ label, href }: { label: string; href: string }) {
+  const [hover, setHover] = useState(false);
+  const color = heroBrand(label);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={hover ? { borderColor: color, color } : undefined}
+      className="rounded-full border border-ink-900/15 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-500 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+    >
+      {label}
+    </a>
+  );
+}
+
 function MagneticWrap({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -119,20 +144,28 @@ export default function Hero() {
   return (
     <section id="top" className="relative flex min-h-screen items-center px-6 pt-32">
       <div className="mx-auto w-full max-w-6xl">
+        {/* Top row: availability + social links */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={0}
+          className="mb-10 flex flex-wrap items-center justify-between gap-4"
+        >
+          <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-green">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
+            {t("hero.available", locale)}
+          </span>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {profile.socials.map((s) => (
+              <HeroSocial key={s.label} label={s.label} href={s.href} />
+            ))}
+          </div>
+        </motion.div>
+
         <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-stretch lg:gap-16">
           {/* Left: identity + pitch + CTA + stats */}
           <div>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              custom={0}
-              className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-green"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
-              {t("hero.available", locale)}
-            </motion.div>
-
             <h1 className="font-display text-[clamp(2.8rem,6.5vw,6rem)] font-medium leading-[0.92] tracking-tight">
               <SplitText text={profile.firstName} className="block text-ink-900" />
               <SplitText text={profile.lastName} className="block text-ink-400" />
