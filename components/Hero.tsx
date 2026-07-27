@@ -260,19 +260,28 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
           custom={4}
-          className="mt-20 flex flex-col gap-4 border-t border-ink-900/10 pt-8 md:mt-28 md:flex-row md:items-baseline md:gap-10"
+          className="mt-20 flex flex-col gap-6 border-t border-ink-900/10 pt-8 md:mt-28 md:flex-row md:items-center md:gap-12"
         >
           <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400">
             {t("hero.workedAt", locale)}
           </span>
-          <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2 font-display text-xl text-ink-500 md:text-2xl">
-            <span className="transition-colors hover:text-ink-800">eShip / Segmail</span>
-            <span className="text-ink-300">·</span>
-            <span className="transition-colors hover:text-ink-800">Corporativo Tiendas 3B</span>
-            <span className="text-ink-300">·</span>
-            <span className="transition-colors hover:text-ink-800">IBSO</span>
-            <span className="text-ink-300">·</span>
-            <span className="transition-colors hover:text-ink-800">Shoplogix</span>
+          <div className="flex flex-wrap items-center gap-x-9 gap-y-5">
+            {[
+              { name: "eShip", logo: "/companies/eship.png" },
+              { name: "Segmail", logo: "/companies/segmail.png" },
+              { name: "Corporativo Tiendas 3B", logo: "/companies/tiendas3b.png" },
+              { name: "IBSO", logo: "/companies/ibso.png" },
+              { name: "Shoplogix", logo: "/companies/shoplogix.png" },
+            ].map((c) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={c.name}
+                src={c.logo}
+                alt={c.name}
+                title={c.name}
+                className="h-8 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+              />
+            ))}
           </div>
         </motion.div>
       </div>
