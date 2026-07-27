@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Briefcase, Code, FolderGit2, Mail, Copy, ExternalLink } from "lucide-react";
-import { profile, products, projects } from "@/lib/data";
+import { Search, Home, User, Briefcase, Code, FolderGit2, Mail, Copy, ExternalLink, GraduationCap } from "lucide-react";
+import { profile, products, projects, academicDevs } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
@@ -27,6 +27,7 @@ export default function CommandPalette() {
     { id: "about", label: t("cmd.about", locale), icon: <User className="h-4 w-4" />, action: () => navigate("#about") },
     { id: "experience", label: t("cmd.experience", locale), icon: <Briefcase className="h-4 w-4" />, action: () => navigate("#experience") },
     { id: "products", label: t("cmd.products", locale), icon: <FolderGit2 className="h-4 w-4" />, action: () => navigate("#products") },
+    { id: "academic", label: t("cmd.academic", locale), icon: <GraduationCap className="h-4 w-4" />, action: () => navigate("#academic") },
     { id: "projects", label: t("cmd.projects", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#work") },
     { id: "skills", label: t("cmd.skills", locale), icon: <Code className="h-4 w-4" />, action: () => navigate("#skills") },
     { id: "contact", label: t("cmd.contact", locale), icon: <Mail className="h-4 w-4" />, action: () => navigate("#contact") },
@@ -35,6 +36,13 @@ export default function CommandPalette() {
       label: p.name,
       icon: <FolderGit2 className="h-4 w-4" />,
       action: () => (p.href ? window.open(p.href, "_blank") : navigate("#products")),
+      hint: t("cmd.hintProject", locale),
+    })),
+    ...academicDevs.map((d) => ({
+      id: `academic-${d.name}`,
+      label: d.name,
+      icon: <GraduationCap className="h-4 w-4" />,
+      action: () => window.open(d.href, "_blank"),
       hint: t("cmd.hintProject", locale),
     })),
     ...projects.map((p) => ({

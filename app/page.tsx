@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import AcademicDev from "@/components/AcademicDev";
 import BackToTop from "@/components/BackToTop";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
@@ -22,6 +23,8 @@ export default function Home() {
       <Experience />
       <SectionDivider color="rgba(28,91,58,0.06)" />
       <Products />
+      <SectionDivider color="rgba(56,120,180,0.06)" />
+      <AcademicDev />
       <SectionDivider color="rgba(24,24,15,0.06)" />
       <Projects />
       <Skills />

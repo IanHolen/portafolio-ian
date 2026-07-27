@@ -18,6 +18,7 @@ export default function Navbar() {
     { href: "#about", label: t("nav.about", locale), id: "about" },
     { href: "#experience", label: t("nav.experience", locale), id: "experience" },
     { href: "#products", label: t("nav.products", locale), id: "products" },
+    { href: "#academic", label: t("nav.academic", locale), id: "academic" },
     { href: "#work", label: t("nav.work", locale), id: "work" },
     { href: "#contact", label: t("nav.contact", locale), id: "contact" },
   ];
@@ -30,7 +31,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ["about", "experience", "products", "work", "skills", "contact"];
+    const ids = ["about", "experience", "products", "academic", "work", "skills", "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

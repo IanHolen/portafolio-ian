@@ -176,6 +176,63 @@ export const products: Product[] = [
   },
 ];
 
+/* ─── Desarrollos académicos (proyectos del Tec revividos / desplegados) ─── */
+export type AcademicDev = {
+  name: string;
+  type: "game" | "ai" | "callcenter";
+  role: string;
+  domain: string;
+  href: string;
+  repo: string;
+  year: string;
+  status: "live" | "case-study";
+  tags: string[];
+  accent: string;
+  image: string;
+};
+
+export const academicDevs: AcademicDev[] = [
+  {
+    name: "Zazacrifice of Shaggy",
+    type: "game",
+    role: "Revival · Full-stack",
+    domain: "ianholen.github.io/Equipo5",
+    href: "https://ianholen.github.io/Equipo5/",
+    repo: "https://github.com/IanHolen/Equipo5",
+    year: "2023",
+    status: "live",
+    tags: ["Unity", "WebGL", "Node.js", "Express", "MySQL"],
+    accent: "from-green-500/25 to-emerald-500/5",
+    image: "/academic/zazacrifice.jpg",
+  },
+  {
+    name: "AgriAI",
+    type: "ai",
+    role: "Revival · Full-stack + ML",
+    domain: "ianholen.github.io/Assessment-Web",
+    href: "https://ianholen.github.io/Assessment-Web/",
+    repo: "https://github.com/IanHolen/Assessment-Web",
+    year: "2025",
+    status: "live",
+    tags: ["React", "Vite", "Flask", "PostgreSQL", "ML · numpy"],
+    accent: "from-emerald-500/25 to-lime-500/5",
+    image: "/academic/agriai.jpg",
+  },
+  {
+    name: "Summit Call Center",
+    type: "callcenter",
+    role: "Case study · Cloud architecture",
+    domain: "ianholen.github.io/s2c-callcenter",
+    href: "https://ianholen.github.io/s2c-callcenter/",
+    repo: "https://github.com/IanHolen/s2c-callcenter",
+    year: "2024",
+    status: "case-study",
+    tags: ["Next.js", "AWS Amplify", "Cognito", "AppSync", "Amazon Connect"],
+    accent: "from-sky-500/25 to-indigo-500/5",
+    image: "/academic/s2c-callcenter.jpg",
+  },
+];
+
 /* ─── Trabajo & Data Engineering (proyectos internos en empresa) ─── */
 export type Project = {
   title: string;
