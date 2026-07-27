@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Mail, Phone, MapPin, Copy, Check } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -16,7 +16,6 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   function validate() {
     const e: Record<string, string> = {};
@@ -69,12 +68,6 @@ export default function Contact() {
     setErrors({});
   }
 
-  function copyEmail() {
-    navigator.clipboard.writeText(profile.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
-
   const contactInfo = [
     { icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
     { icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
@@ -109,35 +102,6 @@ export default function Contact() {
           <p className="mx-auto mt-8 max-w-xl text-lg text-ink-600">
             {t("contact.subtitle", locale)}
           </p>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={`mailto:${profile.email}`}
-              className="group inline-flex items-center gap-3 rounded-full bg-ink-900 px-8 py-5 text-base font-medium text-paper transition hover:bg-ink-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-            >
-              {profile.email}
-              <ArrowUpRight className="h-5 w-5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
-            <button
-              onClick={copyEmail}
-              className="relative inline-flex items-center gap-2 rounded-full border border-ink-900/10 bg-black/[0.04] px-5 py-5 text-sm text-ink-700 transition hover:bg-black/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-              aria-label={t("contact.copyEmail", locale)}
-            >
-              {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
-              <AnimatePresence>
-                {copied && (
-                  <motion.span
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-xs text-green-400"
-                  >
-                    {t("contact.copied", locale)}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
-          </div>
         </motion.div>
 
         {/* Contact Form */}
