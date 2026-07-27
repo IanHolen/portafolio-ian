@@ -131,15 +131,20 @@ export default function Hero() {
       label: t("about.info.role", locale),
       value: t("about.info.roleValue", locale),
       sub: t("about.info.roleSub", locale),
+      logos: [] as { src: string; name: string }[],
     },
     {
       Icon: GraduationCap,
       label: t("about.info.education", locale),
       value: t("about.info.educationValue", locale),
       sub: t("about.info.educationSub", locale),
+      logos: [
+        { src: "/universities/tec.png", name: "Tec de Monterrey" },
+        { src: "/universities/ceu.png", name: "CEU San Pablo" },
+      ],
     },
-    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale) },
-    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale) },
+    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale), logos: [] as { src: string; name: string }[] },
+    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale), logos: [] as { src: string; name: string }[] },
   ];
 
   return (
@@ -228,6 +233,20 @@ export default function Hero() {
                   <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
                   {it.sub && (
                     <p className="mt-1 text-[11px] leading-snug text-ink-500">{it.sub}</p>
+                  )}
+                  {it.logos.length > 0 && (
+                    <div className="mt-3 flex items-center gap-2.5">
+                      {it.logos.map((logo) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={logo.src}
+                          src={logo.src}
+                          alt={logo.name}
+                          title={logo.name}
+                          className="h-7 w-7 object-contain"
+                        />
+                      ))}
+                    </div>
                   )}
                 </div>
               ))}
