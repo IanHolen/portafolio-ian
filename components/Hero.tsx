@@ -47,7 +47,7 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
           style={{ color: hover ? "#fff" : color }}
         />
       ) : (
-        <ContactsIcon className="h-[17px] w-[17px] shrink-0 rounded-[4px] sm:h-[21px] sm:w-[21px]" />
+        <ContactsIcon className="h-[18px] w-[18px] shrink-0 sm:h-[22px] sm:w-[22px]" />
       )}
       <span className="whitespace-nowrap">{label}</span>
     </a>

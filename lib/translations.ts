@@ -470,8 +470,8 @@ const translations = {
   },
 
   // ─── Footer ───
-  "footer.designed": { es: "Diseñado y desarrollado con cuidado.", en: "Designed and developed with care." },
-  "footer.madeIn": { es: "Hecho en", en: "Made in" },
+  "footer.tagline": { es: "Sin plantillas. Sin atajos.", en: "No templates. No shortcuts." },
+  "footer.stack": { es: "Next.js · TypeScript · Tailwind · Vercel", en: "Next.js · TypeScript · Tailwind · Vercel" },
 
   // ─── BackToTop ───
   "backToTop": { es: "Volver arriba", en: "Back to top" },
