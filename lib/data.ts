@@ -362,7 +362,7 @@ export const skills = {
     },
     {
       label: "Cloud & DevOps",
-      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "GitHub Actions", "GitHub Pages", "Render", "Aiven", "Docker", "Vercel", "Cloudflare"],
+      items: ["Microsoft Azure", "Microsoft Fabric", "Azure Data Factory", "Azure DevOps (CI/CD)", "AWS (S3, RDS)", "AWS Lambda", "AWS Amplify", "Amazon Connect", "Amazon Kinesis", "GitHub Actions", "GitHub Pages", "Render", "Aiven", "Docker", "Vercel", "Cloudflare"],
     },
     {
       label: "Lenguajes & Datos",
@@ -370,7 +370,7 @@ export const skills = {
     },
     {
       label: "Bases de datos & Backend",
-      items: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Prisma", "JWT", "bcrypt", "RLS"],
+      items: ["PostgreSQL", "MySQL", "MongoDB", "DynamoDB", "Supabase", "AWS Cognito", "AWS AppSync", "Prisma", "JWT", "bcrypt", "RLS"],
     },
     {
       label: "IA & Integraciones",
