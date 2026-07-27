@@ -69,6 +69,7 @@ const translations = {
   "about.info.education": { es: "Educación", en: "Education" },
   "about.info.educationValue": { es: "Ing. en Tecnologías Computacionales", en: "B.S. Computer Technologies Eng." },
   "about.info.educationSub": { es: "Tec de Monterrey · + Marketing, CEU Madrid", en: "Tec de Monterrey · + Marketing, CEU Madrid" },
+  "about.info.ceuNote": { es: "Marketing", en: "Marketing" },
   "about.info.location": { es: "Ubicación", en: "Location" },
   "about.info.locationValue": { es: "Ciudad de México, MX", en: "Mexico City, MX" },
   "about.info.languages": { es: "Idiomas", en: "Languages" },

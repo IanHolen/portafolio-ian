@@ -26,7 +26,7 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
-      className="inline-flex items-center justify-center rounded-full border border-ink-900/15 px-6 py-3.5 text-sm font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      className="inline-flex flex-1 items-center justify-center rounded-full border border-ink-900/15 px-6 py-3.5 text-sm font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
       {label}
     </a>
@@ -131,7 +131,7 @@ export default function Hero() {
       label: t("about.info.role", locale),
       value: t("about.info.roleValue", locale),
       sub: t("about.info.roleSub", locale),
-      schools: [] as { src: string; name: string }[],
+      schools: [] as { src: string; name: string; note: string }[],
     },
     {
       Icon: GraduationCap,
@@ -139,12 +139,12 @@ export default function Hero() {
       value: t("about.info.educationValue", locale),
       sub: "",
       schools: [
-        { src: "/universities/tec.png", name: "Tec de Monterrey" },
-        { src: "/universities/ceu.png", name: "CEU San Pablo" },
+        { src: "/universities/tec.png", name: "Tec de Monterrey", note: "" },
+        { src: "/universities/ceu.png", name: "CEU San Pablo", note: t("about.info.ceuNote", locale) },
       ],
     },
-    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale), sub: "", schools: [] as { src: string; name: string }[] },
-    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale), sub: "", schools: [] as { src: string; name: string }[] },
+    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale), sub: "", schools: [] as { src: string; name: string; note: string }[] },
+    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale), sub: "", schools: [] as { src: string; name: string; note: string }[] },
   ];
 
   return (
@@ -244,7 +244,10 @@ export default function Hero() {
                             alt={s.name}
                             className="h-5 w-5 shrink-0 object-contain"
                           />
-                          <span className="text-[11px] leading-snug text-ink-500">{s.name}</span>
+                          <span className="text-[11px] leading-snug text-ink-500">
+                            {s.name}
+                            {s.note && <span className="text-ink-400"> · {s.note}</span>}
+                          </span>
                         </div>
                       ))}
                     </div>
