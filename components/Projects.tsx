@@ -174,6 +174,19 @@ export default function Projects() {
             ))}
           </div>
         </div>
+
+        {/* Mobile swipe hint */}
+        <div className="mt-6 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400 md:hidden">
+          <span>{t("projects.swipeHint", locale)}</span>
+          <motion.span
+            aria-hidden
+            animate={{ x: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+            className="inline-flex"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </motion.span>
+        </div>
       </motion.div>
     </section>
   );

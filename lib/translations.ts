@@ -253,6 +253,7 @@ const translations = {
   "projects.title": { es: "Ingeniería en producción.", en: "Engineering in production." },
   "projects.scrollLeft": { es: "Desplazar izquierda", en: "Scroll left" },
   "projects.scrollRight": { es: "Desplazar derecha", en: "Scroll right" },
+  "projects.swipeHint": { es: "Desliza para ver más", en: "Swipe for more" },
   "projects.items": {
     es: [
       {
