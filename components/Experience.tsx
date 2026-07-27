@@ -22,7 +22,7 @@ const PREVIEW = 2; // highlights shown while collapsed (medium)
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-3 text-sm leading-relaxed text-ink-700">
-      <span className="mt-2 h-px w-5 shrink-0 bg-gradient-to-r from-accent-green to-transparent" />
+      <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-green" />
       <span>{children}</span>
     </li>
   );
@@ -138,7 +138,7 @@ function ExperienceCard({
             <button
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent-green/40 bg-accent-green/10 px-4 py-2 text-sm font-medium text-accent-green transition hover:border-accent-green/70 hover:bg-accent-green/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-green px-5 py-2.5 text-sm font-semibold text-paper shadow-[0_6px_18px_-6px_rgba(28,91,58,0.5)] transition hover:bg-accent-green/90 hover:shadow-[0_8px_22px_-6px_rgba(28,91,58,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
               {open ? t("experience.collapse", locale) : t("experience.expand", locale)}

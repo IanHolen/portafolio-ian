@@ -9,6 +9,34 @@ import { t } from "@/lib/translations";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function brandColor(label: string): string {
+  const l = label.toLowerCase();
+  if (l.includes("linkedin")) return "#0A66C2";
+  if (l.includes("github")) return "#18180f";
+  if (l.includes("mail") || l.includes("correo")) return "#1c5b3a";
+  return "#1c5b3a";
+}
+
+function SocialLink({ label, href, suffix }: { label: string; href: string; suffix: string }) {
+  const [hover, setHover] = useState(false);
+  const color = brandColor(label);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${label} ${suffix}`}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={hover ? { borderColor: color, color } : undefined}
+      className="group inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-5 py-2 text-sm text-ink-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+    >
+      {label}
+      <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+    </a>
+  );
+}
+
 export default function Contact() {
   const { locale } = useLocale();
   const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
@@ -269,17 +297,7 @@ export default function Contact() {
 
         <div className="mt-16 flex flex-wrap justify-center gap-4">
           {profile.socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${s.label} ${t("contact.socialSuffix", locale)}`}
-              className="group inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-5 py-2 text-sm text-ink-700 transition hover:border-ink-900/20 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-            >
-              {s.label}
-              <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            <SocialLink key={s.label} label={s.label} href={s.href} suffix={t("contact.socialSuffix", locale)} />
           ))}
         </div>
       </div>

@@ -88,7 +88,7 @@ const translations = {
         role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Presente",
-        description: "Construyo features end-to-end para la plataforma logística v2.0 — de la interfaz al backend — combinando producto, tiempo real e integraciones de IA y e-commerce.",
+        description: "Construyo features end-to-end para la plataforma logística v2.0, combinando producto, tiempo real e integraciones de IA y e-commerce.",
         metrics: ["Plataforma v2.0", "7+ integraciones", "IA + tiempo real"],
         highlights: [
           "Lideré el desarrollo del módulo de Customer Service con un sistema de gestión de incidencias integrado al core de la plataforma v2.0.",
@@ -108,7 +108,7 @@ const translations = {
         metrics: ["−35% refresh", "4h30 → 1h07", "3,400+ tiendas", "21 regiones", "+570 stakeholders"],
         highlights: [
           "Implementé una arquitectura event-driven con ingesta y procesamiento de eventos en tiempo real, sobre bases KQL para analítica de alto desempeño y monitoreo operacional.",
-          "Diseñé y optimicé pipelines de datos a través de 21 regiones (~3,400 tiendas), habilitando la extracción escalable de datos de ventas.",
+          "Diseñé y optimicé pipelines de extracción y procesamiento de datos a través de 21 regiones (~3,400 tiendas), habilitando la extracción escalable de datos de ventas.",
           "Mejoré el rendimiento del Main Pipeline que alimenta 10 modelos semánticos, reduciendo el tiempo de refresh en un 35%.",
           "Reduje la extracción de datos de tickets de 4h30 a 1h07 mediante Azure Data Factory y Microsoft Fabric.",
           "Implementé pipelines CI/CD con Azure DevOps en Microsoft Fabric, agilizando los despliegues.",
@@ -144,7 +144,7 @@ const translations = {
         role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Present",
-        description: "I build end-to-end features for the v2.0 logistics platform — from interface to backend — blending product, real-time, and AI & e-commerce integrations.",
+        description: "I build end-to-end features for the v2.0 logistics platform, blending product, real-time, and AI & e-commerce integrations.",
         metrics: ["v2.0 platform", "7+ integrations", "AI + real-time"],
         highlights: [
           "Led development of the Customer Service module with an incident-management system integrated into the core of the v2.0 platform.",
@@ -164,7 +164,7 @@ const translations = {
         metrics: ["−35% refresh", "4h30 → 1h07", "3,400+ stores", "21 regions", "+570 stakeholders"],
         highlights: [
           "Implemented an event-driven architecture with real-time event ingestion and processing, on KQL databases for high-performance analytics and operational monitoring.",
-          "Designed and optimized data pipelines across 21 regions (~3,400 stores), enabling scalable extraction of sales data.",
+          "Designed and optimized data extraction and processing pipelines across 21 regions (~3,400 stores), enabling scalable extraction of sales data.",
           "Improved the performance of the Main Pipeline powering 10 semantic models, reducing refresh time by 35%.",
           "Reduced ticket-data extraction from 4h30 to 1h07 through Azure Data Factory and Microsoft Fabric.",
           "Implemented CI/CD pipelines with Azure DevOps in Microsoft Fabric, streamlining deployments.",
