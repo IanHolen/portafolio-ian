@@ -2,40 +2,12 @@
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Mail, Phone, MapPin, Copy, Check } from "lucide-react";
+import { ArrowUpRight, Copy, Check } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function brandColor(label: string): string {
-  const l = label.toLowerCase();
-  if (l.includes("linkedin")) return "#0A66C2";
-  if (l.includes("github")) return "#18180f";
-  if (l.includes("mail") || l.includes("correo")) return "#1c5b3a";
-  return "#1c5b3a";
-}
-
-function SocialLink({ label, href, suffix }: { label: string; href: string; suffix: string }) {
-  const [hover, setHover] = useState(false);
-  const color = brandColor(label);
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${label} ${suffix}`}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={hover ? { borderColor: color, color } : undefined}
-      className="group inline-flex items-center gap-2 rounded-full border border-ink-900/10 px-5 py-2 text-sm text-ink-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-    >
-      {label}
-      <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-    </a>
-  );
-}
 
 export default function Contact() {
   const { locale } = useLocale();
@@ -102,12 +74,6 @@ export default function Contact() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
-
-  const contactInfo = [
-    { icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
-    { icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
-    { icon: MapPin, label: t("contact.infoLocation", locale), value: profile.location, href: undefined },
-  ];
 
   return (
     <section
@@ -271,35 +237,6 @@ export default function Contact() {
             )}
           </AnimatePresence>
         </motion.div>
-
-        <div className="mt-24 grid gap-6 md:grid-cols-3">
-          {contactInfo.map((item, i) => {
-            const Tag = item.href ? motion.a : motion.div;
-            return (
-              <Tag
-                key={item.label}
-                {...(item.href ? { href: item.href } : {})}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group rounded-2xl border border-ink-900/10 bg-card p-6 transition hover:border-ink-900/15 hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-              >
-                <item.icon className="h-5 w-5 text-accent-green" />
-                <p className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-ink-600">
-                  {item.label}
-                </p>
-                <p className="mt-2 text-ink-900">{item.value}</p>
-              </Tag>
-            );
-          })}
-        </div>
-
-        <div className="mt-16 flex flex-wrap justify-center gap-4">
-          {profile.socials.map((s) => (
-            <SocialLink key={s.label} label={s.label} href={s.href} suffix={t("contact.socialSuffix", locale)} />
-          ))}
-        </div>
       </div>
     </section>
   );

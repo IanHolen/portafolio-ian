@@ -11,18 +11,22 @@ function heroBrand(label: string): string {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return "#0A66C2";
   if (l.includes("github")) return "#18180f";
+  if (l.includes("mail")) return "#dc2626";
   return "#1c5b3a";
 }
 
 function HeroSocial({ label, href }: { label: string; href: string }) {
+  const [hover, setHover] = useState(false);
   const color = heroBrand(label);
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ backgroundColor: color }}
-      className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
+      className="inline-flex items-center justify-center rounded-full border border-ink-900/15 px-6 py-3.5 text-sm font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
     >
       {label}
     </a>
@@ -208,22 +212,22 @@ export default function Hero() {
               animate="visible"
               variants={fadeUp}
               custom={3.5}
-              className="mt-8 grid max-w-md grid-cols-2 gap-3"
+              className="mt-8 grid max-w-lg grid-cols-2 gap-3.5"
             >
               {info.map((it) => (
                 <div
                   key={it.label}
-                  className="rounded-2xl border border-ink-900/10 bg-card p-4"
+                  className="rounded-2xl border border-ink-900/10 bg-card p-5"
                 >
-                  <div className="mb-2 flex items-center gap-2 text-accent-green">
-                    <it.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
+                  <div className="mb-2.5 flex items-center gap-2 text-accent-green">
+                    <it.Icon className="h-4 w-4" strokeWidth={1.75} />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
                       {it.label}
                     </span>
                   </div>
-                  <p className="text-xs font-medium leading-snug text-ink-900">{it.value}</p>
+                  <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
                   {it.sub && (
-                    <p className="mt-0.5 text-[10px] leading-snug text-ink-500">{it.sub}</p>
+                    <p className="mt-1 text-[11px] leading-snug text-ink-500">{it.sub}</p>
                   )}
                 </div>
               ))}
@@ -231,39 +235,24 @@ export default function Hero() {
 
           </div>
 
-          {/* Right: portrait + socials below */}
-          <div className="flex flex-col gap-5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-              className="relative mx-auto w-full max-w-[360px] flex-1 md:max-w-none"
-            >
-              <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
-              <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)] md:aspect-auto md:h-full md:min-h-[520px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/ian-portrait.jpg"
-                  alt={`${profile.firstName} ${profile.lastName}`}
-                  className="absolute inset-0 h-full w-full object-cover object-top"
-                />
-              </div>
-            </motion.div>
-
-            {/* Socials below the photo */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              custom={3.6}
-              className="flex flex-wrap items-center justify-center gap-3 md:justify-start"
-            >
-              {profile.socials.map((s) => (
-                <HeroSocial key={s.label} label={s.label} href={s.href} />
-              ))}
-            </motion.div>
-          </div>
+          {/* Right: portrait */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+            className="relative mx-auto w-full max-w-[360px] md:h-full md:max-w-none"
+          >
+            <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)] md:aspect-auto md:h-full md:min-h-[520px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ian-portrait.jpg"
+                alt={`${profile.firstName} ${profile.lastName}`}
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
+            </div>
+          </motion.div>
         </div>
 
         {/* Contact cards + CTA — above the companies line */}
@@ -307,27 +296,34 @@ export default function Hero() {
             })}
           </div>
 
-          {/* CTA buttons below the contact cards */}
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <MagneticWrap>
-              <a
-                href="#products"
-                className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-              >
-                {t("hero.cta", locale)}
-                <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
-              </a>
-            </MagneticWrap>
-            <MagneticWrap>
-              <a
-                href={profile.cvUrl}
-                download
-                className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-              >
-                <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
-                {t("hero.downloadCv", locale)}
-              </a>
-            </MagneticWrap>
+          {/* CTA buttons (left) + socials (right) on the same level */}
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-3">
+              <MagneticWrap>
+                <a
+                  href="#products"
+                  className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  {t("hero.cta", locale)}
+                  <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
+                </a>
+              </MagneticWrap>
+              <MagneticWrap>
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
+                  {t("hero.downloadCv", locale)}
+                </a>
+              </MagneticWrap>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              {profile.socials.map((s) => (
+                <HeroSocial key={s.label} label={s.label} href={s.href} />
+              ))}
+            </div>
           </div>
         </motion.div>
 
