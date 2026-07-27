@@ -86,8 +86,9 @@ export default function Projects() {
     }
   }, []);
 
-  // Drag-to-scroll (grab and pull), works for mouse and touch.
+  // Drag-to-scroll for mouse; touch uses native swipe scrolling.
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
     const el = scrollRef.current;
     if (!el) return;
     drag.current = { down: true, startX: e.clientX, startLeft: el.scrollLeft, moved: false };
@@ -141,31 +142,16 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Mobile: stacked vertical list */}
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 md:hidden">
-        {projects.map((p, i) => (
-          <motion.div
-            key={p.title}
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: i * 0.08 }}
-          >
-            <ProjectCard p={p} pt={projectTexts[i]} />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Desktop: static — drag it or use the arrows to move it (cards snap into place) */}
+      {/* Carousel — swipe on touch, drag or arrows on desktop (cards snap into place) */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative mx-auto hidden max-w-6xl md:block"
+        className="relative mx-auto max-w-6xl"
       >
         {/* Soft fade on the right hints there's more to slide */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-paper to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-paper to-transparent md:block" />
 
         <div
           ref={scrollRef}
@@ -175,11 +161,14 @@ export default function Projects() {
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
           onClickCapture={onClickCapture}
-          className="no-scrollbar cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"
+          className="no-scrollbar snap-x snap-mandatory overflow-x-auto md:cursor-grab md:active:cursor-grabbing"
         >
           <div className="flex w-max items-stretch py-2 pr-6">
             {projects.map((p, i) => (
-              <div key={p.title} className="mr-6 w-[500px] shrink-0 snap-start select-none">
+              <div
+                key={p.title}
+                className="mr-5 w-[85vw] shrink-0 snap-start select-none sm:mr-6 sm:w-[440px] md:w-[500px]"
+              >
                 <ProjectCard p={p} pt={projectTexts[i]} />
               </div>
             ))}
