@@ -29,6 +29,7 @@ const translations = {
   "hero.basedIn": { es: "basado en", en: "based in" },
   "hero.cta": { es: "Ver mi trabajo", en: "See my work" },
   "hero.contact": { es: "Contáctame", en: "Contact me" },
+  "hero.socialContact": { es: "Contacto", en: "Contact" },
   "hero.downloadCv": { es: "Descargar CV", en: "Download CV" },
   "hero.scroll": { es: "scroll", en: "scroll" },
   "hero.stat.platforms": { es: "Plataformas propias", en: "Own platforms" },
@@ -452,6 +453,21 @@ const translations = {
   "contact.infoPhone": { es: "Teléfono", en: "Phone" },
   "contact.infoLocation": { es: "Ubicación", en: "Location" },
   "contact.socialSuffix": { es: "(abre en nueva pestaña)", en: "(opens in new tab)" },
+  "contact.methodLabel": { es: "¿Cómo prefieres escribirme?", en: "How would you rather reach me?" },
+  "contact.methodEmail": { es: "Email", en: "Email" },
+  "contact.methodWhatsapp": { es: "WhatsApp", en: "WhatsApp" },
+  "contact.waIntro": {
+    es: "Se abre WhatsApp con el mensaje ya escrito. Tú solo le das enviar.",
+    en: "WhatsApp opens with your message ready. You just hit send.",
+  },
+  "contact.waName": { es: "Tu nombre", en: "Your name" },
+  "contact.waMessage": { es: "¿En qué te ayudo?", en: "What can I help you with?" },
+  "contact.waSubmit": { es: "Abrir WhatsApp", en: "Open WhatsApp" },
+  "contact.waGreeting": { es: "Hola Ian, soy", en: "Hi Ian, this is" },
+  "contact.waFallback": {
+    es: "Vi tu portafolio y me gustaría platicar contigo.",
+    en: "I came across your portfolio and I'd like to talk.",
+  },
 
   // ─── Footer ───
   "footer.designed": { es: "Diseñado y desarrollado con cuidado.", en: "Designed and developed with care." },

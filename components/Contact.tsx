@@ -2,19 +2,43 @@
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Mail } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WA_GREEN = "#25D366";
+
+type Method = "email" | "whatsapp";
 
 export default function Contact() {
   const { locale } = useLocale();
+  const [method, setMethod] = useState<Method>("email");
   const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [wa, setWa] = useState({ name: "", message: "" });
+  const [waErrors, setWaErrors] = useState<Record<string, string>>({});
+
+  function openWhatsapp(ev: FormEvent) {
+    ev.preventDefault();
+    const e: Record<string, string> = {};
+    if (!wa.name.trim()) e.name = t("contact.errName", locale);
+    setWaErrors(e);
+    if (Object.keys(e).length > 0) return;
+
+    const body = wa.message.trim() || t("contact.waFallback", locale);
+    const text = `${t("contact.waGreeting", locale)} ${wa.name.trim()}.\n\n${body}`;
+    window.open(
+      `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
 
   function validate() {
     const e: Record<string, string> = {};
@@ -95,6 +119,42 @@ export default function Contact() {
           <p className="mx-auto mt-8 max-w-xl text-lg text-ink-600">
             {t("contact.subtitle", locale)}
           </p>
+
+          {/* Method switch */}
+          <div className="mt-12 flex flex-col items-center gap-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink-500">
+              {t("contact.methodLabel", locale)}
+            </p>
+            <div className="inline-flex rounded-full border border-ink-900/10 bg-black/[0.04] p-1">
+              {([
+                { key: "email" as Method, label: t("contact.methodEmail", locale), Icon: Mail, color: "#1c5b3a" },
+                { key: "whatsapp" as Method, label: t("contact.methodWhatsapp", locale), Icon: SiWhatsapp, color: WA_GREEN },
+              ]).map((m) => {
+                const active = method === m.key;
+                return (
+                  <button
+                    key={m.key}
+                    type="button"
+                    onClick={() => setMethod(m.key)}
+                    aria-pressed={active}
+                    className={`relative inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+                      active ? "text-ink-900" : "text-ink-500 hover:text-ink-700"
+                    }`}
+                  >
+                    {active && (
+                      <motion.span
+                        layoutId="contactMethodPill"
+                        transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                        className="absolute inset-0 -z-10 rounded-full bg-card shadow-sm"
+                      />
+                    )}
+                    <m.Icon className="h-4 w-4" style={{ color: active ? m.color : undefined }} />
+                    {m.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </motion.div>
 
         {/* Contact Form */}
@@ -106,11 +166,64 @@ export default function Contact() {
           className="mx-auto mt-16 max-w-xl"
         >
           <AnimatePresence mode="wait">
-            {submitted ? (
+            {method === "whatsapp" ? (
+              <motion.form
+                key="wa"
+                onSubmit={openWhatsapp}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-5"
+              >
+                <div
+                  className="flex items-start gap-3 rounded-2xl border p-4 text-left"
+                  style={{ borderColor: `${WA_GREEN}40`, backgroundColor: `${WA_GREEN}12` }}
+                >
+                  <SiWhatsapp className="mt-0.5 h-5 w-5 shrink-0" style={{ color: WA_GREEN }} />
+                  <p className="text-sm leading-relaxed text-ink-600">
+                    {t("contact.waIntro", locale)}
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    placeholder={t("contact.waName", locale)}
+                    aria-label={t("contact.waName", locale)}
+                    value={wa.name}
+                    onChange={(e) => setWa({ ...wa, name: e.target.value })}
+                    className="w-full rounded-xl border border-ink-900/10 bg-black/[0.03] px-5 py-4 text-ink-900 placeholder:text-ink-400 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
+                  />
+                  {waErrors.name && <p className="mt-1 text-xs text-red-400">{waErrors.name}</p>}
+                </div>
+
+                <div>
+                  <textarea
+                    placeholder={t("contact.waMessage", locale)}
+                    aria-label={t("contact.waMessage", locale)}
+                    rows={4}
+                    value={wa.message}
+                    onChange={(e) => setWa({ ...wa, message: e.target.value })}
+                    className="w-full resize-none rounded-xl border border-ink-900/10 bg-black/[0.03] px-5 py-4 text-ink-900 placeholder:text-ink-400 transition focus:border-accent-green/50 focus:outline-none focus:ring-2 focus:ring-accent-green/20"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  style={{ backgroundColor: WA_GREEN }}
+                  className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl px-6 py-4 text-sm font-medium text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  <SiWhatsapp className="h-4 w-4" />
+                  {t("contact.waSubmit", locale)}
+                </button>
+              </motion.form>
+            ) : submitted ? (
               <motion.div
                 key="thanks"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, y: -8 }}
                 className="rounded-2xl border border-ink-900/10 bg-card p-10 text-center"
               >
                 <p className="font-display text-2xl font-light text-ink-900">{t("contact.formSent", locale)}</p>

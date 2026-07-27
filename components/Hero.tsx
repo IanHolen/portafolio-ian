@@ -2,10 +2,11 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
-import { SiGithub, SiGmail, SiWhatsapp } from "react-icons/si";
+import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages, MessageCircle } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
-import type { IconType } from "react-icons";
+
+type BrandIcon = React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -14,17 +15,14 @@ function heroBrand(label: string): string {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return "#0A66C2";
   if (l.includes("github")) return "#18180f";
-  if (l.includes("whatsapp")) return "#25D366";
-  if (l.includes("mail")) return "#dc2626";
   return "#1c5b3a";
 }
 
-function heroBrandIcon(label: string): IconType | null {
+function heroBrandIcon(label: string): BrandIcon | null {
   const l = label.toLowerCase();
   if (l.includes("linkedin")) return FaLinkedin;
   if (l.includes("github")) return SiGithub;
-  if (l.includes("whatsapp")) return SiWhatsapp;
-  if (l.includes("mail")) return SiGmail;
+  if (l.includes("contact")) return MessageCircle;
   return null;
 }
 
@@ -32,12 +30,12 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
   const [hover, setHover] = useState(false);
   const color = heroBrand(label);
   const Icon = heroBrandIcon(label);
+  const internal = href.startsWith("#");
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      title={label.toLowerCase().includes("whatsapp") ? `WhatsApp · ${profile.phone}` : label}
+      {...(internal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+      title={label}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
@@ -47,7 +45,6 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
         <Icon
           className="h-5 w-5 shrink-0 transition-colors duration-200"
           style={{ color: hover ? "#fff" : color }}
-          aria-hidden="true"
         />
       )}
       {label}
@@ -254,7 +251,7 @@ export default function Hero() {
                   </div>
                   <p className="text-sm font-medium leading-snug text-ink-900">{it.value}</p>
                   {it.sub && (
-                    <p className="mt-auto pt-4 text-[13px] font-medium leading-snug text-ink-600">
+                    <p className="my-auto pt-3 text-[13px] font-medium leading-snug text-ink-600">
                       {it.sub}
                     </p>
                   )}
@@ -334,7 +331,11 @@ export default function Hero() {
             </div>
             <div className="mx-auto flex w-full max-w-[360px] items-center gap-3 md:max-w-none">
               {profile.socials.map((s) => (
-                <HeroSocial key={s.label} label={s.label} href={s.href} />
+                <HeroSocial
+                  key={s.label}
+                  label={s.href.startsWith("#") ? t("hero.socialContact", locale) : s.label}
+                  href={s.href}
+                />
               ))}
             </div>
           </div>

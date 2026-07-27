@@ -15,7 +15,7 @@ export const profile = {
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ianholender" },
     { label: "GitHub", href: "https://github.com/IanHolen" },
-    { label: "WhatsApp", href: "https://wa.me/525547903290" },
+    { label: "Contacto", href: "#contact" },
   ],
 };
 
