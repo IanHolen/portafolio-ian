@@ -50,13 +50,13 @@ export default function AcademicDev() {
           </span>
         </motion.div>
 
-        {/* Large horizontal cards, alternating image side. */}
-        <div className="flex flex-col gap-8 md:gap-10">
+        {/* Featured-first grid: first card spans full width, the rest in two columns. */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
           {academicDevs.map((d, i) => {
             const isLive = d.status === "live";
             const typeMeta = TYPE_META[d.type];
             const TypeIcon = typeMeta.icon;
-            const reversed = i % 2 === 1;
+            const featured = i === 0;
             const ctaLabel = isLive
               ? d.type === "game"
                 ? t("academic.play", locale)
@@ -70,8 +70,8 @@ export default function AcademicDev() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.7, delay: 0.05 }}
-                className={`border-glow group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-ink-900/10 bg-card transition-all duration-500 hover:border-ink-900/15 md:items-stretch ${
-                  reversed ? "md:flex-row-reverse" : "md:flex-row"
+                className={`border-glow group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-ink-900/10 bg-card text-left transition-all duration-500 hover:border-ink-900/15 ${
+                  featured ? "md:col-span-2" : ""
                 }`}
               >
                 <div
@@ -84,7 +84,9 @@ export default function AcademicDev() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${d.name} — ${ctaLabel}`}
-                  className="relative block aspect-[16/10] w-full shrink-0 overflow-hidden bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-green md:aspect-auto md:w-[47%]"
+                  className={`relative block aspect-[16/10] w-full overflow-hidden bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-green ${
+                    featured ? "md:aspect-[2.4/1]" : ""
+                  }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -93,11 +95,11 @@ export default function AcademicDev() {
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-card/10" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/15 to-transparent" />
                 </a>
 
                 {/* Content */}
-                <div className="relative z-10 flex flex-1 flex-col p-8 md:p-11">
+                <div className="relative z-10 flex flex-1 flex-col p-8 md:p-9">
                   <div className="mb-5 flex items-center justify-between gap-3">
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-ink-600">
                       <TypeIcon className="h-4 w-4" />
