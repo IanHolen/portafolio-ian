@@ -17,6 +17,14 @@ interface ExpItem {
   highlights: string[];
 }
 
+// Company logos by experience order (0: eShip/Segmail, 1: Tiendas 3B, 2: IBSO, 3: Shoplogix)
+const COMPANY_LOGOS = [
+  "/companies/eship.png",
+  "/companies/tiendas3b.png",
+  "/companies/ibso.png",
+  "/companies/shoplogix.png",
+];
+
 const PREVIEW = 2; // highlights shown while collapsed (medium)
 
 function Bullet({ children }: { children: React.ReactNode }) {
@@ -65,7 +73,17 @@ function ExperienceCard({
           <h3 className="font-display text-2xl font-light leading-tight text-ink-900 md:text-3xl">
             {exp.role}
           </h3>
-          <p className="mt-1 text-sm text-accent-green">{exp.company}</p>
+          <div className="mt-2 flex items-center gap-2.5">
+            {COMPANY_LOGOS[index] && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={COMPANY_LOGOS[index]}
+                alt={exp.company}
+                className="h-6 w-auto shrink-0 object-contain"
+              />
+            )}
+            <p className="text-sm text-accent-green">{exp.company}</p>
+          </div>
           <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400 md:hidden">
             {exp.period}
           </p>
