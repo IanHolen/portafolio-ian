@@ -131,20 +131,20 @@ export default function Hero() {
       label: t("about.info.role", locale),
       value: t("about.info.roleValue", locale),
       sub: t("about.info.roleSub", locale),
-      logos: [] as { src: string; name: string }[],
+      schools: [] as { src: string; name: string }[],
     },
     {
       Icon: GraduationCap,
       label: t("about.info.education", locale),
       value: t("about.info.educationValue", locale),
-      sub: t("about.info.educationSub", locale),
-      logos: [
+      sub: "",
+      schools: [
         { src: "/universities/tec.png", name: "Tec de Monterrey" },
         { src: "/universities/ceu.png", name: "CEU San Pablo" },
       ],
     },
-    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale), logos: [] as { src: string; name: string }[] },
-    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale), logos: [] as { src: string; name: string }[] },
+    { Icon: MapPin, label: t("about.info.location", locale), value: t("about.info.locationValue", locale), sub: "", schools: [] as { src: string; name: string }[] },
+    { Icon: Languages, label: t("about.info.languages", locale), value: t("about.info.languagesValue", locale), sub: "", schools: [] as { src: string; name: string }[] },
   ];
 
   return (
@@ -234,17 +234,18 @@ export default function Hero() {
                   {it.sub && (
                     <p className="mt-1 text-[11px] leading-snug text-ink-500">{it.sub}</p>
                   )}
-                  {it.logos.length > 0 && (
-                    <div className="mt-3 flex items-center gap-2.5">
-                      {it.logos.map((logo) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          key={logo.src}
-                          src={logo.src}
-                          alt={logo.name}
-                          title={logo.name}
-                          className="h-7 w-7 object-contain"
-                        />
+                  {it.schools.length > 0 && (
+                    <div className="mt-2.5 space-y-1.5">
+                      {it.schools.map((s) => (
+                        <div key={s.src} className="flex items-center gap-2">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={s.src}
+                            alt={s.name}
+                            className="h-5 w-5 shrink-0 object-contain"
+                          />
+                          <span className="text-[11px] leading-snug text-ink-500">{s.name}</span>
+                        </div>
                       ))}
                     </div>
                   )}
