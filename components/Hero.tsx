@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages } from "lucide-react";
+import { ArrowDown, Download, Briefcase, GraduationCap, MapPin, Languages, Mail, Phone } from "lucide-react";
 import { profile } from "@/lib/data";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
@@ -150,17 +150,12 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
           custom={0}
-          className="mb-10 flex flex-wrap items-center justify-between gap-4"
+          className="mb-10 flex flex-wrap items-center gap-4"
         >
           <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-green">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
             {t("hero.available", locale)}
           </span>
-          <div className="flex flex-wrap items-center gap-2.5">
-            {profile.socials.map((s) => (
-              <HeroSocial key={s.label} label={s.label} href={s.href} />
-            ))}
-          </div>
         </motion.div>
 
         <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-stretch lg:gap-16">
@@ -237,55 +232,107 @@ export default function Hero() {
               ))}
             </motion.div>
 
-            {/* CTA buttons */}
+          </div>
+
+          {/* Right: portrait + socials below */}
+          <div className="flex flex-col gap-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+              className="relative mx-auto w-full max-w-[360px] flex-1 md:max-w-none"
+            >
+              <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)] md:aspect-auto md:h-full md:min-h-[520px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/ian-portrait.jpg"
+                  alt={`${profile.firstName} ${profile.lastName}`}
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
+
+            {/* Socials below the photo */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              custom={4}
-              className="mt-9 flex flex-wrap items-center gap-3"
+              custom={3.6}
+              className="flex flex-wrap items-center justify-center gap-2.5 md:justify-start"
             >
-              <MagneticWrap>
-                <a
-                  href="#products"
-                  className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-                >
-                  {t("hero.cta", locale)}
-                  <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
-                </a>
-              </MagneticWrap>
-              <MagneticWrap>
-                <a
-                  href={profile.cvUrl}
-                  download
-                  className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
-                >
-                  <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
-                  {t("hero.downloadCv", locale)}
-                </a>
-              </MagneticWrap>
+              {profile.socials.map((s) => (
+                <HeroSocial key={s.label} label={s.label} href={s.href} />
+              ))}
             </motion.div>
           </div>
-
-          {/* Right: portrait */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-            className="relative mx-auto w-full max-w-[360px] md:h-full md:max-w-none"
-          >
-            <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-accent-green/15 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-6 -left-6 h-40 w-40 rounded-full bg-accent-green/10 blur-3xl" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-ink-900/10 bg-card shadow-[0_40px_90px_-40px_rgba(24,24,15,0.35)] md:aspect-auto md:h-full md:min-h-[520px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/ian-portrait.jpg"
-                alt={`${profile.firstName} ${profile.lastName}`}
-                className="absolute inset-0 h-full w-full object-cover object-top"
-              />
-            </div>
-          </motion.div>
         </div>
+
+        {/* Contact cards + CTA — above the companies line */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={3.9}
+          className="mt-16 md:mt-20"
+        >
+          <div className="grid max-w-3xl gap-3 sm:grid-cols-3">
+            {[
+              { Icon: Mail, label: t("contact.infoEmail", locale), value: profile.email, href: `mailto:${profile.email}` },
+              { Icon: Phone, label: t("contact.infoPhone", locale), value: profile.phone, href: `tel:${profile.phone.replace(/\s+/g, "")}` },
+              { Icon: MapPin, label: t("contact.infoLocation", locale), value: profile.location },
+            ].map((c) => {
+              const inner = (
+                <>
+                  <div className="mb-2 flex items-center gap-2 text-accent-green">
+                    <c.Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
+                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-500">
+                      {c.label}
+                    </span>
+                  </div>
+                  <p className="break-words text-sm font-medium leading-snug text-ink-900">{c.value}</p>
+                </>
+              );
+              return c.href ? (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  className="rounded-2xl border border-ink-900/10 bg-card p-4 transition hover:border-accent-green/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div key={c.label} className="rounded-2xl border border-ink-900/10 bg-card p-4">
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CTA buttons below the contact cards */}
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <MagneticWrap>
+              <a
+                href="#products"
+                className="group inline-flex items-center gap-2 rounded-full bg-ink-900 px-6 py-3.5 text-sm font-medium text-paper transition hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              >
+                {t("hero.cta", locale)}
+                <ArrowDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
+              </a>
+            </MagneticWrap>
+            <MagneticWrap>
+              <a
+                href={profile.cvUrl}
+                download
+                className="group inline-flex items-center gap-2 rounded-full border border-ink-900/15 px-6 py-3.5 text-sm text-ink-800 transition hover:border-ink-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              >
+                <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
+                {t("hero.downloadCv", locale)}
+              </a>
+            </MagneticWrap>
+          </div>
+        </motion.div>
 
         {/* Worked-at strip — fills the lower space + adds credibility */}
         <motion.div
@@ -293,7 +340,7 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
           custom={4}
-          className="mt-20 flex flex-col gap-6 border-t border-ink-900/10 pt-8 md:mt-28 md:flex-row md:items-center md:gap-12"
+          className="mt-14 flex flex-col gap-6 border-t border-ink-900/10 pt-8 md:mt-16 md:flex-row md:items-center md:gap-12"
         >
           <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-400">
             {t("hero.workedAt", locale)}

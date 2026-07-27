@@ -74,7 +74,7 @@ export default function Navbar() {
         >
           <a
             href="#top"
-            className="font-display text-lg italic tracking-tight text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper rounded-full"
+            className="font-display text-lg font-medium tracking-tight text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper rounded-full"
           >
             {profile.firstName.toLowerCase()}<span className="text-accent-green">.</span>{profile.lastName.toLowerCase()}
           </a>
