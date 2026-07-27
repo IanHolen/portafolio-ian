@@ -438,7 +438,7 @@ const translations = {
   "contact.formName": { es: "Tu nombre", en: "Your name" },
   "contact.formEmail": { es: "Tu email", en: "Your email" },
   "contact.formMessage": { es: "Tu mensaje", en: "Your message" },
-  "contact.formSubmit": { es: "Enviar email", en: "Send email" },
+  "contact.formSubmit": { es: "Enviar Email", en: "Send Email" },
   "contact.formSending": { es: "Enviando...", en: "Sending..." },
   "contact.formSent": { es: "Mensaje enviado", en: "Message sent" },
   "contact.formThanks": { es: "Gracias por escribirme. Te responderé lo antes posible.", en: "Thanks for writing. I'll get back to you as soon as possible." },

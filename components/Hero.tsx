@@ -8,6 +8,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 type BrandIcon = React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 import { profile } from "@/lib/data";
+import ContactsIcon from "./ContactsIcon";
 import { useLocale } from "./I18nProvider";
 import { t } from "@/lib/translations";
 
@@ -38,7 +39,7 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={hover ? { backgroundColor: color, borderColor: color, color: "#fff" } : undefined}
-      className="inline-flex w-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-ink-900/15 px-3 py-3.5 text-[13px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:gap-2.5 sm:px-6 sm:py-4 sm:text-[15px]"
+      className="inline-flex min-w-0 shrink items-center justify-center gap-1.5 rounded-full border border-ink-900/15 px-3.5 py-3.5 text-[13px] font-medium text-ink-800 transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:w-full sm:flex-1 sm:gap-2.5 sm:px-6 sm:py-4 sm:text-[15px]"
     >
       {Icon ? (
         <Icon
@@ -46,15 +47,9 @@ function HeroSocial({ label, href }: { label: string; href: string }) {
           style={{ color: hover ? "#fff" : color }}
         />
       ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src="/icons/contacts.png"
-          alt=""
-          aria-hidden="true"
-          className="h-[18px] w-[18px] shrink-0 rounded-[5px] object-contain sm:h-[22px] sm:w-[22px]"
-        />
+        <ContactsIcon className="h-[17px] w-[17px] shrink-0 rounded-[4px] sm:h-[21px] sm:w-[21px]" />
       )}
-      <span className="truncate">{label}</span>
+      <span className="whitespace-nowrap">{label}</span>
     </a>
   );
 }
@@ -336,7 +331,7 @@ export default function Hero() {
                 </a>
               </MagneticWrap>
             </div>
-            <div className="mx-auto grid w-full max-w-[360px] grid-cols-3 items-center gap-2 sm:flex sm:gap-3 md:max-w-none">
+            <div className="flex w-full items-center justify-center gap-2 sm:gap-3">
               {profile.socials.map((s) => (
                 <HeroSocial
                   key={s.label}
