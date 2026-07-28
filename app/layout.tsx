@@ -58,7 +58,7 @@ export const viewport: Viewport = {
 };
 
 // Inline script to set locale from localStorage before first paint (prevents flash)
-const localeScript = `(function(){try{var l=localStorage.getItem('locale');if(l==='en')document.documentElement.lang='en';}catch(e){}})()`;
+const localeScript = `(function(){try{var l=localStorage.getItem('locale');if(l==='es')document.documentElement.lang='es';}catch(e){}})()`;
 
 export default function RootLayout({
   children,
@@ -67,7 +67,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="es"
+      lang="en"
       suppressHydrationWarning
     >
       <head>

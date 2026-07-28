@@ -9,15 +9,15 @@ interface I18nContextValue {
 }
 
 const I18nContext = createContext<I18nContextValue>({
-  locale: "es",
+  locale: "en",
   setLocale: () => {},
 });
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  // Always start on the server default ("es") so the first client render
+  // Always start on the server default ("en") so the first client render
   // matches the server HTML (avoids a hydration mismatch). Then, after mount,
-  // switch to the visitor's saved language.
-  const [locale, setLocaleState] = useState<Locale>("es");
+  // switch to the visitor's saved language if they picked one.
+  const [locale, setLocaleState] = useState<Locale>("en");
 
   useEffect(() => {
     try {

@@ -160,7 +160,7 @@ export default function Hero() {
       value: t("about.info.educationValue", locale),
       sub: "",
       schools: [
-        { src: "/universities/tec.png", name: "Tec de Monterrey", note: "" },
+        { src: "/universities/tec.png", name: "Tecnológico de Monterrey", note: "" },
         { src: "/universities/ceu.png", name: "CEU San Pablo", note: t("about.info.ceuNote", locale) },
       ],
     },
