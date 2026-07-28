@@ -91,7 +91,7 @@ const translations = {
         role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Presente",
-        description: "Soy dueño de features end-to-end para la plataforma logística v2.0 de eShip — donde convergen producto, sistemas en tiempo real e IA — enviando a producción para 12,000+ usuarios.",
+        description: "Lidero features end-to-end para la plataforma logística v2.0 de eShip — donde convergen producto, sistemas en tiempo real e IA — enviando a producción para 12,000+ usuarios.",
         metrics: ["Plataforma v2.0", "7+ integraciones", "IA + tiempo real"],
         highlights: [
           "Diseñé y lancé un servidor MCP (Model Context Protocol): una capa LLM-native que permite a agentes de IA consultar y ejecutar acciones sobre los datos de cuenta y de operación en lenguaje natural — volviendo toda la plataforma conversacional y accionable por agentes. Infraestructura pensada para el futuro del software.",
@@ -125,7 +125,7 @@ const translations = {
         description: "Convertí datos de negocio en decisiones para clientes enterprise — dashboards que movieron inventario, ventas y eficiencia operativa en la dirección correcta.",
         metrics: ["+15–20% ventas", "3 clientes enterprise"],
         highlights: [
-          "Fui dueño de los dashboards de analítica de MAPED, Grupo JULIO y TISA, entregando insights que afinaron la gestión de inventario y la eficiencia operativa.",
+          "Lideré los dashboards de analítica de MAPED, Grupo JULIO y TISA, entregando insights que afinaron la gestión de inventario y la eficiencia operativa.",
           "Diseñé y mantuve dashboards interactivos en Tableau, subiendo de nivel el KPI tracking, el análisis de tendencias de ventas y la gestión de stock para clientes diversos.",
           "Colaboré con los equipos de negocio para detectar cuellos de botella operativos, entregando insights que impulsaron el desempeño en ventas ~15–20%.",
         ],
@@ -147,11 +147,11 @@ const translations = {
         role: "Fullstack Developer & AI Engineer",
         company: "eShip / Segmail",
         period: "Feb 2026 — Present",
-        description: "I own end-to-end features for eShip's v2.0 logistics platform — where product, real-time systems, and AI converge — shipping to production for 12,000+ users.",
+        description: "I lead end-to-end features for eShip's v2.0 logistics platform — where product, real-time systems, and AI converge — shipping to production for 12,000+ users.",
         metrics: ["v2.0 platform", "7+ integrations", "AI + real-time"],
         highlights: [
           "Architected and shipped an MCP (Model Context Protocol) server: an LLM-native layer that lets AI agents query and take action on account and operational data in natural language — turning the entire platform into something conversational and agent-actionable. Infrastructure built for where software is heading.",
-          "Owned the Customer Service module end-to-end, building an incident-management system baked into the core of the v2.0 platform.",
+          "Led the Customer Service module end-to-end, building an incident-management system baked into the core of the v2.0 platform.",
           "Built 'Chatter' from the ground up — a real-time client–agent messaging service that made support dramatically smoother (React, Node.js, MySQL, Twilio).",
           "Shipped an LLM-powered support chatbot (OpenAI) right into the order-tracking page, automating customer assistance at the exact moment users need it.",
           "Designed analytics dashboards surfacing deep shipment & order insights, plus an automations engine in v2.0 (Recharts / ApexCharts).",
@@ -181,7 +181,7 @@ const translations = {
         description: "Turned raw business data into decisions for enterprise clients — dashboards that moved inventory, sales, and operational efficiency in the right direction.",
         metrics: ["+15–20% sales", "3 enterprise clients"],
         highlights: [
-          "Owned analytics dashboards for MAPED, Grupo JULIO, and TISA, delivering insights that sharpened inventory management and operational efficiency.",
+          "Led analytics dashboards for MAPED, Grupo JULIO, and TISA, delivering insights that sharpened inventory management and operational efficiency.",
           "Designed and maintained interactive Tableau dashboards, leveling up KPI tracking, sales-trend analysis, and stock management across diverse clients.",
           "Partnered with business teams to surface operational bottlenecks, delivering insights that lifted sales performance ~15–20%.",
         ],
