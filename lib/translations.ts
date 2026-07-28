@@ -272,29 +272,29 @@ const translations = {
     es: [
       {
         blurb:
-          "Sistema de recomendación de cultivos con machine learning. Rescaté el modelo original (que dependía de PyTorch) reimplementándolo en numpy para correr gratis, y separé el stack en un frontend React/Vite y un backend Flask con PostgreSQL. Recomienda el cultivo óptimo a partir de nutrientes del suelo y clima — en vivo.",
+          "Plataforma de agricultura inteligente que recomienda el cultivo óptimo para un terreno. A partir de los nutrientes del suelo (N, P, K), la temperatura, la humedad, el pH y la lluvia, un modelo de machine learning predice qué conviene sembrar para maximizar el rendimiento. Frontend en React/Vite y backend en Flask con PostgreSQL, con análisis de suelo, histórico de recomendaciones y dashboard.",
       },
       {
         blurb:
-          "Plataforma de gestión de call center en tiempo real, construida 100% sobre AWS: Cognito para roles (supervisor/agente), AppSync (GraphQL) + DynamoDB para los datos, y Lambda + Amazon Connect para la telefonía y el softphone en el navegador. Como el backend vivía en una cuenta AWS ya cerrada, documenté su arquitectura cloud-native en una landing en vivo como caso de estudio.",
+          "Plataforma de gestión de call center en tiempo real, construida 100% sobre AWS: Cognito para los roles (supervisor/agente), AppSync (GraphQL) + DynamoDB para los datos, y Lambda + Amazon Connect para la telefonía y el softphone dentro del navegador. Los agentes atienden llamadas mientras los supervisores monitorean el estado de cada agente, la transcripción y las alertas de sentimiento en tiempo real.",
       },
       {
         blurb:
-          "Videojuego 2D de plataformas hecho en Unity por un equipo del Tec. El proyecto original (Unity 2021 LTS) ya no compilaba en hardware moderno; lo migré a Unity 6, lo exporté a WebGL y reconecté su backend Node/Express + MySQL en la nube. Hoy es 100% jugable en el navegador, con login, registro y guardado de partida.",
+          "RPG de fantasía con batallas y magia: el jugador explora el mundo, combate y avanza a lo largo de la aventura. Incluye cuentas de usuario —registro, inicio de sesión y guardado de partida— para retomar el juego justo donde lo dejaste. Hecho en Unity (C#) y llevado a WebGL para jugarse directo en el navegador, con un backend Node/Express + MySQL que gestiona usuarios y progreso.",
       },
     ],
     en: [
       {
         blurb:
-          "A crop-recommendation system powered by machine learning. I rescued the original model (which depended on PyTorch) by reimplementing it in numpy to run for free, and split the stack into a React/Vite frontend and a Flask + PostgreSQL backend. It recommends the optimal crop from soil nutrients and climate — live.",
+          "A smart-agriculture platform that recommends the optimal crop for a plot of land. From soil nutrients (N, P, K), temperature, humidity, pH, and rainfall, a machine-learning model predicts what to plant to maximize yield. A React/Vite frontend with a Flask + PostgreSQL backend, featuring soil analysis, a recommendation history, and a dashboard.",
       },
       {
         blurb:
-          "A real-time call-center management platform built entirely on AWS: Cognito for roles (supervisor/agent), AppSync (GraphQL) + DynamoDB for data, and Lambda + Amazon Connect for telephony and the in-browser softphone. Since the backend lived on a now-closed AWS account, I documented its cloud-native architecture in a live landing page as a case study.",
+          "A real-time call-center management platform built entirely on AWS: Cognito for roles (supervisor/agent), AppSync (GraphQL) + DynamoDB for data, and Lambda + Amazon Connect for telephony and the in-browser softphone. Agents handle calls while supervisors monitor each agent's state, live transcription, and sentiment alerts in real time.",
       },
       {
         blurb:
-          "A 2D platformer built in Unity by a Tec team. The original project (Unity 2021 LTS) no longer compiled on modern hardware; I migrated it to Unity 6, exported it to WebGL, and reconnected its Node/Express + MySQL backend in the cloud. It's now fully playable in the browser, with login, signup, and save-game.",
+          "A fantasy RPG of battles and magic where the player explores the world, fights, and progresses through the adventure. It ships full user accounts —sign-up, login, and save-game— so you can pick up right where you left off. Built in Unity (C#) and shipped to WebGL to play straight in the browser, with a Node/Express + MySQL backend handling users and progress.",
       },
     ],
   },

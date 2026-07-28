@@ -93,7 +93,7 @@ export default function AcademicDev() {
                     src={d.image}
                     alt={`${d.name} preview`}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="absolute inset-0 h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/15 to-transparent" />
                 </a>
