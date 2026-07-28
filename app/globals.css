@@ -172,3 +172,25 @@ body {
   .font-display { font-style: normal !important; }
   a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666 !important; }
 }
+
+/* ── MeshCode critters (decorative pixel creatures) ── */
+@keyframes critter-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes critter-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.critter {
+  animation: critter-bob var(--bob, 2.5s) ease-in-out infinite;
+  will-change: transform;
+}
+.critter-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: critter-blink var(--blink, 4.5s) ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .critter, .critter-eye { animation: none !important; }
+}

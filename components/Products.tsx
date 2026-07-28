@@ -6,6 +6,7 @@ import { ArrowUpRight, Circle, X } from "lucide-react";
 import { products, type Product } from "@/lib/data";
 import SectionHeader from "./SectionHeader";
 import SwipeHint from "./SwipeHint";
+import MeshCritters from "./MeshCritters";
 import { useLocale } from "./I18nProvider";
 import { t, tArray } from "@/lib/translations";
 
@@ -113,6 +114,10 @@ export default function Products() {
                   <p className={`mt-5 text-justify text-ink-600 ${featured ? "max-w-3xl" : "max-w-md"}`}>
                     {texts[i]?.blurb}
                   </p>
+
+                  {featured && (
+                    <MeshCritters className="pointer-events-none absolute bottom-8 right-8 z-10 hidden lg:flex" />
+                  )}
 
                   <div className="mt-auto flex flex-wrap items-center gap-2 pt-8">
                     {p.tags.map((tag) => (
