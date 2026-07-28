@@ -43,7 +43,7 @@ export default function AcademicDev() {
           transition={{ duration: 0.6 }}
           className="-mt-8 mb-16 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
         >
-          <p className="max-w-3xl text-lg leading-relaxed text-ink-600">{t("academic.subtitle", locale)}</p>
+          <p className="max-w-3xl text-justify text-lg leading-relaxed text-ink-600">{t("academic.subtitle", locale)}</p>
           <span className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-ink-900/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-ink-600">
             <GraduationCap className="h-3.5 w-3.5 text-accent-green" />
             {t("academic.badge", locale)}
@@ -71,7 +71,7 @@ export default function AcademicDev() {
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.7, delay: 0.05 }}
                 className={`border-glow group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-ink-900/10 bg-card text-left transition-all duration-500 hover:border-ink-900/15 ${
-                  featured ? "md:col-span-2" : ""
+                  featured ? "md:col-span-2 md:flex-row md:items-center" : ""
                 }`}
               >
                 <div
@@ -85,7 +85,7 @@ export default function AcademicDev() {
                   rel="noopener noreferrer"
                   aria-label={`${d.name} — ${ctaLabel}`}
                   className={`relative block aspect-[16/10] w-full overflow-hidden bg-ink-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-green ${
-                    featured ? "md:aspect-[2.4/1]" : ""
+                    featured ? "md:w-[44%] md:shrink-0" : ""
                   }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,7 +136,7 @@ export default function AcademicDev() {
                     {d.year} · {d.domain}
                   </p>
 
-                  <p className="mt-5 max-w-xl text-[1.02rem] leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
+                  <p className="mt-5 max-w-xl text-justify text-[1.02rem] leading-relaxed text-ink-600">{texts[i]?.blurb}</p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-2">
                     {d.tags.map((tag) => (
