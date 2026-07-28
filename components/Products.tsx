@@ -116,7 +116,7 @@ export default function Products() {
                   </p>
 
                   {featured && (
-                    <MeshCritters className="pointer-events-none absolute bottom-8 right-8 z-10 hidden lg:flex" />
+                    <MeshCritters className="pointer-events-none absolute bottom-10 right-10 z-10 hidden lg:flex" />
                   )}
 
                   <div className="mt-auto flex flex-wrap items-center gap-2 pt-8">

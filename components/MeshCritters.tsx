@@ -51,12 +51,14 @@ type Spec = {
   delay: string;
 };
 
-// A little coordinated "team" of critters.
+// A little coordinated "team" of critters, in MeshCode's own brand/agent
+// palette (src/index.css --color-agent-* + landing hero colors): cool cyans,
+// teal, green and violet — the same tones the app paints its agents with.
 const TEAM: Spec[] = [
-  { body: 1, color: "#06b6d4", eyeRow: 3, size: 68, bob: "2.7s", blink: "5.3s", delay: "0s" },
-  { body: 0, color: "#22c55e", eyeRow: 3, size: 56, bob: "2.3s", blink: "4.1s", delay: "0.6s" },
-  { body: 2, color: "#a855f7", eyeRow: 3, size: 60, bob: "3.0s", blink: "6.2s", delay: "0.3s" },
-  { body: 3, color: "#f59e0b", eyeRow: 3, size: 50, bob: "2.5s", blink: "4.8s", delay: "0.9s" },
+  { body: 1, color: "#06b6d4", eyeRow: 3, size: 74, bob: "2.7s", blink: "5.3s", delay: "0s" },   // brand cyan
+  { body: 0, color: "#a78bfa", eyeRow: 3, size: 60, bob: "2.3s", blink: "4.1s", delay: "0.6s" }, // brand violet
+  { body: 2, color: "#22c55e", eyeRow: 3, size: 64, bob: "3.0s", blink: "6.2s", delay: "0.3s" }, // brand green
+  { body: 3, color: "#2dd4bf", eyeRow: 3, size: 54, bob: "2.5s", blink: "4.8s", delay: "0.9s" }, // qa teal
 ];
 
 function Critter({ spec }: { spec: Spec }) {
@@ -97,7 +99,7 @@ function Critter({ spec }: { spec: Spec }) {
 
 export default function MeshCritters({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-end gap-2.5 ${className}`} aria-hidden="true">
+    <div className={`flex items-end gap-3 ${className}`} aria-hidden="true">
       {TEAM.map((spec, i) => (
         <Critter key={i} spec={spec} />
       ))}
