@@ -212,7 +212,7 @@ function ProjectCard({ p, pt }: { p: (typeof projects)[number]; pt: ProjectTrans
         <h3 className="font-display text-3xl font-light leading-tight tracking-tight text-ink-900 md:text-4xl">
           {pt.title}
         </h3>
-        <p className="mt-4 max-w-md text-ink-600">{pt.blurb}</p>
+        <p className="mt-4 max-w-md text-justify text-ink-600">{pt.blurb}</p>
 
         <div className="mt-10 flex flex-wrap gap-2">
           {p.tags.map((tag) => (

@@ -110,7 +110,7 @@ export default function Products() {
                   </div>
                   <p className="mt-1 font-mono text-xs text-ink-400">{p.domain}</p>
 
-                  <p className={`mt-5 text-ink-600 ${featured ? "max-w-3xl" : "max-w-md"}`}>
+                  <p className={`mt-5 text-justify text-ink-600 ${featured ? "max-w-3xl" : "max-w-md"}`}>
                     {texts[i]?.blurb}
                   </p>
 

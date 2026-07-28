@@ -217,7 +217,7 @@ const translations = {
   "products.items": {
     es: [
       {
-        blurb: "Infraestructura en tiempo real que permite a múltiples agentes de IA de código (Claude Code, Cursor, Cline) colaborar como un equipo entre máquinas: memoria compartida, task boards, mensajería MCP y un dashboard en vivo. Incluye un CLI publicado en Python (pip install meshcode).",
+        blurb: "Infraestructura de colaboración en tiempo real que convierte instancias sueltas de agentes de código (Claude Code, Cursor, Cline) en un equipo coordinado trabajando en paralelo entre máquinas: memoria y contexto compartidos, task boards para repartir el trabajo, mensajería MCP entre agentes y un dashboard en vivo para orquestarlo todo. Incluye un CLI publicado en Python (pip install meshcode) — la capa que lleva el desarrollo con IA de un agente aislado a una fuerza de trabajo orquestada.",
       },
       {
         blurb: "Plataforma interactiva para el manejo y control de operaciones a nivel directivo. Solución interna con jerarquía de roles, aislamiento multi-tenant (RLS), dashboards ejecutivos con mapa mundial 3D, tableros Kanban y un asistente de IA con datos en contexto.",
@@ -234,7 +234,7 @@ const translations = {
     ],
     en: [
       {
-        blurb: "Real-time infrastructure that lets multiple AI coding agents (Claude Code, Cursor, Cline) collaborate as a team across machines: shared memory, task boards, MCP messaging, and a live dashboard. Ships a published Python CLI (pip install meshcode).",
+        blurb: "Real-time collaboration infrastructure that turns lone coding-agent instances (Claude Code, Cursor, Cline) into a coordinated team working in parallel across machines: shared memory and context, task boards to split the work, MCP messaging between agents, and a live dashboard to orchestrate it all. Ships a published Python CLI (pip install meshcode) — the layer that takes AI development from a single isolated agent to an orchestrated workforce.",
       },
       {
         blurb: "Interactive platform for managing and controlling operations at the executive level. Internal solution with role hierarchy, multi-tenant isolation (RLS), executive dashboards with a 3D world map, Kanban boards, and a data-grounded AI assistant.",
@@ -255,8 +255,8 @@ const translations = {
   "academic.kicker": { es: "Desarrollos Académicos", en: "Academic Work" },
   "academic.title": { es: "Proyectos académicos.", en: "Academic projects." },
   "academic.subtitle": {
-    es: "Estos proyectos son el rastro de mi paso por el Tecnológico de Monterrey (ITESM). Cada uno nació de un reto real de la carrera y me obligó a aprender ingeniería de verdad —de un videojuego a una plataforma con IA, de un backend a una arquitectura en la nube—. No son tareas que entregué y olvidé: son la base de todo lo que hoy sé construir.",
-    en: "These projects are the trail of my years at Tecnológico de Monterrey (ITESM). Each one grew out of a real challenge from my degree and pushed me to learn engineering for real —from a video game to an AI platform, from a backend to a cloud architecture—. They aren't assignments I handed in and forgot: they're the foundation of everything I know how to build today.",
+    es: "Estos proyectos son el rastro de mi paso por el Tecnológico de Monterrey (ITESM). Cada uno nació de un reto real de la carrera y me obligó a aprender ingeniería de verdad —de un videojuego a una plataforma con IA, de un backend a una arquitectura en la nube—. Son la base de todo lo que hoy sé construir.",
+    en: "These projects are the trail of my years at Tecnológico de Monterrey (ITESM). Each one grew out of a real challenge from my degree and pushed me to learn engineering for real —from a video game to an AI platform, from a backend to a cloud architecture—. They're the foundation of everything I know how to build today.",
   },
   "academic.badge": { es: "Tec de Monterrey", en: "Tec de Monterrey" },
   "academic.status.live": { es: "En vivo", en: "Live" },

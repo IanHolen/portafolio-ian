@@ -78,7 +78,7 @@ export default function About() {
                 className="flex items-start gap-3 text-ink-600"
               >
                 <span className="mt-[11px] h-0.5 w-6 shrink-0 rounded-full bg-gradient-to-r from-accent-green to-accent-green/30" />
-                <span>{b}</span>
+                <span className="text-justify">{b}</span>
               </motion.li>
             ))}
           </ul>
